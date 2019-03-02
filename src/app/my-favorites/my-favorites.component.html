@@ -1,0 +1,107 @@
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                    <h1 class="text-uppercase">My Favorites</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="sec-padding">
+        <div class="auto-container">
+           <div class="multi-drop-down">
+            <ng-multiselect-dropdown *ngIf="activeTab == 1" [(ngModel)]="selectedCities" [placeholder]="'Select Cities'" [data]="property_cities" [settings]="dropdownSettings"
+                (onSelect)="onSelect($event)" (onDeSelect)="onDeSelect($event)">
+            </ng-multiselect-dropdown>
+            <ng-multiselect-dropdown *ngIf="activeTab == 2" [(ngModel)]="selectedCities" [placeholder]="'Select Cities'" [data]="company_cities" [settings]="dropdownSettings"
+              (onSelect)="onSelect($event)" (onDeSelect)="onDeSelect($event)">
+            </ng-multiselect-dropdown>
+          </div>
+
+            <div class="panel panel-primary" id="services-tab">
+                <div class="panel-heading">
+                    <!--  <ul class="nav panel-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">Properties</a></li>
+                    </ul> -->
+                    <ul class="nav panel-tabs">
+                      <li class="nav-item">
+                        <a class="nav-link" (click)="changeActiveTab('1')" [ngClass]="{'active' : activeTab == 1}">Properties</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" *ngIf="user.registrationType == 1" (click)="changeActiveTab('2')" [ngClass]="{'active' : activeTab == 2}">Companies</a>
+                      </li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1" *ngIf="activeTab == '1'">
+                            <div class="tab-full-block clearfix">
+                            <div class="row rent-row">
+                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
+                                    <img src="./assets/images/resource/pro-tab-01.jpg" alt="" class="img-responsive img-thumbnail" /></div>
+                                <div class="col-sm-9 col-md-6 col">
+                                    <div class="tab-in">
+                                        <h3>SOLD</h3>
+                                        <address>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> 4813 E Brill St, Phoenix, AZ 85008, USA</address>
+                                        <div class="rating">
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <a href="#" class="like"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                        <div class="price">$228,000.00</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 col">
+                                    <div class="tab-in-right">
+                                    <img src="./assets/images/resource/tab-logo.jpg" width="60px" class="pull-left">
+                                    <p>Matt bring anything with Mclane</p></div>
+                                </div>
+                                </div>
+                        </div>
+
+                         <div class="tab-full-block clearfix" *ngIf="activeTab == '2' && user.registrationType == 1">
+                            <div class="row rent-row">
+                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
+                                    <img src="./assets/images/resource/pro-tab-01.jpg" alt="" class="img-responsive img-thumbnail" /></div>
+                                <div class="col-sm-9 col-md-6 col">
+                                    <div class="tab-in">
+                                        <h3>SOLD</h3>
+                                        <address>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> 4813 E Brill St, Phoenix, AZ 85008, USA</address>
+                                        <div class="rating">
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <i class="fa fa-star star" aria-hidden="true"></i>
+                                            <a href="#" class="like"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                        <div class="price">$228,000.00</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 col">
+                                    <div class="tab-in-right">
+                                    <img src="./assets/images/resource/tab-logo.jpg" width="60px" class="pull-left">
+                                    <p>Matt bring anything with Mclane</p></div>
+                                </div>
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+        </section>
+
+
+  

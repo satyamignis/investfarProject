@@ -1,0 +1,359 @@
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<app-menu-header></app-menu-header>
+<section class="inner-banner financed-top" data-toggle="modal" data-target="#myModal">
+<div class="page-title financed-title" style="background-image:url(./assets/images/thumb-slider/financed-slide01.jpg);">
+   <div class="arrow-block clearfix">
+        <img src="./assets/images/thumb-slider/arrow-left.png" alt="" class="pull-left" />
+        <img src="./assets/images/thumb-slider/arrow-right.png" alt="" class="pull-right" />               
+  </div>
+<div class="auto-container">
+            <div class="row clearfix">
+                <div class="title-column col-sm-12 col-xs-12">
+                    <h1>Owner Financed – No Banks Needed!</h1>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+
+<!--Pop Up Slider -->
+<div class="modal" id="myModal">
+<div class="modal-dialog financed-dialog">
+<div class="modal-content">
+<button type="button" class="close slider-close " data-dismiss="modal">×</button>
+<div id="main" role="main">
+
+
+<div class="detail_main_slider slider">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <slideshow #slideshow
+           [minHeight]="'450px'"
+           [autoPlay]="false"
+           [showArrows]="true"
+           [imageUrls]="imageUrlArray"
+           [lazyLoad]="imageUrlArray?.length > 1"
+           [autoPlayWaitForLazyLoad]="true">
+    </slideshow>
+
+        <ul class="nav nav-pills nav-justified detail_controller slides">
+          <li>
+          <a (click)="changerImage(0)"><img src="./assets/images/thumb-slider/financed-thumb01.jpg" alt="" class="img-responsive"></a></li>
+
+          <li>
+          <a (click)="changerImage(1)"><img src="./assets/images/thumb-slider/financed-thumb02.jpg" alt="" class="img-responsive"></a></li>
+
+          <li>
+          <a (click)="changerImage(2)"><img src="./assets/images/thumb-slider/financed-thumb03.jpg" alt="" class="img-responsive"></a></li>
+
+          <li>
+          <a (click)="changerImage(3)"><img src="./assets/images/thumb-slider/financed-thumb04.jpg" alt="" class="img-responsive"></a></li>
+        </ul>
+    </div>
+    </div><!-- End Carousel -->
+
+
+<!--  <div class="slider">
+        <div id="slider" class="flexslider">
+          <ul class="slides">
+            <li><img src="./assets/images/thumb-slider/financed-slide01.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-slide02.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-slide03.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-slide04.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-slide01.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-slide02.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-slide03.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-slide04.jpg" /></li>
+          </ul>
+        </div>
+
+        <div id="carousel" class="flexslider">
+          <ul class="slides">
+            <li><img src="./assets/images/thumb-slider/financed-thumb01.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-thumb02.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-thumb03.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-thumb04.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-thumb01.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-thumb02.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-thumb03.jpg" /></li>
+            <li><img src="./assets/images/thumb-slider/financed-thumb04.jpg" /></li>
+          </ul>
+        </div>
+      </div> -->
+<!-- slider -->
+
+      </div>
+</div>
+</div>
+</div>
+<!--Pop Up Slider -->
+
+
+<!--One Third Section-->
+<section class="owner-financed sec-padding">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-sm-9">
+            	<div class="description">
+                <div class="sec-title">
+                   <h2>Description</h2>
+                </div>
+                <div class="description-block">
+                    <h5>
+                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 4813 E Brill St, Phoenix, AZ 85008, USA</a>
+                    <div class="pull-right star">
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </div>
+                    </h5>
+
+                   
+                    
+                        <div class="description-type clearfix">
+                            <div class="col-sm-4 descri-type-block">
+                                <p>Property type:</p>
+                                <a href="#">Single Family</a> 
+                            </div>
+                            <div class="col-sm-4 descri-type-block">
+                                <p>Offer type:</p>
+                                <a href="#">Sell</a> 
+                            </div>
+                            <div class="col-sm-4 descri-type-block">
+                                <p>City:</p>
+                                <a href="#">Phoenix</a> 
+                            </div>
+                        </div>
+                          <div class="description-type clearfix">
+                            <div class="col-sm-4 descri-type-block">
+                                <p>Bedrooms:</p>
+                                <p class="sub-type">2</p> 
+                            </div>
+                            <div class="col-sm-4 descri-type-block">
+                                <p>Bathrooms:</p>
+                                <p class="sub-type">2</p>
+                            </div>
+                            <div class="col-sm-4 descri-type-block">
+                                <p>Property size:</p>
+                                <p class="sub-type">1407 ft²</p>
+                            </div>
+                        </div>
+                          <div class="description-type clearfix">
+                            <div class="col-sm-4 descri-type-block">
+                                <p>Year:</p>
+                                <p class="sub-type">Single Family</p>
+                            </div>
+                            <div class="col-sm-4 descri-type-block">
+                                <p>Asking Price:</p>
+                                <p class="sub-type">$228,000.00</p>
+                            </div>
+                            <div class="col-sm-4 descri-type-block">
+                                <p>Date:</p>
+                                <p class="sub-type">Sep 29, 2018, 6:00:48 AM</p> 
+                            </div>
+                        </div>
+
+                        <div class="description-type clearfix">
+                            <div class="col-sm-12"><p>Amenities:</p></div>
+                            
+                            <div class="col-sm-6 col-md-3 descri-type-block text-center">
+                            <div class="icon-block"><img src="./assets/images/icons/air-conditioner.png" alt=""></div>
+                                <p>Air Condition</p>
+                            </div>
+                            <div class="col-sm-6 col-md-3 descri-type-block text-center">
+                            <div class="icon-block"><img src="./assets/images/icons/fire-place.png" alt=""></div>
+                                <p>Fire Place</p>
+                            </div>
+                            <div class="col-sm-6 col-md-3 descri-type-block text-center">
+                            <div class="icon-block"><img src="./assets/images/icons/laundry.png" alt=""></div>
+                                <p>laundry</p>
+                            </div>
+                            <div class="col-sm-6 col-md-3 descri-type-block text-center">
+                            <div class="icon-block"><img src="./assets/images/icons/swimming-pool.png" alt=""></div>
+                                <p>Pool</p>
+                            </div>
+                        </div>
+
+                         <div class="description-type question clearfix">
+                            <div class="col-xs-12">
+                                <p>How much do you think the home is worth : <strong>$265,500.00</strong></p>
+                            </div>
+                        </div>
+                        <div class="description-type question clearfix">
+                            <div class="col-xs-12">
+                                <p>Is the home vacant, rented or lived in : <strong>Rented</strong></p>
+                            </div>
+                        </div>
+                        <div class="description-type question clearfix">
+                            <div class="col-xs-12">
+                                <p>Why are you selling : <strong>Not looking to manage</strong> </p>
+                            </div>
+                        </div>
+
+                        <div class="description-type centered">
+                         <a href="#" class="theme-btn btn-style-two center-block">Property Valution Report</a>
+                         </div>
+                    </div>
+                    
+                     <div class="description-block option-block clearfix">
+                             <div class="col-sm-3 text-center">
+                                <a href="https://www.calculator.net/rental-property-calculator.html" target="_blank" class="in-option">
+                                    <div class="" id="diamond">
+                                    <span><img src="./assets/images/icons/calculator.png" width="40px" /></span>
+                                    </div>
+                                    <p>Cash Flow Calculator</p>
+                                </a>
+                            </div>
+                             <div class="col-sm-3 text-center">
+                                <a href="#" class="in-option">
+                                    <div class="" id="diamond">
+                                    <span><img src="./assets/images/icons/person-walking.png" width="40px" /></span>
+                                    </div>
+                                    <p>Walkscore</p>
+                                </a>
+                            </div>
+                             <div class="col-sm-3 text-center">
+                                <a href="#" class="in-option">
+                                    <div class="" id="diamond">
+                                    <span><img src="./assets/images/icons/school.png" width="40px" /></span>
+                                    </div>
+                                    <p>School</p>
+                                </a>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <a href="#" class="in-option">
+                                    <div class="" id="diamond">
+                                    <span><img src="./assets/images/icons/statistics.png" width="40px" /></span>
+                                    </div>
+                                    <p>Compare</p>
+                                </a>
+                            </div>
+                     </div>
+
+
+                    <div class="description-block">
+                    <h5>
+                    <a href="#"><i class="fa fa-file-text" aria-hidden="true"></i> Details</a>
+                    </h5>
+                    <div class="description-type clearfix">
+                    <div class="col-sm-12">
+                    <p>Take advantage of this great Owner Finance option on this nice home with a pool in Phoenix near Sky Harbor Airport. Perfect Buy and Hold situation. ARV: $265,000 Wholesale: $26,000 Down Payment Seller Carry: $202,000 for 5 Years Monthly Payment: $1,405 PITI 48th St and McDowell Rd Owner occupied. Showings limited.</p>
+                    </div>
+                    </div>
+                    </div>
+                    
+
+               </div>
+            </div>
+            <div class="col-sm-3">
+                <aside class="sidebar inner-sidebar">
+                    <div class="sidebar-widget tabbed-links">
+                            <ul class="tabbed-nav">
+                                <li><a href="#">
+                                <i class="fa fa-heart" aria-hidden="true"></i> Add to favorites </a></li>
+                                <li><a href="#">
+                                <i class="fa fa-eye" aria-hidden="true"></i> 0</a></li>
+                            </ul>
+                            <ul class="files">
+                                <li><a href="#">$228,000.00</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-widget tabbed-links">
+                            <ul class="tabbed-nav">
+                                <li>
+                                <a href="tel:+ 1-855-737-4338">
+                                <i class="fa fa-volume-control-phone" aria-hidden="true"></i> + 1-855-737-4338 </a></li>
+                                <li><a href="#">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                See Map</a></li>
+                            </ul>
+                        </div>
+                        
+                        
+                        <!-- Tabbed Links -->
+                        <div class="sidebar-widget">
+                            <div class="sidebar-title"><h3>Make an offer</h3></div>
+                            <div class="offer-form">
+                            <p class="text-right">
+
+                            <a href="#" data-toggle="modal" data-target="#myBtn">Our Legal Notice</a></p>
+                            	<div class="form-group">
+                                    <input type="text" name="field-name" value="" placeholder="Your Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="field-name" value="" placeholder="Mail">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="field-name" value="" placeholder="Phone">
+                                </div>
+                                <div class="form-group">
+                                   <textarea rows="4" placeholder="Make an offer / Message">
+                                    </textarea>
+                                </div>
+                            </div>
+                             <ul class="files">
+                                <li><a href="#" class="text-center">SEND</a></li>
+                            </ul>
+                        </div>
+
+                         <div class="sidebar-widget">
+                            <div class="sidebar-title"><h3>Profile</h3></div>
+                            <ul class="tabbed-nav">
+                                <li><a href="tel:+ 1-855-737-4338">
+                                <i class="fa fa-volume-control-phone" aria-hidden="true"></i> 
+                               + 1-855-737-4338 </a></li>
+                                <li><a href="mailto:info@investfar.com">
+                                <i class="fa fa-envelope" aria-hidden="true"></i> info@investfar.com</a></li>
+                            </ul>
+                             <ul class="files">
+                                <li><a href="#" class="text-center">All by InvestFar</a></li>
+                            </ul>
+                        </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Legal Notice -->
+<div class="modal notice" id="myBtn">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Legal Notice</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p>Once you have filled out the request form, click on Send.</p> 
+
+        <p>Your contact details and offer will be sent to the seller for consideration.</p>
+
+        <p>If offer is accepted an e-mail will be sent to you detailing next steps with all the information that you need to purchase the property or to negotiate with the seller.</p>
+
+        <p>InvestFar, Inc will keep the information provided for statistical purposes.</p>
+
+        <p>InvestFar, Inc may use your information to provide a more curated experience based on your submissions. Notably, we do not give your email address to third parties other than the sellers concerned.</p>
+
+        <p>You benefit from a right to access, to modify, to rectify and to delete your personal data (Law of January 6th 1978) relative to IT services, to files and to liberties.</p>
+
+        <p>InvestFar, Inc would like to remind you that the use of the form by unsolicited direct marketing professionals (spammers) is prohibited. In compliance with legal obligations, InvestFar, Inc records your internet address and reserves the right to follow up on fraudulent use.</p>
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Legal Notice -->
+

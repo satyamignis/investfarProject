@@ -1,0 +1,25 @@
+#pic{
+    display: none;
+}
+.newbtn{
+    cursor: pointer;
+}
+.bulk-upload {
+  position: relative;
+  overflow: hidden;
+}
+.bulk-upload input {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.form-block .pro-description{
+     height: 45px !important;
+}
+.advance-btn h2{
+     cursor: pointer;
+
+}

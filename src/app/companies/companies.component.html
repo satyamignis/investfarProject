@@ -1,0 +1,83 @@
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<app-menu-header></app-menu-header>
+
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                    <h1>COMPANIES</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <section class="sec-padding">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-sm-4">
+                     <figure class="bigger-image">
+                    <img src="./assets/images/resource/company.jpg" alt="" class="img-thumbnail"></figure>
+                </div>
+
+                <div class="content-side col-sm-8">
+                    <div class="content-section services-content">
+                        <!-- <div class="normal-title"><h3>CONTRACTORS</h3></div> -->
+                        <div class="text-block text-justify">
+                            <p>Real Estate investing is multifaceted and with that there are multiple avenues one can take in this industry, so here at InvesFar we aim to simplify it for those in this field by building a directory of companies we feel are most advantageous to individuals looking to build their portfolio locally and nationwide. We have also given companies the option to add their own businesses to our directory if they provide a service to the real estate industry. These companies have to be vetted and approved before they are added to the directory.</p>
+                            <p>The directory ranges from Private Lenders, Property management companies, Real Estate brokers, Business funding to Family offices. As a real estate investing beginner or veteran the directory contains a listing of companies for whatever stage you are in within the business all in one hub. Under your profile you can save a list of companies to your favorites so you don’t have to write the information down on something that can be misplaced later.</p>
+                            <P>Our goal is to make it easy for you to InvestFar and give you a directory of nationwide companies to do it.</P>
+                            <div class="link-box" *ngIf="!user"><a [routerLink]="['/companies-registration']" class="theme-btn btn-style-one"> COMPANY REGISTRATION <span class="fa fa-long-arrow-right"></span></a></div>
+                        </div>
+                        
+                        <!--Two Column-->
+                        <!--End Two Column-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+
+    <!--Main Footer-->
+   
+    
+
+<!-- =================POPUP=================== -->
+<section class="real_estate_popup">
+<div id="myBtnOne" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+<div class="modal-content real_box_popup">
+<div class="modal-header close_box">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body real_pop_content clearfix">
+<p>You have not purchase any plan. 
+Would you like purchase one ?</p>
+
+<div class="btn_ok">
+<a href="#" class="btn-style-two" data-dismiss="modal">CANCEL</a>
+<a href="login.html" class="btn-style-two">OK</a>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+<!-- =================POPUP=================== -->  
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target=".main-header">
+<span class="fa fa-long-arrow-up"></span></div>
+
+
+<!-- language -->
+
+<!-- language -->
+
+
+

@@ -1,0 +1,56 @@
+<!-- *********** Loading ************** -->
+    <div *ngIf="preloadimg" class="preloadingimg">
+        <img src="./assets/images/icons/preloader.gif">
+    </div>
+    <div *ngIf="apiLoading" class="loadingApi">
+        <img src="./assets/images/icons/loading.gif">
+    </div>
+<!-- *********** Loading ************** -->
+<app-menu-header></app-menu-header>
+ <section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                    <h1 class="text-uppercase">My Offered Services</h1>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section class="no_padding services-listing-bar book-service-bar" id="">
+   <div _ class="book-services-category">
+      <div _ class="container">
+         <ul _ class="services-listing-wrap">
+                  <li *ngFor="let s of myOfferedServices">
+                  <div class="service-listing">
+                    <div class="services-provider-icon">
+                      <img src="{{s.subCategoryImage || filename}}" (error)="filename = './assets/images/icons/preloader.gif'" alt="img" title="img">
+                    </div>
+                    <div class="services-provider-shortdetail">
+                      <div class="detail">
+                        <div class="left mr-auto">
+                          <h3>{{s.name}}</h3>
+                          <span class="location-area">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                           {{s.address}}</span>
+                            <span class="Price" *ngIf="s.rate_type == 0">{{s.maxPrice | currency}} / service</span>
+                            <span class="Price" *ngIf="s.rate_type == 1">{{s.maxPrice | currency}} / hour</span>
+                            <span class="category-name">Category : {{s.categoryName}}</span>
+                            <span class="category-name">Sub Category : {{s.subCategoryName}}</span>
+
+                        </div>
+                        <div class="right ml-auto">
+                          <a [routerLink]="['/directory/edit-service/'+s.id]" class="btn request-btn">Edit</a>
+                          <a class="btn book-btn" data-toggle="modal" data-target="#bookModal" (click)="deleteServiceConfirm(s.id, s.name)">Delete</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li> 
+          </ul>
+      </div>
+   </div>
+</section>
+
+

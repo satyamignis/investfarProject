@@ -1,0 +1,200 @@
+<body id="topBody">
+<div class="page-wrapper">
+    
+    <!-- *********** Loading ************** -->
+    <div *ngIf="apiLoading" class="loadingApi">
+        <img src="./assets/images/icons/loading.gif">
+    </div>
+    <!-- *********** Loading ************** -->
+  
+    <!-- Main Header-->
+    <header class="main-header" id="reqest"  (window:resize)="onResize($event)">
+      <!--Header-Upper-->
+        <div class="header-upper">
+          <div class="auto-container">
+              <div class="clearfix">
+                        <div class="pull-right btn-outer top">
+                        <a [routerLink]="['/submit-property']"  data-scroll class="appt-btn theme-btn submit-btn">Submit property</a>
+                    <!--     <a class="appt-btn theme-btn">Directory</a> -->
+
+                        <div class="main-menu loginSuccessMenu">
+                            <ul class="navigation clearfix">
+                                  <li class="dropdown menudropdown"><a class="appt-btn theme-btn pd" >Directory</a>
+                                        <ul class="loginOpen" *ngIf="user">
+                                            <li><a [routerLink]="['/add-service']" >Add Service</a></li>
+                                            <li><a [routerLink]="['/my-offered-services']" >My Offered Services</a></li>
+                                            <li><a [routerLink]="['/manage-services']">Manage Services</a></li>
+                                        </ul>
+                                        <ul class="loginOpen" *ngIf="!user">
+                                            <li><a [routerLink]="['/']" >Service Category</a></li>
+                                            <li><a [routerLink]="['/']" >My Booked Services</a></li>
+                                        </ul>
+                                    </li>
+                            </ul>
+                        </div>
+                        
+
+                        <a *ngIf="!user" [routerLink]="['/login']" class="appt-btn theme-btn">Sign in</a>
+                        <div *ngIf="user" class="main-menu loginSuccessMenu">
+                            <ul class="navigation clearfix">
+                                  <li class="dropdown menudropdown"><a class="appt-btn theme-btn pd">{{user.companyName || 'My Account'}}</a>
+                                        <ul class="loginOpen">
+                                            <li><a [routerLink]="['/my-properties']" >My Properties</a></li>
+                                            <li><a [routerLink]="['/my-favorites']">My Favorites</a></li>
+                                            <li><a>My Reviews</a></li>
+                                            <li><a [routerLink]="['/my-purchase-history']">My Purchase History</a></li>
+                                            <li><a>My Offers</a></li>
+                                            <li><a [routerLink]="['/edit-profile']">Edit Profile</a></li>
+                                            <li><a [routerLink]="['/change-password']">Change Password</a></li>
+                                            <li><a [routerLink]="['/']" (click)="logout()">Logout</a></li>
+                                        </ul>
+                                    </li>
+                            </ul>
+                        </div>
+                        
+                        <!--  <div class="select-lang">
+                        <div id="google_translate_element"></div>
+                        </div> -->
+                   </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="header-lower top-nav">
+            <div class="auto-container">
+             <div class="nav-outer clearfix">
+                    <!-- Main Menu -->
+                    <nav class="main-menu">
+                        <div class="navbar-header">
+                            <!-- Toggle Button -->      
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                   <div class="pull-left logo-outer">
+                        <div class="logo"><a [routerLink]="['/']"><img src="./assets/images/logo.png" alt="" title=""></a></div>
+                    </div>
+                        
+                        <div class="navbar-collapse collapse clearfix">
+                            <ul class="navigation clearfix">
+                             <li><a [routerLink]="['/']">Home</a></li>
+                                <li class="dropdown"><a>INVESTFAR</a>
+                                    <ul>
+                                        <li><a [routerLink]="['/contractors']">CONTRACTORS</a></li>
+                                        <li><a [routerLink]="['/companies']">COMPANIES</a></li>
+                                        <li *ngIf="!user"><a [routerLink]="['/login']">SIGN UP</a></li>
+                                        <li><a [routerLink]="['/local-investor-consultant']">LOCAL INVESTOR CONSULTANT</a></li>   
+                                         <li class="dropdown"><a>INVESTORS CLUB</a>
+                                         <ul>
+                                            <li><a [routerLink]="['/home-improvement-network']">Home Improvement Network</a></li>
+                                            <li><a [routerLink]="['/seminars-events-nvestors-club']">Seminars & Events</a></li>
+                                        </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a>BUY / RENT</a>
+                                    <ul>
+                                        <li><a [routerLink]="['/offer-type-sell']">Sell</a></li>
+                                        <li><a [routerLink]="['/offer-type-rent']">Rent</a></li>
+                                    </ul>
+                                </li>
+                                <li><a [routerLink]="['/valuation']">VALUATION</a></li>
+                         
+                                <li class="dropdown"><a>REQUEST</a>
+                                    <ul>
+                                        <li><a [routerLink]="['/real-estate-legal-forms']">REAL ESTATE LEGAL FORMS</a></li>
+                                        <li class="dropdown"><a>MLS PROPERTY SEARCH</a>
+                                      <ul>
+                                          <li><a [routerLink]="['/property-search']">Search</a></li>
+                                          <li><a>Map Search</a></li>
+                                          <li><a>Open Homes</a></li>
+                                          <li><a [routerLink]="['/featured-properties']">Featured Listings</a></li>
+                                          <li><a [routerLink]="['/organization-login']">Organizer Login</a></li>
+                                      </ul>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li><a [routerLink]="['/pricing']">PRICING</a></li>
+                                
+                            </ul>
+                        </div>
+                    </nav><!-- Main Menu End-->
+                </div>
+            </div>
+        </div>
+
+        <!--Sticky Header-->
+        <div class="sticky-header now-visible" id="sticky-header-id">
+          <div class="auto-container clearfix">
+              <!--Logo-->
+              <div class="logo pull-left">
+                <a [routerLink]="['/']" class="img-responsive"><img src="./assets/images/logo-small.png" alt=""></a>
+                </div>
+                
+                <!--Right Col-->
+                <div class="right-col pull-right">
+                  <!-- Main Menu -->
+                    <nav class="main-menu">
+                        <div class="navbar-header">
+                            <!-- Toggle Button -->      
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        
+                        <div class="navbar-collapse collapse clearfix">
+                            <ul class="navigation clearfix">
+
+                                <li class="current"><a [routerLink]="['/']">Home</a></li>
+                                <li class="dropdown"><a>INVESTFAR</a>
+                                   <ul>
+                                        <li><a [routerLink]="['/contractors']">CONTRACTORS</a></li>
+                                        <li><a [routerLink]="['/companies']">COMPANIES</a></li>
+                                        <li><a [routerLink]="['/login']">SIGN UP</a></li>
+                                        <li><a [routerLink]="['/local-investor-consultant']">LOCAL INVESTOR CONSULTANT</a></li>   
+                                         <li class="dropdown"><a>INVESTORS CLUB</a>
+                                         <ul>
+                                            <li [routerLink]="['/home-improvement-network']"><a>Home Improvement Network</a></li>
+                                            <li><a [routerLink]="['/seminars-events-nvestors-club']">Seminars & Events</a></li>
+                                        </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                               <li class="dropdown"><a>BUY / RENT</a>
+                                    <ul>
+                                        <li><a [routerLink]="['/offer-type-sell']">Sell</a></li>
+                                        <li><a [routerLink]="['/offer-type-rent']">Rent</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a [routerLink]="['/valuation']">VALUATION </a></li>
+                         
+                                  <li class="dropdown"><a>REQUEST</a>
+                                    <ul>
+                                        <li><a [routerLink]="['/real-estate-legal-forms.component']">REAL ESTATE LEGAL FORMS</a></li>                
+                                        <li class="dropdown"><a>MLS PROPERTY SEARCH</a>
+                                      <ul>
+                                          <li><a [routerLink]="['/property-search']">Search</a></li>
+                                          <li><a>Map Search</a></li>
+                                          <li><a>Open Homes</a></li>
+                                          <li><a [routerLink]="['/featured-properties']">Featured Listings</a></li>
+                                          <li><a [routerLink]="['/organization-login']">Organizer Login</a></li>
+                                      </ul>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li><a [routerLink]="['/pricing']">PRICING</a></li>
+                            </ul>
+                        </div>
+                    </nav><!-- Main Menu End-->
+                </div>
+            </div>
+        </div><!--End Bounce In Header-->
+    </header></div>
+

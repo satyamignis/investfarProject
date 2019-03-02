@@ -1,0 +1,259 @@
+
+.sell_box {
+	background: #1a93ce;
+	padding: 50px 20px;
+	background-size: 100%;
+}
+.sell_box h2 {
+	border: solid #fff 2px;
+	padding: 20px 49px;
+	margin: 0 auto;
+	display: inline-block;
+	color: #fff;
+	text-transform: uppercase
+}
+
+
+
+.services-listing-bar {
+  margin-top: 30px;
+}
+
+.services-listing-bar .heading-txt {
+  margin-bottom: 20px;
+}
+
+.services-listing-wrap {
+  width: 100%;
+  list-style-type: none;
+  padding-left: 0px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.services-listing-wrap li {
+  width: 100%;
+  display: inline-block;
+  border-bottom: 1px solid #e2e2e2;
+  padding: 18px 0px 10px;
+}
+
+.services-listing-wrap li:hover {
+  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+  background: #f9f9f92e;
+}
+
+.service-listing {
+  width: 100%;
+  display: block;
+}
+
+.services-provider-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 5px;
+  overflow: hidden;
+  display: inline-block;
+  border: 1px solid #e2e2e2a3;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.services-provider-icon img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.services-provider-shortdetail {
+  width: calc(100% - 140px);
+  float: right;
+}
+
+.services-provider-shortdetail h3 {
+  margin-top: 0px;
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+.services-provider-shortdetail p {
+  margin-bottom: 5px;
+  color: #666666;
+}
+
+span.location-area {
+  width: 100%;
+  display: block;
+  font-size: 16px;
+  color: #666666;
+}
+
+span.location-area i {
+  color: #3e91d1;
+}
+
+span.rating-points {
+  width: 100%;
+  display: block;
+}
+
+span.rating-points span {
+  margin: 0px 2px;
+}
+
+span.Price {
+  width: 100%;
+  display: block;
+  text-align: left;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #3e91d1;
+  margin-bottom: 0px;
+}
+
+.detail {
+  display: table;
+  width: 100%;
+}
+
+.left {
+  display: inline-block;
+}
+
+.right {
+  display: inline-block;
+  padding-top: 40px;
+  float: right;
+}
+
+.right .btn {
+  padding: 10px 1.5em;
+  background: transparent;
+  text-align: center;
+  color: #2e89cf;
+  font-size: 1em;
+  line-height: 1.5;
+  border-radius: 50px;
+  margin-left: 10px;
+  border: 1px solid #2e89cf;
+  transition: 0.2s ease-in-out;
+}
+
+.right .btn:hover {
+  background: #2e89cf;
+  color: #ffffff;
+}
+
+.rating-points {
+  margin-top: 5px;
+}
+
+.checked {
+  color: orange;
+}
+
+.no-space {
+  margin: 0px !important;
+  padding: 0px !important
+}
+
+.booking-service-modal button.close {
+  position: absolute;
+  top: 16 px;
+  right: -22px;
+  background: #000000;
+  vertical-align: top;
+  padding: 10px 10px 16px;
+  line-height: 0;
+  height: 31px;
+  color: #ffffff;
+}
+
+.booking-service-modal button.close,
+.booking-service-modal button.close:focus {
+  outline: none;
+}
+
+.booking-service-modal .modal-content {
+  border: none;
+  border-radius: 0px;
+}
+
+button:focus {
+  outline: none;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 380px;
+    margin: 1.75rem auto;
+  }
+}
+
+.booking-service-modal .book-btn {
+  background: #2e89cf;
+  padding: 8px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.modal-backdrop.show {
+  opacity: 0.9;
+}
+
+.category-name{
+  width: 100%;
+  display: block;
+  font-size: 16px;
+  color: #000000;}
+
+
+  /* Responsive Part */
+
+@media screen and (max-width:990px){
+  .services-provider-shortdetail h3{
+  font-size: 1.3em;
+  }
+  }
+  
+  @media screen and (max-width:767px){
+    .right{
+      display: inline-block;
+      padding-top: 15px;
+      float: left;
+      padding-bottom:0px;}
+    .right .btn{
+      margin-left: 0px;
+      margin-right: 10px;
+    }
+    .services-listing-bar .heading-txt{
+      font-size: 1.5em
+    }
+  }
+  
+  @media screen and (max-width:480px){
+  .services-provider-icon{
+    width:100%;
+    height:120px;
+  }
+  .services-provider-icon img{width: 100%; object-fit: cover; height: 100%;}
+  .services-provider-shortdetail{
+    width: calc(100% - 0px)  
+  }
+  
+  .right .btn{
+    padding:10px 1em;
+    margin-top:10px;
+    margin-bottom: 0px;
+  }
+  .right{margin-top: 0px; padding-top: 0px;  width: 100%}
+  .services-listing-wrap li{
+  padding-bottom: 18px;
+  }
+  
+  }

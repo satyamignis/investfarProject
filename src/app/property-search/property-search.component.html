@@ -1,0 +1,162 @@
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                    <h1 class="text-uppercase">Property Search</h1>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section class="find-advisor style-two top">
+        <div class="auto-container">
+            <div class="row find-row">
+                <div class="col-sm-4 col-md-6 col-xs-12 find-box">
+                    <input type="search" class="city" name="search-field" value="" placeholder="1234 Mainstreet">
+                </div>
+
+                <div class="col-sm-4 col-md-3 col-xs-6 find-box">
+                <div class="custom-select pro-search">
+                <div class="select-selected">
+                  <select>
+                    <option value="1">Min Price</option>
+                    <option value="2">No Min</option>
+                    <option value="3">$60k</option>
+                    <option value="4">$180k</option>
+                    <option value="5">$350k</option>
+                    <option value="6">$500k</option>
+                    <option value="7">$600k</option>
+                    <option value="8">$700k</option>
+                  </select>
+                </div>
+                </div>
+                </div>
+
+                <div class="col-sm-4 col-md-3 col-xs-6 find-box">
+                <div class="custom-select pro-search">
+                <div class="select-selected">
+                 <select>
+                    <option value="1">Max Price</option>
+                    <option value="2">No Min</option>
+                    <option value="3">$200k</option>
+                    <option value="4">$300k</option>
+                    <option value="5">$400k</option>
+                    <option value="6">$500k</option>
+                    <option value="7">$600k</option>
+                    <option value="8">$700k</option>
+                  </select>
+                </div>
+                </div>
+                </div>
+
+                <div class="col-sm-4 col-md-3 col-xs-6 find-box">
+                <div class="custom-select pro-search">
+                <div class="select-selected">
+                  <select>
+                    <option value="0">Any Bedrooms</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                  </select>
+                </div>
+                </div>
+                </div>
+
+                <div class="col-sm-4 col-md-3 col-xs-6 find-box">
+                <div class="custom-select pro-search">
+                <div class="select-selected">
+                  <select>
+                    <option value="0">Any Bathrooms</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                  </select>
+                </div>
+                </div>
+                </div>
+
+                <div class="col-sm-4 col-md-2 col-xs-6 find-box">
+                <div class="custom-select pro-search">
+                <div class="select-selected">
+                  <select>
+                    <option value="0">Property Type</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                  </select>
+                </div>
+                </div>
+                </div>
+
+                <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+                <div class="input-group filter" id="adv-search">
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <div class="dropdown dropdown-lg">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">More</button>
+
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                <form class="form-block" role="form">
+                                 <div class="form-group">
+                                <input type="text" name="field-name" value="" placeholder="Status">
+                                  </div>
+
+                                  <div class="form-group">
+                                    <input type="text" name="field-name" value="" placeholder="Time on site">
+                                  </div>
+                                  <div class="form-group">
+                                    <input type="text" name="field-name" value="" placeholder="Min. SqFt.">
+                                  </div>
+                                  <div class="form-group">
+                                    <input type="text" name="field-name" value="" placeholder="Lot Acres">
+                                  </div>
+                                  <div class="form-group check-box">
+                                    <input type="checkbox" name="" id="Remember" class="open-home">  
+                                    <label for="Remember">Open Homes</label>
+                                   </div>
+                                  <button type="submit" class="theme-btn btn-style-one regional">Regional Filters</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+           <div class="col-sm-3 col-md-2 col-xs-12 find-box">
+                     <button type="submit" class="theme-btn btn-style-two search">SAVE SEARCH<span class="fa fa-long-arrow-right"></span></button>
+                </div>
+                </div>
+        </div>
+    </section>
+
+
+<section class="login-section sec-padding">     
+<div class="auto-container centered">
+     <div class="clearfix margin-bott-30">
+        <div class="dropdown sort-filter pull-left">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort: Price Desc
+            <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Price Asc</a></li>
+                    <li><a href="#">Price Desc</a></li>
+                    <li><a href="#">List Date</a></li>
+                    <li><a href="#">Listing Id</a></li>
+                </ul>
+        </div>
+        <div class="pull-right"><p>No results</p></div>
+    </div>
+        <agm-map [latitude]="lat" [longitude]="lng">
+             <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+</div>
+</section>
+

@@ -1,0 +1,77 @@
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                    <h1 class="text-uppercase">contractors</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="sec-padding">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-sm-4">
+                     <figure class="bigger-image">
+                    <img src="./assets/images/resource/real-estate-agent.jpg" alt="" class="img-thumbnail"></figure>
+                </div>
+
+                <div class="content-side col-sm-8">
+                    <div class="content-section services-content">
+                        <!-- <div class="normal-title"><h3>CONTRACTORS</h3></div> -->
+                        <div class="text-block text-justify">
+                            <p>As a real estate investor we know how important it is to have not one contractor but a rolodex of reliable contractors in case one doesn’t show up for a job or one decides to quit during a job, which results in time delays and profit losses. When investing in real estate local or out of your area one thing for sure you will need is a contractor. On InvestFar we’ve made it very easy and simple to build a rolodex of contractors all over the nation so you can invest far or local.</p>
+                            <p>You can reach out to multiple contractors specific to your needs, request price quotes, see what areas they service, so you can build a team and invest local or nationwide with confidence. Once you find a right fit save them in your favorites, reach out and build relationships so you can start building a team of contractors in the areas you wish to invest. From wall painting to roof repair, we bring you the right pros for every project on the repair list.</p>
+                            <p>Consider It Done.</p>
+                            <div class="link-box" *ngIf="!user"><a [routerLink]="['/contractor-registration']" class="theme-btn btn-style-one"> CONTRACTOR REGISTRATION <span class="fa fa-long-arrow-right"></span></a></div>
+                        </div>
+                        
+                        <!--Two Column-->
+                        <!--End Two Column-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+
+    <!--Main Footer-->
+   
+    
+<!-- =================POPUP=================== -->
+<section class="real_estate_popup">
+<div id="myBtnOne" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+<div class="modal-content real_box_popup">
+<div class="modal-header close_box">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body real_pop_content clearfix">
+<p>You have not purchase any plan. 
+Would you like purchase one ?</p>
+
+<div class="btn_ok">
+<a href="#" class="btn-style-two" data-dismiss="modal">CANCEL</a>
+<a href="login.html" class="btn-style-two">OK</a>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+<!-- =================POPUP=================== -->
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target=".main-header">
+<span class="fa fa-long-arrow-up"></span></div>
+
+<!-- language -->
+
+

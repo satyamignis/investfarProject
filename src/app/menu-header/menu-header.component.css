@@ -1,0 +1,16 @@
+.loginSuccessMenu{
+ float: left;
+
+}
+.loginSuccessMenu li{
+    margin-left: 0px;
+}
+.header-upper .appt-btn{
+	float:left; 
+}
+.appt-btn.theme-btn {
+    margin-left: 3px;
+}
+/*.main-menu .navigation li ul.loginOpen{
+     right: 0px !important;
+}*/

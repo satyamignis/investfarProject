@@ -1,0 +1,32 @@
+.icon_block a:hover {
+    color: #fff;
+    border: 3px solid #1c659e;
+    background: #1c659e;
+}
+.icon_block a {
+    font-size: 25px;
+    color: #2e89cf;
+    border: 3px solid #2e89cf;
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 20px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center !important;
+}
+.login_media i{
+	padding-top:6px;
+}
+
+p.text-center{
+   text-align: center !important;
+   margin-top: 26px;
+   font-size: 18px;
+}
+.icon_block{
+	float: left;
+}
+.login_media.text-center {
+    margin: 0 auto;
+}

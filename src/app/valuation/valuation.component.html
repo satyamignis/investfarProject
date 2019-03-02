@@ -1,0 +1,109 @@
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<app-menu-header></app-menu-header>
+<section class="inner-banner">
+<div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+<!--Header-Lower-->
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-sm-12 col-xs-12">
+                    <h1>valuation request form</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+<section class="find-advisor style-two top">
+        <div class="auto-container">
+            <div class="row find-row">
+                <div class="col-sm-4 col-md-1 find-box">
+                <div class="custom-select">
+                <div class="select-selected">
+                  <select>
+                    <option value="1">Buy</option>
+                    <option value="2">Sell</option>
+                    <option value="3">Rentals</option>
+                  </select>
+                </div>
+                </div>
+                </div>
+                <div class="col-sm-4 col-md-2 col-xs-6 find-box">
+                    <input type="search" class="city" name="search-field" value="" placeholder="City or postcode">
+                </div>
+                <div class="col-sm-4 col-md-2 col-xs-6 find-box">
+                <div class="custom-select">
+                <div class="select-selected">
+                  <select>
+                    <option value="0">All types:</option>
+                    <option value="1">House</option>
+                    <option value="2">Apartment </option>
+                    <option value="1">Luxury property</option>
+                    <option value="2">Land</option>
+                  </select>
+                </div>
+                </div>
+                </div>
+
+                <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+                     <input type="search" class="price" name="search-field" value="" placeholder="Min price">
+                </div>
+
+                <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+                     <input type="search" class="price" name="search-field" value="" placeholder="Max price">
+                </div>
+
+
+                <div class="col-sm-3 col-md-1 col-xs-6 find-box">
+                <div class="custom-select">
+               	<div class="select-selected">
+                  <select>
+                    <option value="0">EUR</option>
+                    <option value="1">&pound;</option>
+                    <option value="2">&yen; </option>
+                    <option value="1">&#36;</option>
+                    <option value="2">&euro;</option>
+                  </select>
+                </div>
+                </div>
+                </div>
+
+                <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+                     <button type="submit" class="theme-btn btn-style-two search">SEARCH<span class="fa fa-long-arrow-right"></span></button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+<section class="login-section sec-padding">     
+<div class="auto-container centered">
+    <h4 class="padd-bott-60">Enter the zip code and address of the property so we can find the most comprehensive residential data impacting homes; including hostorial,macroeconomic, and local market analytics to create a home valuation report to aid in your buying decisions.</h4>
+</div>
+
+<div class="auto-container">
+    <div class="row valuation-form">
+    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <div class="form-outer form-block">
+        <div class="form-group">
+            <div class="field-label">Enter Zip Code:</div>
+            <input type="email" name="zipcode" value="" placeholder="Enter 5 digit Zip Code">
+         </div>
+
+          <div class="form-group">
+            <div class="field-label">Enter Address: </div>
+            <input type="password" name="address" value="" placeholder="E.g.7904 Verde Springs Dr">
+         </div>
+
+         <button type="button" class="btn-style-two text-uppercase">Get Details !</button>
+         &nbsp;
+         <button type="button" class="btn-style-two text-uppercase">Clear / Reset</button>
+     </div>
+    </div>
+</div>
+</div>
+</section>

@@ -1,0 +1,57 @@
+<!-- *********** Loading ************** -->
+    <div *ngIf="preloadimg" class="preloadingimg">
+        <img src="./assets/images/icons/preloader.gif">
+    </div>
+    <div *ngIf="apiLoading" class="loadingApi">
+        <img src="./assets/images/icons/loading.gif">
+    </div>
+<!-- *********** Loading ************** -->
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                    <h1 class="text-uppercase">My Properties</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <section class="sec-padding my-properties">
+        <div class="auto-container">
+            <div class="table-responsive">
+            <table style="width:100%">
+              <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr class="mh-browse-estate__row" *ngIf="properties.length == 0">
+              <td colspan="6" class="mh-browse-estate__cell-1 no-data-avilable">
+                No Data
+              </td>
+            </tr>
+            <tr *ngFor="let p of properties; let i = index;">
+                <td>{{(i + 1)+((pageNo - 1) * limit)}}</td>
+                <td><a class="mh-browse-estate__image">
+                  <img src="{{p.propertyImg }}" (error)="setDefaultPic(p)" alt="p.title" class="Properties-img" width="120px">
+                </a></td>
+                <td>{{p.title}}</td>
+                <td>{{p.live}}</td>
+                <td><a href="#" class="table-icon edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                <td><a href="#" class="table-icon"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+            </tr>
+        </table> 
+        </div>
+
+            <div class="text-center margin-top-50">
+                <ngb-pagination [collectionSize]="totalCount" [(page)]="pageNo" [pageSize]="limit" [boundaryLinks]="true" (pageChange)="pageChange($event)"></ngb-pagination>
+            </div>
+        </div>
+        </section>
+
+                                                                                                

@@ -1,0 +1,51 @@
+agm-map {
+  height: 400px;
+}
+
+/*** ==================================================================== 
+     Property Search Page
+==================================================================== ***/
+.pro-search .select-selected{
+	border: none;
+}
+.filter .btn-group{
+	width: 100%;
+	margin: 0 !important; 
+}
+.filter .btn-group .dropdown-toggle{
+	width: 100%;
+	border-radius: 0;
+	height: 41px;
+	color: #808080;
+	padding: 8px 16px;
+	font-size: 13px; 
+	text-align: left;
+}
+.filter .btn-group .dropdown-toggle:hover{
+	background: #fff;
+}
+.filter .dropdown-menu{
+	min-width: 300px;
+	padding: 20px;
+    border-radius: 0;
+	margin: 0;
+	box-shadow: none;
+	border: 1px solid #ccc;
+}
+.filter .dropdown-menu .form-group{
+	margin-bottom: 10px;
+}
+.filter .dropdown-menu input{
+	height: 40px;
+	font-size: 13px;
+	margin-bottom: 10px;
+}
+.filter .dropdown-menu .regional{
+	width: 100%;
+	padding: 5px 25px;
+}
+.filter .dropdown-menu  .open-home{
+	width: inherit;
+	height: inherit;
+	padding: 0;
+}

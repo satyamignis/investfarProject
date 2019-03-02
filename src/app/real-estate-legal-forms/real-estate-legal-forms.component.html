@@ -1,0 +1,43 @@
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                    <h1 class="text-uppercase">Real Estate Legal Forms</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <section class="sec-padding">
+        <div class="auto-container">
+                <div class="content-side">
+                    <div class="content-section services-content">
+                        <div class="text-block text-justify">
+                            <p>When you’re buying properties in or out of state a key thing to avoid loss or legal action are correct legal forms. On InvestFar we make it easy for investors to find forms for their REI needs as we have categorized them based on most frequent transaction types. At closings you will need the right documents whether buying or selling a property, engaging in joint ventures or taking over a property subject to existing loan. We have you covered.</p>
+                            <p>Less stress more investing.</p>
+                           </div>
+
+                           <div class="legal_forms-option">
+                               <div class="inner-option first">PURCHASE AND SALE AGREEMENT FORMS</div>
+                               <div class="inner-option" *ngFor="let a of arrgementForms">{{a.form_name}}
+                               <a [href]="file_path+a.path" class="pull-right"><i class="fa fa-file-text" aria-hidden="true"></i></a></div>
+
+                           </div>
+
+                           <div class="legal_forms-option">
+                               <div class="inner-option first">SUBJECT TO EXISTING LOAN</div>
+
+                               <div class="inner-option" *ngFor="let l of loanForms">{{l.form_name}}
+                               <a [href]="file_path+l.path" class="pull-right"><i class="fa fa-file-text" aria-hidden="true"></i></a>
+                               </div>
+                           </div>
+                    </div>
+                </div>
+        </div>
+        </section>

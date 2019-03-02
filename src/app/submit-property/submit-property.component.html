@@ -1,0 +1,281 @@
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<app-menu-header></app-menu-header>
+<section class="inner-banner">
+<div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+<!--Header-Lower-->
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-sm-12 col-xs-12">
+                    <h1>Submit Property</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section>
+    <div class="auto-container">
+    <div class="row login-form agent padd-top-70 padd-bott-60">
+    <div class="col-sm-12">
+        <div class="form-outer form-block">
+
+        <div class="row">
+              <div class="col-sm-12 col-md-6 no-margin">
+        <div class="default-title"><h2>Upload Property</h2></div>
+        <div class="form-group">
+                <label class=newbtn>
+                    <img src="./assets/images/resource/upload-pic.png" width="70px" />
+                    <input id="pic" type="file" >
+                </label>
+        </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 no-margin">
+        <div class="default-title"><h2>Bulk Upload</h2></div>
+        <div class="form-group bulk-upload">
+            <div class="file btn btn-lg btn-primary theme-btn btn-style-one text-uppercase">
+                    Bulk Upload
+                    <input type="file" name="file"/>
+            </div>
+           <div class="clearfix"><a href="#" class="pull-left">Download Sample CSV</a></div>
+        </div>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="col-sm-12 col-md-12 no-margin">
+        <div class="form-group">
+            <div class="field-label">Property Title *</div>
+            <input type="text" name="field-name" value="" placeholder="Property Title">
+         </div>
+         </div>
+
+        <div class="col-sm-12 col-md-6 no-margin">
+        <div class="form-group">
+            <div class="field-label">Address *</div>
+            <input type="text" name="field-name" value="" placeholder="Enter a location">
+        </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 no-margin">
+         <div class="form-group">
+            <div class="field-label">Description *</div>
+            <textarea rows="1" cols="1" class="pro-description" placeholder="Write here Description" ></textarea>
+         </div>
+        </div>
+        </div>
+
+
+        <div class="row">
+        <div class="col-sm-12 col-md-6 no-margin">
+                 <div class="form-group">
+                    <div class="field-label">Property type *</div>
+                    <div class="custom-select">
+                    <div class="select-selected">
+                    <select>
+                    <option value="0">Select Property</option>
+                    <option value="1">Condo</option>
+                    <option value="2">Plot</option>
+                    <option value="3">Single Family</option>
+                    <option value="4">Multi Family</option>
+                    <option value="5">Apartment</option>
+                    <option value="6">Duplex</option>
+                    <option value="7">Office</option>
+                    <option value="8">Townhouse</option>
+                  </select>
+                </div>
+                </div>
+                 </div>
+             </div>
+
+             <div class="col-sm-12 col-md-6 no-margin">
+                 <div class="form-group">
+                    <div class="field-label">Offer type *</div>
+                    <div class="custom-select">
+                    <div class="select-selected">
+                    <select>
+                    <option value="0">Select Offer</option>
+                    <option value="1">Buy</option>
+                    <option value="2">Rent</option>
+                    <option value="3">Sell</option>
+                    <option value="4">Sold</option>
+                  </select>
+                </div>
+                </div>
+                 </div>
+             </div>
+         </div>
+
+         <div class="row">
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">City *</div>
+                    <input type="text" name="field-name" value="" placeholder="Enter city">
+                </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">Zip Code *</div>
+                    <input type="number" name="field-name" value="" placeholder="Enter Zip Code" min="0">
+                </div>
+                </div>
+         </div>
+
+         <div class="row">
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">Bathrooms *</div>
+                    <input type="number" name="field-name" value="" placeholder="Enter number of bathrooms" min="0">
+                </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">Bedrooms *</div>
+                    <input type="number" name="field-name" value="" placeholder="Enter number of bedrooms" min="0">
+                </div>
+                </div>
+         </div>
+
+          <div class="row">
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">Parking *</div>
+                    <input type="number" name="field-name" value="" placeholder="Enter number of parking" min="0">
+                </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">Property size (ft²) *</div>
+                    <input type="number" name="field-name" value="" placeholder="Enter property size" min="0" step="50">
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">Keyword </div>
+                    <input type="text" name="field-name" value="" placeholder="Enter keyword" >
+                </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="field-label">Year</div>
+                        <div class="custom-select">
+                        <div class="select-selected">
+                            <select>
+                            <option value="0">Select Year </option>
+                            <option value="1">1819</option>
+                            <option value="2">1820</option>
+                            <option value="3">1821</option>
+                            <option value="4">1822</option>
+                            <option value="5">1819</option>
+                            <option value="6">1820</option>
+                            <option value="7">1821</option>
+                            <option value="8">1822</option>
+                            <option value="9">1823</option>
+                            <option value="10">1824</option>
+                          </select>
+                         </div>
+                         </div>
+                 </div>
+                </div>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">Amenities / Features</div>
+                    <input type="text" name="field-name" value="" placeholder="Select Features">
+                </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">Asking Price? *</div>
+                    <input type="text" name="field-name" value="" placeholder="$0.00">
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">HOA Fees? *</div>
+                    <input type="text" name="field-name" value="" placeholder="$0.00">
+                </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 no-margin">
+                 <div class="form-group">
+                    <div class="field-label">Is th home vacant, rented or lived in? *</div>
+                    <div class="custom-select">
+                    <div class="select-selected">
+                    <select>
+                    <option value="0">Select</option>
+                    <option value="1">Vacant</option>
+                    <option value="2">Rented</option>
+                    <option value="1">Lived In</option>
+                  </select>
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">How much do you think the home is worth? *</div>
+                    <input type="text" name="field-name" value="" placeholder="$0.00">
+                </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 no-margin">
+                 <div class="form-group">
+                    <div class="field-label">Why are you selling? *</div>
+                    <input type="text" name="field-name" value="" placeholder="Enter the reason of selling">
+                </div>
+                </div>
+            </div>
+
+            <div class="row"> 
+               <div class="col-sm-6">
+                    <div class="text-left advance-btn margin-top-30">
+                     <div class="default-title Show"><h2>I have Floor Plan</h2></div>
+                     <div class="default-title Hide"><h2>I have Floor Plan</h2></div>
+                </div>
+
+                <div class="advance-open form-block" id="target">
+                    <div class="form-group">
+                        <p>Upload Plan:</p>
+                        <label class=newbtn>
+                            <img src="./assets/images/resource/upload-pic.png" width="70px" />
+                            <input id="pic" type="file" >
+                        </label>
+                    </div>
+                </div>
+               </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <button type="button" class="btn-style-two width_full text-uppercase margin-top-30">Submit</button>
+                </div>
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+</section>
+
+

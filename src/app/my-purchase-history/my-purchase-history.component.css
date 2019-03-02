@@ -1,0 +1,72 @@
+
+.sell_box {
+	background: #1a93ce;
+	padding: 50px 20px;
+	background-size: 100%;
+}
+.sell_box h2 {
+	border: solid #fff 2px;
+	padding: 20px 49px;
+	margin: 0 auto;
+	display: inline-block;
+	color: #fff;
+	text-transform: uppercase
+}
+
+.my-purchase-history{margin-top:0em;padding:5em 0px;}
+.my-purchase-history h3{border-bottom: 1px solid #e2e2e2; padding-bottom: 10px}
+
+.my-purchase-history .container{
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+  padding:2em 3em;
+}
+
+.current-plan-detail label.heading{font-weight: 500; min-width: 150px;}
+.current-plan-detail .dot{margin:0px 1em;}
+.current-plan-detail .listing{padding-left:0px;}
+.current-plan-detail .listing li{display: inline-block;width: auto;margin: 0px 10px 0px 0px;border-right: 1px solid #636466; padding-right: 10px;}
+
+
+.no_padding{margin: 0px;padding:0px}
+.purchase-section{background: #eaeaea;}
+
+.purchase-history-list{
+  margin-top: 2em;
+}
+
+.purchase-history-list h3{ border-bottom: 0px}
+
+.purchase-history-list table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.purchase-history-list td, .purchase-history-list th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.purchase-history-list tr:nth-child(even) {
+  background-color: #dddddd3b;
+}
+
+@media screen and (max-width:767px){
+  .my-purchase-history{padding:0em 0px;}
+  .my-purchase-history .container{padding:1em 1em}
+  .my-purchase-history h3{font-size: 1.5em;}
+}
+
+@media screen and (max-width:480px){
+  .current-plan-detail label.heading{    
+    width: auto;
+  }
+
+}
+
+.errorMsg {
+  padding-top: 30px;
+}
