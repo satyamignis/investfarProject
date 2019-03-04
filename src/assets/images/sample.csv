@@ -1,0 +1,5 @@
+title,description,feature,ADDRESS,LATITUDE,LONGITUDE,searchType,propertyCategory,bathRooms,bedRooms,Price,Live,propertySize,Home,Selling,HOA Fees,Parking ,YEAR,Keyword,Zipcode,CITY,userID
+Notice of Default ,This is demo property description,1,163 Hillside St,42.3331,-71.0966,1,6,3,6,45000,Live,3281,120000,Avoiding foreclosure,0,1,1935,Pre-foreclosure ,2120,Boston,10000
+Notice of Default ,This is demo property description,0,200 S College St,42.2881,-71.0532,1,1,1,2,57000,Live,715,80000,Avoiding foreclosure,0,3,1960,Pre-foreclosure ,2122,Boston,10001
+Notice of Default ,See Valuation Report,See Valuation Report,188 Talbot Ave,42.2925,-71.0791,1,3,3,8,See Valuation Report,Live,2341,See Valuation Report,Avoiding foreclosure,0,See Valuation Report,1900,Pre-foreclosure ,2124,Boston,10002
+Notice of Default ,See Valuation Report,See Valuation Report,50 Norfolk St,42.289,-71.0735,1,5,3,7,See Valuation Report,Live,3286,See Valuation Report,Avoiding foreclosure,0,See Valuation Report,1927,Pre-foreclosure ,2124,Boston,10003

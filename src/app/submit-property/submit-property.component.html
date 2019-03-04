@@ -1,6 +1,11 @@
-<div *ngIf="preloadimg" class="preloadingimg">
-    <img src="./assets/images/icons/preloader.gif">
-</div>
+<!-- *********** Loading ************** -->
+    <div *ngIf="preloadimg" class="preloadingimg">
+        <img src="./assets/images/icons/preloader.gif">
+    </div>
+    <div *ngIf="apiLoading" class="loadingApi">
+        <img src="./assets/images/icons/loading.gif">
+    </div>
+<!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 <section class="inner-banner">
 <div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
@@ -9,7 +14,8 @@
             <div class="row clearfix">
                 <!--Title -->
                 <div class="title-column col-sm-12 col-xs-12">
-                    <h1>Submit Property</h1>
+                    <h1 *ngIf="formType == 'submit'">Submit Property</h1>
+                    <h1 *ngIf="formType == 'edit'">Edit Property</h1>
                 </div>
             </div>
         </div>
@@ -19,51 +25,64 @@
     <section>
     <div class="auto-container">
     <div class="row login-form agent padd-top-70 padd-bott-60">
+
     <div class="col-sm-12">
+
         <div class="form-outer form-block">
 
-        <div class="row">
-              <div class="col-sm-12 col-md-6 no-margin">
-        <div class="default-title"><h2>Upload Property</h2></div>
-        <div class="form-group">
-                <label class=newbtn>
-                    <img src="./assets/images/resource/upload-pic.png" width="70px" />
-                    <input id="pic" type="file" >
-                </label>
-        </div>
-        </div>
+<div class="row pull-right">
 
-        <div class="col-sm-12 col-md-6 no-margin">
-        <div class="default-title"><h2>Bulk Upload</h2></div>
+        <div class="col-sm-12" *ngIf="formType == 'submit'">
+        <!-- <div class="default-title"><h2>Bulk Upload</h2></div> -->
         <div class="form-group bulk-upload">
-            <div class="file btn btn-lg btn-primary theme-btn btn-style-one text-uppercase">
-                    Bulk Upload
-                    <input type="file" name="file"/>
-            </div>
-           <div class="clearfix"><a href="#" class="pull-left">Download Sample CSV</a></div>
+        <div class="file btn btn-lg btn-primary theme-btn btn-style-one text-uppercase">Bulk Upload
+        <input type="file" name="file" accept=".csv" (change)="uploadCSV($event.target.files)" />
+        </div>
+           <div class="clearfix">
+           <a href="./assets/images/sample.csv" class="pull-left">Download Sample CSV</a></div>
         </div>
         </div>
         </div>
+        <div class="row">
+        <div class="col-sm-12 col-md-6 no-margin">
+        <div class="default-title"><h2>Upload Property</h2></div>
+        </div>
+        </div>
+         <ul class="center_upload">   
+              <li class="form-group" *ngIf="propertyImages.length < defaultPropertyImageLength">
+                <label class=newbtn>
+                    <img src="./assets/images/resource/upload-pic.png" width="100px" />
+                    <input id="pic" type="file" accept="image/*" multiple (change)="onPropertyFile($event.target.files)">
+                </label>
 
+        </li>
+         <li *ngFor="let img of propertyPreviewImages; let i=index;">
+            <img class="preview" [src]="img">
+            <button type="button" class="close-btn" (click)="deletePropertyImage(i)"><i class="fa fa-close"></i>
+            </button>
+        </li>
+        </ul>
+
+        <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
         <div class="row">
         <div class="col-sm-12 col-md-12 no-margin">
         <div class="form-group">
             <div class="field-label">Property Title *</div>
-            <input type="text" name="field-name" value="" placeholder="Property Title">
+            <input type="text" name="title" formControlName="title"  placeholder="Property Title">
          </div>
          </div>
 
         <div class="col-sm-12 col-md-6 no-margin">
         <div class="form-group">
             <div class="field-label">Address *</div>
-            <input type="text" name="field-name" value="" placeholder="Enter a location">
+            <input class="form-control side_input location" formControlName="addr"  name="addr" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text">
         </div>
         </div>
 
         <div class="col-sm-12 col-md-6 no-margin">
          <div class="form-group">
             <div class="field-label">Description *</div>
-            <textarea rows="1" cols="1" class="pro-description" placeholder="Write here Description" ></textarea>
+            <textarea rows="1" cols="1" class="pro-description" placeholder="Write here Description" formControlName="description" ></textarea>
          </div>
         </div>
         </div>
@@ -75,8 +94,8 @@
                     <div class="field-label">Property type *</div>
                     <div class="custom-select">
                     <div class="select-selected">
-                    <select>
-                    <option value="0">Select Property</option>
+                    <select formControlName="propertyCategory" >
+                    <option value="">Select Property</option>
                     <option value="1">Condo</option>
                     <option value="2">Plot</option>
                     <option value="3">Single Family</option>
@@ -96,8 +115,8 @@
                     <div class="field-label">Offer type *</div>
                     <div class="custom-select">
                     <div class="select-selected">
-                    <select>
-                    <option value="0">Select Offer</option>
+                    <select formControlName="searchType">
+                    <option value="">Select Offer</option>
                     <option value="1">Buy</option>
                     <option value="2">Rent</option>
                     <option value="3">Sell</option>
@@ -113,14 +132,14 @@
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">City *</div>
-                    <input type="text" name="field-name" value="" placeholder="Enter city">
+                    <input type="text" name="city" formControlName="city" placeholder="Enter city">
                 </div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">Zip Code *</div>
-                    <input type="number" name="field-name" value="" placeholder="Enter Zip Code" min="0">
+                    <input type="number" name="zipcode" formControlName="zipcode" placeholder="Enter Zip Code" min="0">
                 </div>
                 </div>
          </div>
@@ -129,14 +148,14 @@
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">Bathrooms *</div>
-                    <input type="number" name="field-name" value="" placeholder="Enter number of bathrooms" min="0">
+                    <input type="number" name="bathRooms" formControlName="bathRooms" placeholder="Enter number of bathrooms" min="0">
                 </div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">Bedrooms *</div>
-                    <input type="number" name="field-name" value="" placeholder="Enter number of bedrooms" min="0">
+                    <input type="number" name="bedRooms" formControlName="bedRooms" placeholder="Enter number of bedrooms" min="0">
                 </div>
                 </div>
          </div>
@@ -145,14 +164,14 @@
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">Parking *</div>
-                    <input type="number" name="field-name" value="" placeholder="Enter number of parking" min="0">
+                    <input type="number" name="parking" formControlName="parking" placeholder="Enter number of parking" min="0">
                 </div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">Property size (ft²) *</div>
-                    <input type="number" name="field-name" value="" placeholder="Enter property size" min="0" step="50">
+                    <input type="number" name="propertySize" formControlName="propertySize" placeholder="Enter property size" min="0" step="50">
                 </div>
                 </div>
             </div>
@@ -161,7 +180,7 @@
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">Keyword </div>
-                    <input type="text" name="field-name" value="" placeholder="Enter keyword" >
+                    <input type="text" name="keyword" formControlName="keyword" placeholder="Enter keyword" >
                 </div>
                 </div>
 
@@ -171,8 +190,8 @@
                         <div class="field-label">Year</div>
                         <div class="custom-select">
                         <div class="select-selected">
-                            <select>
-                            <option value="0">Select Year </option>
+                            <select formControlName="year">
+                            <option value="">Select Year </option>
                             <option value="1">1819</option>
                             <option value="2">1820</option>
                             <option value="3">1821</option>
@@ -195,14 +214,18 @@
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">Amenities / Features</div>
-                    <input type="text" name="field-name" value="" placeholder="Select Features">
+                   
+
+                    <ng-multiselect-dropdown *ngIf="!featureChange" formControlName="features" [placeholder]="'Select Features'" [data]="features" [settings]="dropdownSettings"
+                        (onSelect)="onFeatureSelect($event)" (onDeSelect)="onFeatureDeSelect($event)">
+                    </ng-multiselect-dropdown>
                 </div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">Asking Price? *</div>
-                    <input type="text" name="field-name" value="" placeholder="$0.00">
+                    <input *ngIf="!priceChange"  currencyMask type="text" name="price" placeholder="$0.00" formControlName="price" >
                 </div>
                 </div>
             </div>
@@ -211,7 +234,7 @@
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">HOA Fees? *</div>
-                    <input type="text" name="field-name" value="" placeholder="$0.00">
+                    <input currencyMask type="text" name="hoafees" formControlName="hoafees" placeholder="$0.00">
                 </div>
                 </div>
 
@@ -220,11 +243,11 @@
                     <div class="field-label">Is th home vacant, rented or lived in? *</div>
                     <div class="custom-select">
                     <div class="select-selected">
-                    <select>
-                    <option value="0">Select</option>
-                    <option value="1">Vacant</option>
-                    <option value="2">Rented</option>
-                    <option value="1">Lived In</option>
+                    <select formControlName="live">
+                    <option value="">Select</option>
+                    <option value="Vacant">Vacant</option>
+                    <option value="Rented">Rented</option>
+                    <option value="Lived">Lived In</option>
                   </select>
                 </div>
                 </div>
@@ -236,14 +259,14 @@
                 <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">How much do you think the home is worth? *</div>
-                    <input type="text" name="field-name" value="" placeholder="$0.00">
+                    <input *ngIf="!homeChange" currencyMask type="text" name="home" placeholder="$0.00" formControlName="home">
                 </div>
                 </div>
 
                 <div class="col-sm-12 col-md-6 no-margin">
                  <div class="form-group">
                     <div class="field-label">Why are you selling? *</div>
-                    <input type="text" name="field-name" value="" placeholder="Enter the reason of selling">
+                    <input type="text" name="selling" formControlName="selling" placeholder="Enter the reason of selling">
                 </div>
                 </div>
             </div>
@@ -251,27 +274,36 @@
             <div class="row"> 
                <div class="col-sm-6">
                     <div class="text-left advance-btn margin-top-30">
+                     <input type="checkbox" formControlName="floor_plan">
                      <div class="default-title Show"><h2>I have Floor Plan</h2></div>
                      <div class="default-title Hide"><h2>I have Floor Plan</h2></div>
                 </div>
 
                 <div class="advance-open form-block" id="target">
-                    <div class="form-group">
+                    <div class="form-group" >
                         <p>Upload Plan:</p>
-                        <label class=newbtn>
+                        <label class="newbtn" *ngIf="planImages.length < defaultPlanImageLength">
                             <img src="./assets/images/resource/upload-pic.png" width="70px" />
-                            <input id="pic" type="file" >
+                            <input id="pic" type="file" accept="image/*" multiple (change)="onPlanFile($event.target.files)">
                         </label>
                     </div>
+                    <ul class="center_upload">   
+                    <li *ngFor="let img of planPreviewImages; let i=index;">  
+                        <img class="preview" [src]="img">
+                        <button type="button" class="close-btn" (click)="deletePlanImage(i)"><i class="fa fa-close"></i>
+                    </button>
+                    </li>
+                    </ul>
                 </div>
                </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4">
-                    <button type="button" class="btn-style-two width_full text-uppercase margin-top-30">Submit</button>
+                    <button type="submit" class="btn-style-two width_full text-uppercase margin-top-30">Submit</button>
                 </div>
             </div>
+            </form>
         </div>
      </div>
     </div>

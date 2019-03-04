@@ -16,7 +16,7 @@ declare const AmCharts: any;
 	styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+	numVisible = 0;
 	propertyTypes = [];
 	offerTypes = [];
 	citiesOptions = [];
@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
 	properties = [];
 	totalCount = 0;
 	apiLoading:boolean;
+	cities : any = [];
 
 
 	customOptions: any = {
@@ -131,6 +132,30 @@ export class HomeComponent implements OnInit {
         this.user = this.myCookieService.getCookie('user');
 		this.propertyTypes = PropertyTypes;
 	    this.clearFilter(); 
+	    this.getCities();
+	}
+
+
+	getCities(){
+		this.api.apiPostData('available_in_this_cities', {})
+		.subscribe(
+			(response : any) => {
+				if(response.errorCode == '0'){
+					this.cities = response.data;
+					this.cities = this.cities.filter((c) => c.city != null);
+					if(response.data.length > 6){
+						this.numVisible = 6
+					} else {
+						this.numVisible = response.data.length;
+					}
+				} else {
+					console.log('------error-------')
+				}
+			},
+			(error: any) => {
+				console.log(error);
+			}
+		)
 	}
 
 	onSearch(type){

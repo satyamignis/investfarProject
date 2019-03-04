@@ -71,20 +71,15 @@ export class MyPropertiesComponent implements OnInit {
   }
 
   deletePropertyConfirm(propertyId, title){
-    // this.deletePropertyId = propertyId;
-    // console.log('------------propertyId', this.deletePropertyId);
-    // //alertify.confirm(`Are you sure you want to delete '${title}' property`,
-    //   () => {
-    //     //okay
-    //     this.deleteProperty();
-    //   },
-    //   () => {
-    //     //cancel
-    //   }
-    // )
+  this.deletePropertyId = propertyId;
+  if(confirm(`Are you sure you want to delete '${title}' property`)) {
+    this.deleteProperty();
+  }
   }
 
   deleteProperty(){
+
+    this.apiLoading=true;
     let deletePropertyData = {
       userId : this.user.userId,
       serviceKey : this.user.serviceKey,
@@ -95,14 +90,16 @@ export class MyPropertiesComponent implements OnInit {
         (response : any) => {
           console.log(response);
           if(response.errorCode == '0'){
-            //this.toastr.alert(response.errorMsg, 'Success');
+            this.toastr.success(response.errorMsg, 'Success');
             this.getMyProperties();
           } else {
             this.toastr.error(response.errorMsg, 'Try Again');
           }
+          this.apiLoading=false;
         },
         (error : any) => {
           console.log(error);
+          this.apiLoading=false;
         }
       )
   }

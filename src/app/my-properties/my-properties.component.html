@@ -42,8 +42,8 @@
                 </a></td>
                 <td>{{p.title}}</td>
                 <td>{{p.live}}</td>
-                <td><a href="#" class="table-icon edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-                <td><a href="#" class="table-icon"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                <td><a [routerLink]="['/edit-property/'+p.slug_name]"  class="table-icon edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                <td><a (click)="deletePropertyConfirm(p.propertyId, p.title)" class="table-icon"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
             </tr>
         </table> 
         </div>

@@ -73,7 +73,8 @@ export const AppRoutes: any = [
     { path: "submit-property", component: SubmitPropertyComponent, canActivate : [AuthGaurdService]},
     { path: "offer-type-sell", component: OfferTypeSellComponent},
     { path: "set-password", component: SetPasswordComponent},
-    { path: "forgot-password", component: ForgotPasswordComponent, canActivate : [UnAuthGaurdService]}
+    { path: "forgot-password", component: ForgotPasswordComponent, canActivate : [UnAuthGaurdService]},
+    { path: 'edit-property/:id', component: SubmitPropertyComponent, canActivate: [ AuthGaurdService ]}
 ];
 
 export const AppComponents: any = [

@@ -36,6 +36,7 @@
     "ngx-google-places-autocomplete": "^2.0.3",
     "ngx-owl-carousel-o": "^1.0.11",
     "ngx-toastr": "^9.1.2",
+    "papaparse": "^4.6.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

@@ -24,7 +24,7 @@ export class MyCookieService {
 
   setCookie(key, value) {
     var cipherValue = this.encrypt(value);
-    this.cookieService.set(key, cipherValue, 0.02083333333);
+    this.cookieService.set(key, cipherValue, 9.02083333333);
   }
 
   /*forgot password more expire time set*/
@@ -32,9 +32,7 @@ export class MyCookieService {
     var cipherValue = this.encrypt(value);
     this.cookieService.set(key, cipherValue, 9.99999999999);
   }
-  
-  
-
+ 
   getCookie(key): any {
       if (this.checkCookie(key)) {
         var cipherKeyValue = this.cookieService.get(key);
