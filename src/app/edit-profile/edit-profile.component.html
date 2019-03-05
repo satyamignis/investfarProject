@@ -22,29 +22,42 @@
     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <div class="form-outer form-block">
         <div class="default-title"><h2>Edit Profile</h2></div>
-
-
-        <div class="profile-pic">
-        <img alt="img" title="img" src="https://investfar-prod-bucket.s3.amazonaws.com/profile/201810260650071540536607x6egzap1yu2itu191potu1j9v.jpg"></div>
-
-        <div class="changeProfilePicBtn">
-        <span class="changeProfileBtn">
-        <input accept="image/*" id="profileChange" style="display: none;" type="file">
-        <label for="profileChange">
-           <i class="fa fa-camera"></i> Upload Image </label>
-        </span>
+        <div class="profile-pic" *ngIf="!profileImage">
+            <img src="{{user.profileImage}}" alt="img" title="img">
+        </div>
+        <div class="profile-pic" *ngIf="profileImage">
+            <img src="{{profileImagePreview}}" alt="img" title="img">
         </div>
 
-        <div class="form-group">
+      <div class="changeProfilePicBtn">
+      <span class="changeProfileBtn">
+        <input type="file" accept="image/*" id="profileChange" style="display: none;" (change)="onProfileImage($event.target.files)">
+        <label for="profileChange">
+          <i class="fa fa-camera"></i>
+          Upload Image
+        </label>
+      </span>
+      </div>
+
+         <form [formGroup]="editProfileForm" class="modalContent" (ngSubmit)="onSubmit()" *ngIf="editProfileForm">
+        <div class="form-group" *ngIf="user.registrationType == 1">
+        <div>First Name</div>
+        <input type="text" class="form-control" [ngClass]="{ 'error-code' : f.firstName.touched && f.firstName.errors && f.firstName.errors.required}" formControlName="firstName">
+        </div>
+        <div class="form-group" *ngIf="user.registrationType == 1">
+        <div>Last Name</div>
+        <input type="text" class="form-control" [ngClass]="{ 'error-code' : f.lastName.touched && f.lastName.errors && f.lastName.errors.required}" formControlName="lastName">
+        </div>    
+        <div class="form-group" *ngIf="user.registrationType == 2">
             <div class="field-label">Company Name</div>
-            <input type="text" name="field-name" value="" placeholder="">
-         </div>
+             <input type="text" class="form-control" [ngClass]="{ 'error-code' : f.companyName.touched && f.companyName.errors && f.companyName.errors.required}" formControlName="companyName">
+        </div>
 
         <div class="row">
         <div class="col-sm-12 col-md-12 no-margin">
         <div class="form-group">
             <div class="field-label">Email</div>
-            <input type="text" name="field-name" value="" placeholder="">
+            <input type="email" class="form-control" [ngClass]="{ 'error-code' : f.email.touched && f.email.errors && (f.email.errors.required || f.email.errors.email)}" formControlName="email">
         </div>
         </div>
         </div>
@@ -55,7 +68,7 @@
                     <div class="field-label">Select Country</div>
                     <div class="custom-select">
                   	<div class="select-selected">
-                    <select>
+                    <select formControlName="countryCode">
                         <option  value="AW" >AW +297 </option>
                         <option  value="AF" >AF +93 </option>
                         <option  value="AO" >AO +244 </option>
@@ -313,7 +326,7 @@
          <div class="col-sm-12 col-md-6 no-margin">
          <div class="form-group">
             <div class="field-label">Phone Number</div>
-            <input type="password" name="field-name" value="" placeholder="">
+             <input type="text" class="form-control" mask='000-000-0000' [ngClass]="{ 'error-code' : f.number.touched && f.number.errors && f.number.errors.required}" formControlName="number">
          </div>
           </div>
          </div>
@@ -323,7 +336,9 @@
         <div class="col-sm-12 col-md-12 no-margin">
         <div class="form-group">
             <div class="field-label">Address</div>
-            <input type="text" name="field-name" value="" placeholder="">
+            <input class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" style="display: none;"> 
+
+            <input class="form-control" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" [ngClass]="{ 'error-code' : f.addr.touched && address && address.address == undefined }"  formControlName="addr" >
         </div>
         </div>
         </div>
@@ -332,13 +347,15 @@
         <div class="col-sm-12 col-md-12 no-margin">
         <div class="form-group">
             <div class="field-label">Bio</div>
-            <input type="text" name="field-name" value="" placeholder="">
+            <input type="text" class="form-control" formControlName="bio">
         </div>
         </div>
         </div>
        
         <button type="button" class="btn-style-two width_full text-uppercase">Edit Profile</button>
+        </form>
      </div>
+
     </div>
 </div>
 </div>

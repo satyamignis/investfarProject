@@ -4,8 +4,7 @@ import { MyCookieService } from '../services/my-cookie-service';
 import { RoutingStateService } from '../services/routing-state.service';
 import { Router } from '@angular/router';
 import { PropertyTypes } from '../services/property-types';
-
-
+import { OfferTypes } from '../services/offer-types';
 
 declare const $: any;
 declare const AmCharts: any;
@@ -131,6 +130,7 @@ export class HomeComponent implements OnInit {
 
         this.user = this.myCookieService.getCookie('user');
 		this.propertyTypes = PropertyTypes;
+		this.offerTypes = OfferTypes;
 	    this.clearFilter(); 
 	    this.getCities();
 	}
@@ -168,6 +168,7 @@ export class HomeComponent implements OnInit {
 			if( this.filter[key] != 0 && this.filter[key] != '' && this.filter[key] != null) 
 				filtered_property_data[key] = this.filter[key]
 		}
+			this.apiLoading=true;
 			this.api.apiPostData('get_filtered_property', filtered_property_data)
 			.subscribe(
 				(response : any) => {
@@ -176,7 +177,7 @@ export class HomeComponent implements OnInit {
 						this.totalCount = response.total_count;
 						if(this.properties.length == this.totalCount){
 						} 
-						if(type == 'btn'){ /*this.scrollToDiv();*/}
+						if(type == 'btn'){ this.scrollToDiv();}
 					} else {
 						console.log('------error-------')
 					}
@@ -252,6 +253,16 @@ export class HomeComponent implements OnInit {
 	hideAdvanceOpt(){
 		$('#target').hide('slow');
 		this.showAdvBtn = true;
+	}
+
+	scrollToDiv(){
+		  let structure = document.getElementById('structure');
+		  structure.scrollIntoView()
+	}
+
+	scrollToSearch(){
+		  let search = document.getElementById('searchDiv');
+		  search.scrollIntoView()
 	}
 
 }

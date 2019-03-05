@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class ForgotPasswordComponent implements OnInit {
   email:any;
   constructor(
   	    	private api:ApiService,
-  	    	private toastr: ToastrService
+  	    	private toastr: ToastrService,
+          private router:Router
 
   	    ) { }
 
@@ -32,10 +34,10 @@ export class ForgotPasswordComponent implements OnInit {
         .subscribe(
         (response : any) => {
         if(response.errorCode == '0'){
-          this.toastr.success('', response.errorMsg);
-          //this.router.navigate(['/set-password']);
+          this.toastr.success(response.errorMsg,'Success');
+          this.router.navigate(['/set-password']);
         } else {
-          this.toastr.error('', response.errorMsg);
+          this.toastr.error(response.errorMsg,'Try Again');
         }
           this.apiLoading=false;
       },
