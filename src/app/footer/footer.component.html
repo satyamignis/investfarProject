@@ -70,12 +70,11 @@
                                     <div class="widget-content">
                                       
                                         <div class="newsletter-form">
-                                            <form method="post" action="contact.html">
+                                            <form [formGroup]="newsLetterForm" (ngSubmit)="onSubmit()" class="subscribe-inputbox">
                                                 <div class="form-group">
-                                                    <input type="email" name="email" value="" placeholder="Enter your Email" required>
-                                                    <button type="submit" class="theme-btn"><span class="fa fa-paper-plane-o"></span></button>
-                                                </div>
-                                                
+                                                    <input type="email" name="email"  placeholder="Enter your Email" formControlName="email">
+                                                    <button type="submit" [disabled]="!newsLetterForm.valid" class="theme-btn"><span class="fa fa-paper-plane-o"></span></button>
+                                                </div>                                         
                                             </form>
                                         </div>
                                         <div class="text">Get latest news and updates</div>

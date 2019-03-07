@@ -1,16 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 declare const $: any;
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+  newsLetterForm : FormGroup;
 
-  constructor() { }
+  constructor(
+  	private formBuilder : FormBuilder,
+    private apiService : ApiService,
+    private myToasterService : ToastrService) { }
 
-  ngOnInit() {
-  }
+	  ngOnInit() {
+	    this.createNewsLetterForm();
+	  }
+
+	  createNewsLetterForm(){
+	    this.newsLetterForm = this.formBuilder.group({
+	      email : ['', Validators.compose([Validators.required, Validators.email])]
+	    });
+	  }
 
 	 
 	scrollTOElement(){
@@ -25,4 +40,26 @@ export class FooterComponent implements OnInit {
 	      $(focusElement).focus();
 	    }
 	}
+
+	onSubmit(){
+    console.log(this.newsLetterForm.value);
+    console.log(this.newsLetterForm.valid);
+    if(this.newsLetterForm.valid){
+      this.apiService.apiPostData('newsletter', this.newsLetterForm.value)
+      .subscribe(
+        (response : any) => {
+          if(response.errorCode == '0'){
+            this.myToasterService.success(response.errorMsg, 'Success');
+          } else {
+            this.myToasterService.error(response.errorMsg, 'Try Again');
+          }
+          this.newsLetterForm.reset();
+        },
+        (error: any) => {
+          this.myToasterService.error('Internal Server Error.', 'Sorry');
+          console.log(error);
+        }
+      )
+    }
+    }
 }

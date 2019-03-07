@@ -25,6 +25,28 @@ export class HomeComponent implements OnInit {
 	totalCount = 0;
 	apiLoading:boolean;
 	cities : any = [];
+    years : any = [];
+
+    to_from = [
+		{ value : 1, text: '1'},
+		{ value : 2, text: '2'},
+		{ value : 3, text: '3'},
+		{ value : 4, text: '4'},
+		{ value : 5, text: '5+'},
+	];
+
+    ratingOptions = [ 
+		{ value : 0.5, text: '0.5'},
+		{ value : 1, text: '1'},
+		{ value : 1.5, text: '1.5'},
+		{ value : 2, text: '2'},
+		{ value : 2.5, text: '2.5'},
+		{ value : 3, text: '3'},
+		{ value : 3.5, text: '3.5'},
+		{ value : 4, text: '4'},
+		{ value : 4.5, text: '4.5'},
+		{ value : 5, text: '5'},
+	];
 
 
 	customOptions: any = {
@@ -131,6 +153,7 @@ export class HomeComponent implements OnInit {
         this.user = this.myCookieService.getCookie('user');
 		this.propertyTypes = PropertyTypes;
 		this.offerTypes = OfferTypes;
+	    this.years = this.api.getYears();
 	    this.clearFilter(); 
 	    this.getCities();
 	}

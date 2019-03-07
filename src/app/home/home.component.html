@@ -1,29 +1,29 @@
 <!-- *********** Loading ************** -->
 <div *ngIf="preloadimg" class="preloadingimg">
-    <img src="./assets/images/icons/preloader.gif">
+  <img src="./assets/images/icons/preloader.gif">
 </div>
 <div *ngIf="apiLoading" class="loadingApi">
-    <img src="./assets/images/icons/loading.gif">
+  <img src="./assets/images/icons/loading.gif">
 </div>
 <!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 <!-- slider Start -->
 <section class="main-slider" id="slider-top">
-    <div class="tp-banner-container">
-      <img src="./assets/images/main-slider/slide-1.jpg" width="100%" height="100%" />
-      <div class="tp-banner">
-          <ul> 
-            <div id="chartdiv"></div>
-        </ul>
-        <div class="slider_heading">           
-          <owl-carousel-o [options]="customOptions">
-              <ng-template carouselSlide>
+  <div class="tp-banner-container">
+    <img src="./assets/images/main-slider/slide-1.jpg" width="100%" height="100%" />
+    <div class="tp-banner">
+      <ul> 
+        <div id="chartdiv"></div>
+      </ul>
+      <div class="slider_heading" #searchDiv id="searchDiv">           
+        <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide>
 
-                <div class="content-box">
-                  <h4>Out of market real estate investing is now local</h4>
-                  <h2><strong class="theme_color">REMOTE INVESTING<br>MADE SAFE AND EASY</strong></h2>
-                  <div class="btn-box"><a [routerLink]="['/pricing']" class="theme-btn btn-style-one">Join the club <span class="fa fa-long-arrow-right"></span></a></div>
-              </div>
+            <div class="content-box">
+              <h4>Out of market real estate investing is now local</h4>
+              <h2><strong class="theme_color">REMOTE INVESTING<br>MADE SAFE AND EASY</strong></h2>
+              <div class="btn-box"><a [routerLink]="['/pricing']" class="theme-btn btn-style-one">Join the club <span class="fa fa-long-arrow-right"></span></a></div>
+            </div>
           </ng-template>  
           <ng-template carouselSlide>
 
@@ -31,40 +31,38 @@
               <h4>Out of market real estate investing is now local</h4>
               <h2><strong class="theme_color">REMOTE INVESTING<br>MADE SAFE AND EASY</strong></h2>
               <div class="btn-box"><a [routerLink]="['/pricing']" class="theme-btn btn-style-one">Join the club <span class="fa fa-long-arrow-right"></span></a></div>
-          </div>
-      </ng-template>  
-      <ng-template carouselSlide>
-        <div class="content-box">
-          <h4>Out of market real estate investing is now local</h4>
-          <h2><strong class="theme_color">REMOTE INVESTING<br>MADE SAFE AND EASY</strong></h2>
-          <div class="btn-box"><a [routerLink]="['/pricing']" class="theme-btn btn-style-one">Join the club <span class="fa fa-long-arrow-right"></span></a></div>
+            </div>
+          </ng-template>  
+          <ng-template carouselSlide>
+            <div class="content-box">
+              <h4>Out of market real estate investing is now local</h4>
+              <h2><strong class="theme_color">REMOTE INVESTING<br>MADE SAFE AND EASY</strong></h2>
+              <div class="btn-box"><a [routerLink]="['/pricing']" class="theme-btn btn-style-one">Join the club <span class="fa fa-long-arrow-right"></span></a></div>
+            </div>
+          </ng-template>  
+        </owl-carousel-o>
       </div>
-  </ng-template>  
-</owl-carousel-o>
-</div>
-<div class="tp-bannertimer"></div>
-</div>
-</div>
+      <div class="tp-bannertimer"></div>
+    </div>
+  </div>
 </section>
-
-
 <!-- slider end -->
-<section #searchDiv id="searchDiv" class="find-advisor style-two top">
-    <div class="auto-container">
-        <div class="row find-row">
-            <div class="col-sm-4 col-md-1 find-box">
+<section class="find-advisor style-two top">
+  <div class="auto-container">
+    <div class="row find-row">
+      <div class="col-sm-4 col-md-1 find-box">
 
-                <div class="custom-select">
-                    <div class="select-selected">
-                      <select [(ngModel)]="filter.offer_type" >
-                        <option value="">Offer</option>
-                        <option *ngFor="let t of offerTypes" [value]="t.value">{{t.text}}</option>
-                    </select></div>
-                    <!-- <div class="select-items select-hide"> -->
+        <div class="custom-select">
+          <div class="select-selected">
+            <select [(ngModel)]="filter.offer_type" >
+              <option value="0">Offer</option>
+              <option *ngFor="let t of offerTypes" [value]="t.value">{{t.text}}</option>
+            </select></div>
+            <!-- <div class="select-items select-hide"> -->
                     <!-- <div>
                     Buy</div><div>Sell</div><div>Rentals</div> -->
                     <!-- </div> -->
-                </div>
+                  </div>
 
                 <!-- <div class="custom-select">
                   <select>
@@ -73,614 +71,565 @@
                     <option value="3">Rentals</option>
                   </select>
                   <div class="select-selected select-arrow-active">Buy</div><div class="select-items"><div>Buy</div><div>Sell</div><div>Rentals</div></div></div> -->
-              </div>
-              <div class="col-sm-4 col-md-3 col-xs-6 find-box">
-                
-                <div class="custom-select">
+                </div>
+                <div class="col-sm-4 col-md-3 col-xs-6 find-box">
+
+                  <div class="custom-select">
                     <div class="select-selected">
                       <select [(ngModel)]="filter.city">
                         <option value="">City</option>
                         <option *ngFor="let c of cities" [value]="c.city">{{c.city}}
                         </select>
+                      </div>
                     </div>
-                </div>
 
-            </div>
-            <div class="col-sm-4 col-md-2 col-xs-6 find-box">
-                <div class="custom-select">
+                  </div>
+                  <div class="col-sm-4 col-md-2 col-xs-6 find-box">
+                    <div class="custom-select">
+                      <div class="select-selected">
+                        <select [(ngModel)]="filter.property_type">
+                          <option value="0">All types</option>
+                          <option *ngFor="let p of propertyTypes" [value]="p.value">{{p.text}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+                   <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Min price" [(ngModel)]="filter.min_price">
+                 </div>
+
+                 <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+                   <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Max price" [(ngModel)]="filter.max_price">
+                 </div>
+
+
+                 <div class="col-sm-3 col-md-2 col-xs-12 find-box">
+                  <div class="custom-select">
                     <div class="select-selected">
-                      <select [(ngModel)]="filter.property_type">
-                        <option value="">All types</option>
-                        <option *ngFor="let p of propertyTypes" [value]="p.value">{{p.text}}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-3 col-md-2 col-xs-6 find-box">
-         <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Min price" [(ngModel)]="filter.min_price">
-     </div>
-
-     <div class="col-sm-3 col-md-2 col-xs-6 find-box">
-         <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Max price" [(ngModel)]="filter.max_price">
-     </div>
-
-
-     <div class="col-sm-3 col-md-2 col-xs-12 find-box">
-        <div class="custom-select">
-            <div class="select-selected">
-              <select>
-                <option value="0">EUR</option>
-                <option value="1">&pound;</option>
-                <option value="2">&yen; </option>
-                <option value="1">&#36;</option>
-                <option value="2">&euro;</option>
-            </select></div>
-        </div>
-    </div>
+                      <select>
+                        <option value="0">EUR</option>
+                        <option value="1">&pound;</option>
+                        <option value="2">&yen; </option>
+                        <option value="1">&#36;</option>
+                        <option value="2">&euro;</option>
+                      </select></div>
+                    </div>
+                  </div>
 
                 <!-- <div class="col-sm-3 col-md-2 col-xs-6 find-box">
                      <button type="submit" class="theme-btn btn-style-two search">SEARCH<span class="fa fa-long-arrow-right"></span></button>
-                 </div> -->
+                   </div> -->
 
-             </div>
-         </div>
+                 </div>
+               </div>
 
-         <div class="auto-container">
-            <div class="advance-open form-block" id="target">
-                <div class="row">
+               <div class="auto-container">
+                <div class="advance-open form-block" id="target">
+                  <div class="row">
                     <div class="col-sm-4">
                      <div class="form-group">
-                         <div class="field-label">PRICE ($)</div>
-                         <div class="row">
-                            <div class="col-xs-6"><input type="text" name="field-name" value="" placeholder="From"></div>
-                            <div class="col-xs-6"><input type="text" name="field-name" value="" placeholder="To"></div>
-                        </div>
+                       <div class="field-label">PRICE ($)</div>
+                       <div class="row">
+                        <div class="col-xs-6"><input currencyMask type="text" name="field-name" [(ngModel)]="filter.min_price" placeholder="From"></div>
+                        <div class="col-xs-6"><input currencyMask type="text" name="field-name" [(ngModel)]="filter.max_price" placeholder="To"></div>
+                      </div>
                     </div>
-                </div>
+                  </div>
 
-                <div class="col-sm-4">
-                 <div class="form-group">
+                  <div class="col-sm-4">
+                   <div class="form-group">
                      <div class="field-label">KEYWORD</div>
                      <div class="row">
-                        <div class="col-sm-12"><input type="text" name="field-name" value="" placeholder="Keyword"></div>
+                      <div class="col-sm-12"><input type="text" name="field-name" [(ngModel)]="filter.keyword"  placeholder="Keyword"></div>
                     </div>
+                  </div>
                 </div>
-            </div>
 
-            <div class="col-sm-4">
-             <div class="form-group">
-                 <div class="field-label">BEDROOMS</div>
-                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="custom-select">
-                            <div class="select-selected">
-                                <select>
-                                    <option value="0">From</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">+5</option>
-                                </select></div>
-                            </div>
-                        </div>
-
-                        <div class="col-xs-6">
-                            <div class="custom-select">
-                                <div class="select-selected">
-                                    <select>
-                                        <option value="0">To</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">+5</option>
-                                    </select></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-sm-4">
                  <div class="form-group">
-                     <div class="field-label">BATHROOMS</div>
-                     <div class="row">
-                        <div class="col-xs-6">
-                            <div class="custom-select">
-                                <div class="select-selected">
-                                    <select>
-                                        <option value="0">From</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">+5</option>
-                                    </select></div>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6">
-                                <div class="custom-select">
-                                    <div class="select-selected">
-                                        <select>
-                                            <option value="0">To</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">+5</option>
-                                        </select></div>
-                                    </div>
-                                </div>
-                            </div>
+                   <div class="field-label">BEDROOMS</div>
+                   <div class="row">
+                    <div class="col-xs-6">
+                      <div class="custom-select">
+                        <div class="select-selected">
+                          <select [(ngModel)]="filter.from_bed_rooms">
+                            <option value="0">From</option>
+                            <option *ngFor="let tf of to_from" [value]="tf.value" [disabled]="filter.to_bed_rooms == 0 ? false : tf.value >= filter.to_bed_rooms">{{tf.text}}</option>
+                          </select></div>
                         </div>
+                      </div>
+
+                      <div class="col-xs-6">
+                        <div class="custom-select">
+                          <div class="select-selected">
+                            <select [(ngModel)]="filter.to_bed_rooms">
+                              <option value="0">To</option>
+                              <option *ngFor="let tf of to_from" [value]="tf.value" [disabled]="tf.value <= filter.from_bed_rooms">{{tf.text}}</option>
+                            </select></div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-
-                    <div class="col-sm-4">
-                     <div class="form-group">
-                         <div class="field-label">PROPERTY SIZE (FT2)</div>
-                         <div class="row">
-                            <div class="col-xs-6">
-                                <div class="custom-select">
-                                    <div class="select-selected">
-                                        <select>
-                                            <option value="0">From</option>
-                                            <option value="1">50</option>
-                                            <option value="2">100</option>
-                                            <option value="3">150</option>
-                                            <option value="4">200</option>
-                                            <option value="5">250</option>
-                                        </select></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <div class="custom-select">
-                                        <div class="select-selected">
-                                            <select>
-                                                <option value="0">To</option>
-                                                <option value="1">50</option>
-                                                <option value="2">100</option>
-                                                <option value="3">150</option>
-                                                <option value="4">200</option>
-                                                <option value="5">250</option>
-                                            </select></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                         <div class="form-group">
-                             <div class="field-label">YEAR</div>
-                             <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="custom-select">
-                                        <div class="select-selected">
-                                            <select>
-                                                <option value="0">From</option>
-                                                <option value="1">1818</option>
-                                                <option value="2">1819</option>
-                                                <option value="3">1820</option>
-                                                <option value="4">1821</option>
-                                                <option value="5">1822</option>
-                                            </select></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-6">
-                                        <div class="custom-select">
-                                            <div class="select-selected">
-                                                <select>
-                                                    <option value="0">To</option>
-                                                    <option value="1">1818</option>
-                                                    <option value="2">1819</option>
-                                                    <option value="3">1820</option>
-                                                    <option value="4">1821</option>
-                                                    <option value="5">1822</option>
-                                                </select></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-4">
-                             <div class="form-group">
-                                 <div class="field-label">HOA Fees ($)</div>
-                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <input type="text" name="field-name" value="" placeholder="HOA Fess">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                         <div class="form-group">
-                             <div class="field-label">PARKING</div>
-                             <div class="row">
-                                <div class="col-sm-12">
-                                    <input type="text" name="field-name" value="" placeholder="HOA Fess">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                     <div class="form-group">
-                         <div class="field-label">RATING</div>
-                         <div class="row">
-                            <div class="col-xs-6">
-                                <div class="custom-select">
-                                    <div class="select-selected">
-                                        <select>
-                                            <option value="0">From</option>
-                                            <option value="1">0.5</option>
-                                            <option value="2">1</option>
-                                            <option value="3">1.5</option>
-                                            <option value="4">2</option>
-                                            <option value="5">2.5</option>
-                                            <option value="6">3</option>
-                                        </select></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <div class="custom-select">
-                                        <div class="select-selected">
-                                            <select>
-                                                <option value="0">To</option>
-                                                <option value="1">0.5</option>
-                                                <option value="2">1</option>
-                                                <option value="3">1.5</option>
-                                                <option value="4">2</option>
-                                                <option value="5">2.5</option>
-                                                <option value="6">3</option>
-                                            </select></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                         <div class="form-group">
-                             <div class="field-label">Is the home vacant, rented or lived in ?</div>
-                             <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="custom-select">
-                                        <div class="select-selected">
-                                            <select>
-                                                <option value="0">Select</option>
-                                                <option value="1">Vacant</option>
-                                                <option value="2">Rented</option>
-                                                <option value="3">Lived In</option>
-                                            </select></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-
-                <div class="text-center advance-btn">
-                    <a (click)="clearFilter()" class="theme-btn btn-style-one text-uppercase" target="">Clear</a>
-                    <a class="theme-btn btn-style-one text-uppercase" (click)="onSearch('btn')" >Search</a>
-                    <button *ngIf="showAdvBtn" class="theme-btn btn-style-one text-uppercase" (click)="openAdvanceOpt()" target="">ADVANCE</button>
-                    <button *ngIf="!showAdvBtn" class="theme-btn btn-style-one text-uppercase" (click)="hideAdvanceOpt()"  target="">Hide</button>
-                </div>
-                <!-- </div> -->
-            </div>
-        </section>
-
-
-        <!--Default Section-->
-        <section class="default-section padd-bott-40">
-          <div class="auto-container">
-              <div class="row clearfix">
-                  <div class="column text-column col-md-6 col-sm-12 col-xs-12">
-                      <div class="sec-title"><h2>How it works</h2></div>
-                      <div class="inner-box">
-                         <div class="text text-justify">
-                            <h4>Set Investment goals</h4>
-                            <p>Set clear investment portfolio goals then decide what asset type and strategy are right for you. Once defined, search desired markets to Find, Acquire, Renovate, Sell or Manage your portfolio by creating a profile on the InvestFar app.</p>
-                            <h4>Submit Your Property</h4>
-                            <p>Property owners list your property; connect with investors or renters through the InvestFar platform to save on 3% – 6% fees by listing for FREE. Buyers simply "Make an Offer" with ShieldPay verified users. If accepted, payment is held in a secure ShieldPay Vault and only released when you go to closing.</p>
-                            <h4>Build Your Network</h4>
-                            <p>Meet investment consultants, home sellers and investors 
-                                globally! Connect with real estate pros anywhere and build your dream real estate team remotely.</p>
-                                <div class="link-box padd-top-20">
-                                    <a class="theme-btn btn-style-one" target="_blank">Learn More <span class="fa fa-long-arrow-right"></span></a></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--Skills -->
-                        <div class="column col-md-6 col-sm-12 col-xs-12">
-
-                            <!--Progress Levels-->
-                            <div class="progress-levels">
-
-                                <!--Skill Box-->
-                                <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
-                                   <div class="box-title"><span class="icon flaticon-bar-chart"></span> Set Investment Goal</div>
-                                   <div class="inner">
-                                    <div class="bar">
-                                        <div class="bar-innner"><div id="progress-id70" class="bar-fill" data-percent="70"></div></div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--Skill Box-->
-                            <div class="progress-box wow fadeInRight" data-wow-delay="200ms" data-wow-duration="1500ms">
-                                <div class="box-title"><span class="icon flaticon-check-2"></span> Submit Your Property</div>
-                                <div class="inner">
-                                    <div class="bar">
-                                        <div class="bar-innner"><div id="progress-id" class="bar-fill" data-percent="90"></div></div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--Skill Box-->
-                            <div class="progress-box wow fadeInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
-                                <div class="box-title"><span class="icon flaticon-notebook"></span> Build Your Network</div>
-                                <div class="inner">
-                                    <div class="bar">
-                                        <div class="bar-innner"><div id="progress-id72" class="bar-fill" data-percent="72"></div></div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <!--Default Section End-->
-
-
-        <!-- service -->
-        <section class="services-style-one">
-            <div class="outer-box clearfix">
-                <!--Services Column-->
-                <div class="services-column">
-                    <div class="content-outer">
-                        <div class="row clearfix">
-                            <!--Service Block-->
-                            <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
-                                <div class="inner-box">
-                                    <div class="icon-box"><span class="flaticon-avatar"></span></div>
-                                    <h4>Make Predictive Decisions</h4>
-                                    <div class="text">With our home valuation tool, make a more informed decision with our predictive data analytic...</div>
-                                    <a>Read More</a>
-                                </div>
-                            </div>
-                            <!--Service Block-->
-                            <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
-                                <div class="inner-box">
-                                    <div class="icon-box"><span class="flaticon-bar-graph-on-a-rectangle"></span></div>
-                                    <h4>Streamline With One Source for Investing</h4>
-                                    <div class="text">Take the guesswork out of investing remote by scheduling a consultation with local...</div>
-                                    <a>Read More</a>
-                                </div>
-                            </div>
-                            <!--Service Block-->
-                            <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
-                                <div class="inner-box">
-                                    <div class="icon-box"><span class="flaticon-home"></span></div>
-                                    <h4>Receive World Class Service</h4>
-                                    <div class="text">Work with the highest quality service providers and investor consultants carefully...</div>
-                                    <a>Read More</a>
-                                </div>
-                            </div>
-                            <!--Service Block-->
-                            <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
-                                <div class="inner-box">
-                                    <div class="icon-box"><span class="flaticon-connection"></span></div>
-                                    <h4>Safe and Easy Transactions</h4>
-                                    <div class="text">Easily and safely buy or sell properties through our payments gateway, which verifies each...</div>
-                                    <a>Read More</a>
-                                </div>
-                            </div>
-                            <!--Service Block-->
-                            <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
-                                <div class="inner-box">
-                                    <div class="icon-box"><span class="flaticon-interface-8"></span></div>
-                                    <h4>Live Chat for Faster and Clearer Communication</h4>
-                                    <div class="text">Our live chat feature allows you to communicate with buyers, sellers, tenants and management to immediatel...</div>
-                                    <a>Read More</a>
-                                </div>
-                            </div>
-                            <!--Service Block-->
-                            <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
-                                <div class="inner-box">
-                                    <div class="icon-box"><span class="flaticon-graph"></span></div>
-                                    <h4>Simplified Reporting Capabilities</h4>
-                                    <div class="text">Investors can keep records of all the invoices for service and maintenance work on each property...</div>
-                                    <a>Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Content Column-->
-                <div class="content-column clearfix">
-                    <div class="content-box">
-                        <div class="inner-box wow fadeInRight" id="fadin-text" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible;animation-duration: 2000ms;animation-delay: 0ms;animation-name: fadeInRight;display: none;">
-                            <!--Section Title-->
-                            <div class="sec-title aligned-right">
-                                <h2>Service Providers</h2>
-                            </div>
-                            <div class="text">At InvestFar we aim to simplify real estate investing by building a directory of companies we feel are most advantageous to investors building their portfolio. We’ve also given companies the option to add their own businesses to our directory, if they provide a service to the real estate sector. Companies must be vetted before being added to the directory.</div>
-                            <div class="link-box"><a class="theme-btn btn-style-two">Register Company <span class="fa fa-long-arrow-right"></span></a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- service -->
-
-
-        <!--latest-listings-->
-        <section class="latest-listings" #structure id="structure">
-            <div class="auto-container">
-                <div class="sec-title">
-                    <h2>Latest Listings</h2>
-                </div> 
 
                 <div class="row">
-                    <div class="col-sm-3" *ngFor="let p of properties">
-                        <a class="listing-main" [routerLink]="['/owner-financed-no-banks-needed']">
-                            <div class="listing-img">
-                                <div class="price" *ngIf="p.price != '-1'">{{p.price | currency}}</div>
+                  <div class="col-sm-4">
+                   <div class="form-group">
+                     <div class="field-label">BATHROOMS</div>
+                     <div class="row">
+                      <div class="col-xs-6">
+                        <div class="custom-select">
+                          <div class="select-selected">
+                            <select [(ngModel)]="filter.from_bath_rooms">
+                              <option value="0">From</option>
+                              <option *ngFor="let tf of to_from" [value]="tf.value" [disabled]="filter.to_bath_rooms == 0 ? false : tf.value >= filter.to_bath_rooms">{{tf.text}}</option>
+                            </select></div>
+                          </div>
+                        </div>
 
-                                <div class="price" *ngIf="p.price == '-1'">See Valuation Report</div>
-                                <div class="star"><i class="fa fa-star-o" aria-hidden="true"></i></div>
-                                <img src="{{p.image1}}" alt="" class="img-responsive" width="100%" />
+                        <div class="col-xs-6">
+                          <div class="custom-select">
+                            <div class="select-selected">
+                              <select [(ngModel)]="filter.to_bath_rooms">
+                                <option value="0">To</option>
+                                <option *ngFor="let tf of to_from" [value]="tf.value" [disabled]="tf.value <= filter.from_bath_rooms">{{tf.text}}</option>
+                              </select></div>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-                            <div class="listting-inner">
-                                <h4 class="item-title">{{p.title}}</h4>
-                                <p class="item-location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{p.address}}</p>
+                    <div class="col-sm-4">
+                     <div class="form-group">
+                       <div class="field-label">PROPERTY SIZE (FT2)</div>
+                       <div class="row">
+                        <div class="col-xs-6">
+                          <input type="number" [min]="0" [step]="50" [ngClass]="{'input-red' : filter.to_property_size < filter.from_property_size }"
+                          [(ngModel)]="filter.from_property_size" name="" placeholder="From">
+                        </div>
+
+                        <div class="col-xs-6">
+                         <input type="number" [min]="0" [step]="50" [ngClass]="{'input-red' : filter.to_property_size < filter.from_property_size }"
+                         [(ngModel)]="filter.to_property_size" name="" placeholder="To">
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
+                     <div class="field-label">YEAR</div>
+                     <div class="row">
+                      <div class="col-xs-6">
+                        <div class="custom-select">
+                          <div class="select-selected">
+                            <select  [(ngModel)]="filter.from_year">
+                              <option value="0">From</option>
+                              <option *ngFor="let y of years" [value]="y" [disabled]="filter.to_year == 0 ? false : y >= filter.to_year">{{y}}</option>
+                            </select></div>
+                          </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                          <div class="custom-select">
+                            <div class="select-selected">
+                              <select [(ngModel)]="filter.to_year">
+                                <option value="0">To</option>
+                                <option *ngFor="let y of years" [value]="y" [disabled]="y <= filter.from_year">{{y}}</option>
+                              </select></div>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                     <div class="form-group">
+                       <div class="field-label">HOA Fees ($)</div>
+                       <div class="row">
+                        <div class="col-sm-12">
+                          <input currencyMask type="text" name="field-name" [(ngModel)]="filter.hoafees" placeholder="HOA Fess">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                   <div class="form-group">
+                     <div class="field-label">PARKING</div>
+                     <div class="row">
+                      <div class="col-sm-12">
+                      <input type="number" [(ngModel)]="filter.parking" name="field-name" value="" placeholder="Parking" min="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                 <div class="form-group">
+                   <div class="field-label">RATING</div>
+                   <div class="row">
+                    <div class="col-xs-6">
+                      <div class="custom-select">
+                        <div class="select-selected">
+                          <select [(ngModel)]="filter.from_rating">
+                            <option value="0">From</option>
+                            <option *ngFor="let r of ratingOptions" [disabled]="filter.to_rating == 0 ? false : r.value >= filter.to_rating" [value]="r.value">{{r.text}}</option>
+                          </select></div>
+                        </div>
+                      </div>
+
+                      <div class="col-xs-6">
+                        <div class="custom-select">
+                          <div class="select-selected">
+                            <select [(ngModel)]="filter.to_rating">
+                              <option value="0">To</option>
+                              <option *ngFor="let r of ratingOptions" [value]="r.value" [disabled]="r.value <= filter.from_rating">{{r.text}}</option>
+                            </select></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                   <div class="form-group">
+                     <div class="field-label">Is the home vacant, rented or lived in ?</div>
+                     <div class="row">
+                      <div class="col-sm-12">
+                        <div class="custom-select">
+                          <div class="select-selected">
+                            <select [(ngModel)]="filter.live" >
+                              <option value="">Select</option>
+                              <option value="Vacant">Vacant</option>
+                              <option value="Rented">Rented</option>
+                              <option value="Lived In">Lived In</option>
+                            </select></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center advance-btn">
+                <a (click)="clearFilter()" class="theme-btn btn-style-one text-uppercase" target="">Clear</a>
+                <a class="theme-btn btn-style-one text-uppercase" (click)="onSearch('btn')" >Search</a>
+                <button *ngIf="showAdvBtn" class="theme-btn btn-style-one text-uppercase" (click)="openAdvanceOpt()" target="">ADVANCE</button>
+                <button *ngIf="!showAdvBtn" class="theme-btn btn-style-one text-uppercase" (click)="hideAdvanceOpt()"  target="">Hide</button>
+              </div>
+              <!-- </div> -->
+            </div>
+          </section>
+
+
+          <!--Default Section-->
+          <section class="default-section padd-bott-40">
+            <div class="auto-container">
+              <div class="row clearfix">
+                <div class="column text-column col-md-6 col-sm-12 col-xs-12">
+                  <div class="sec-title"><h2>How it works</h2></div>
+                  <div class="inner-box">
+                   <div class="text text-justify">
+                    <h4>Set Investment goals</h4>
+                    <p>Set clear investment portfolio goals then decide what asset type and strategy are right for you. Once defined, search desired markets to Find, Acquire, Renovate, Sell or Manage your portfolio by creating a profile on the InvestFar app.</p>
+                    <h4>Submit Your Property</h4>
+                    <p>Property owners list your property; connect with investors or renters through the InvestFar platform to save on 3% – 6% fees by listing for FREE. Buyers simply "Make an Offer" with ShieldPay verified users. If accepted, payment is held in a secure ShieldPay Vault and only released when you go to closing.</p>
+                    <h4>Build Your Network</h4>
+                    <p>Meet investment consultants, home sellers and investors 
+                      globally! Connect with real estate pros anywhere and build your dream real estate team remotely.</p>
+                      <div class="link-box padd-top-20">
+                        <a [routerLink]="['/pricing']" class="theme-btn btn-style-one">Learn More <span class="fa fa-long-arrow-right"></span></a></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Skills -->
+                  <div class="column col-md-6 col-sm-12 col-xs-12">
+
+                    <!--Progress Levels-->
+                    <div class="progress-levels">
+
+                      <!--Skill Box-->
+                      <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
+                       <div class="box-title"><span class="icon flaticon-bar-chart"></span> Set Investment Goal</div>
+                       <div class="inner">
+                        <div class="bar">
+                          <div class="bar-innner"><div id="progress-id70" class="bar-fill" data-percent="70"></div></div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Skill Box-->
+                    <div class="progress-box wow fadeInRight" data-wow-delay="200ms" data-wow-duration="1500ms">
+                      <div class="box-title"><span class="icon flaticon-check-2"></span> Submit Your Property</div>
+                      <div class="inner">
+                        <div class="bar">
+                          <div class="bar-innner"><div id="progress-id" class="bar-fill" data-percent="90"></div></div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Skill Box-->
+                    <div class="progress-box wow fadeInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
+                      <div class="box-title"><span class="icon flaticon-notebook"></span> Build Your Network</div>
+                      <div class="inner">
+                        <div class="bar">
+                          <div class="bar-innner"><div id="progress-id72" class="bar-fill" data-percent="72"></div></div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+          <!--Default Section End-->
+
+
+          <!-- service -->
+          <section class="services-style-one">
+            <div class="outer-box clearfix">
+              <!--Services Column-->
+              <div class="services-column">
+                <div class="content-outer">
+                  <div class="row clearfix">
+                    <!--Service Block-->
+                    <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
+                      <div class="inner-box">
+                        <div class="icon-box"><span class="flaticon-avatar"></span></div>
+                        <h4>Make Predictive Decisions</h4>
+                        <div class="text">With our home valuation tool, make a more informed decision with our predictive data analytic...</div>
+                        <a>Read More</a>
+                      </div>
+                    </div>
+                    <!--Service Block-->
+                    <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
+                      <div class="inner-box">
+                        <div class="icon-box"><span class="flaticon-bar-graph-on-a-rectangle"></span></div>
+                        <h4>Streamline With One Source for Investing</h4>
+                        <div class="text">Take the guesswork out of investing remote by scheduling a consultation with local...</div>
+                        <a>Read More</a>
+                      </div>
+                    </div>
+                    <!--Service Block-->
+                    <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
+                      <div class="inner-box">
+                        <div class="icon-box"><span class="flaticon-home"></span></div>
+                        <h4>Receive World Class Service</h4>
+                        <div class="text">Work with the highest quality service providers and investor consultants carefully...</div>
+                        <a>Read More</a>
+                      </div>
+                    </div>
+                    <!--Service Block-->
+                    <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
+                      <div class="inner-box">
+                        <div class="icon-box"><span class="flaticon-connection"></span></div>
+                        <h4>Safe and Easy Transactions</h4>
+                        <div class="text">Easily and safely buy or sell properties through our payments gateway, which verifies each...</div>
+                        <a>Read More</a>
+                      </div>
+                    </div>
+                    <!--Service Block-->
+                    <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
+                      <div class="inner-box">
+                        <div class="icon-box"><span class="flaticon-interface-8"></span></div>
+                        <h4>Live Chat for Faster and Clearer Communication</h4>
+                        <div class="text">Our live chat feature allows you to communicate with buyers, sellers, tenants and management to immediatel...</div>
+                        <a>Read More</a>
+                      </div>
+                    </div>
+                    <!--Service Block-->
+                    <div class="service-block col-lg-4 col-md-6 col-sm-4 col-xs-12">
+                      <div class="inner-box">
+                        <div class="icon-box"><span class="flaticon-graph"></span></div>
+                        <h4>Simplified Reporting Capabilities</h4>
+                        <div class="text">Investors can keep records of all the invoices for service and maintenance work on each property...</div>
+                        <a>Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--Content Column-->
+              <div class="content-column clearfix">
+                <div class="content-box">
+                  <div class="inner-box wow fadeInRight" id="fadin-text" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible;animation-duration: 2000ms;animation-delay: 0ms;animation-name: fadeInRight;display: none;">
+                    <!--Section Title-->
+                    <div class="sec-title aligned-right">
+                      <h2>Service Providers</h2>
+                    </div>
+                    <div class="text">At InvestFar we aim to simplify real estate investing by building a directory of companies we feel are most advantageous to investors building their portfolio. We’ve also given companies the option to add their own businesses to our directory, if they provide a service to the real estate sector. Companies must be vetted before being added to the directory.</div>
+                    <div class="link-box"><a [routerLink]="['/companies-registration']" class="theme-btn btn-style-two">Register Company <span class="fa fa-long-arrow-right"></span></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- service -->
+
+
+          <!--latest-listings-->
+          <section class="latest-listings" #structure id="structure">
+            <div class="auto-container">
+              <div class="sec-title">
+                <h2>Latest Listings</h2>
+              </div> 
+
+              <div class="row">
+                <div class="col-sm-3" *ngFor="let p of properties">
+                  <a class="listing-main" [routerLink]="['/owner-financed-no-banks-needed']">
+                    <div class="listing-img">
+                      <div class="price" *ngIf="p.price != '-1'">{{p.price | currency}}</div>
+
+                      <div class="price" *ngIf="p.price == '-1'">See Valuation Report</div>
+                      <div class="star"><i class="fa fa-star-o" aria-hidden="true"></i></div>
+                      <img src="{{p.image1}}" alt="" class="img-responsive" width="100%" />
+                    </div>
+
+                    <div class="listting-inner">
+                      <h4 class="item-title">{{p.title}}</h4>
+                      <p class="item-location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{p.address}}</p>
+                    </div>
                      <!--  <div class="item-details">
                       <ul class="text-center clearfix">
                         <li class="pull-left in-meters"><i class="fa fa-home" aria-hidden="true"></i> 100 </li>
                         <li class="pull-left">&nbsp;</li>
                         <li class="pull-left"><i class="fa fa-bed" aria-hidden="true"></i> 5</li>
                     </ul>
-                </div> -->
-            </a>
-        </div>
+                  </div> -->
+                </a>
+              </div>
 
-        <div class="property-listing" *ngIf="properties.length == 0">
-            <div class="noData">No Data</div>
-            <div class="text-center advance-btn">
-                <a class="theme-btn btn-style-one text-uppercase" target="" (click)="scrollToSearch()"> Back to Search </a></div>
+              <div class="property-listing" *ngIf="properties.length == 0">
+                <div class="no_data_found">
+                <h3>No Data Found</h3>
+                </div> 
+                <div class="text-center advance-btn">
+                  <a class="theme-btn btn-style-one text-uppercase" target="" (click)="scrollToSearch()"> Back to Search </a></div>
+                </div>
+              </div>
+              <div class="text-center advance-btn" *ngIf="properties.length > 3">
+
+                <a class="theme-btn btn-style-one text-uppercase" target="" (click)="loadMoreProperties()">  <i *ngIf="apiLoading"  class="fa fa-refresh fa-spin fa-3x fa-fw"></i> Load More </a>
+              </div>
             </div>
-        </div>
-        <div class="text-center advance-btn" *ngIf="!properties.length">
+          </section>
 
-            <a class="theme-btn btn-style-one text-uppercase" target="" (click)="loadMoreProperties()">  <i *ngIf="apiLoading"  class="fa fa-refresh fa-spin fa-3x fa-fw"></i> Load More </a></div>
-        </div>
-    </section>
-
-    <section class="property-type-section home-property">
-        <div class="auto-container">
-            <div class="row">
+          <section class="property-type-section home-property">
+            <div class="auto-container">
+              <div class="row">
                 <div class="col-md-6 col-sm-12 first-box">
-                    <div class="sec-title">
-                     <h3 class="text-center">Find & Evaluate</h3>
+                  <div class="sec-title">
+                   <h3 class="text-center">Find & Evaluate</h3>
                  </div>
                  <div class="row">
-                    <div class="col-md-6 col-sm-6 inner-property">
-                        <div class="inner-box">
-                            <img src="./assets/images/gallery/14.jpg" alt="" class="img-responsive" />
-                            <div class="text-box text-justify">
-                                <p>Search our marketplace for off market properties from preforeclosures, for sale by owner, banked owned and nationwide wholesalers. In addition, search through MLS listed homes that include traditional, short sales, and foreclosure listings.</p>
-                            </div>
-                        </div>
+                  <div class="col-md-6 col-sm-6 inner-property">
+                    <div class="inner-box">
+                      <img src="./assets/images/gallery/14.jpg" alt="" class="img-responsive" />
+                      <div class="text-box text-justify">
+                        <p>Search our marketplace for off market properties from preforeclosures, for sale by owner, banked owned and nationwide wholesalers. In addition, search through MLS listed homes that include traditional, short sales, and foreclosure listings.</p>
+                      </div>
                     </div>
+                  </div>
 
-                    <div class="col-md-6 col-sm-6 inner-property">
-                        <div class="inner-box">
-                            <img src="./assets/images/gallery/15.jpg" alt="" class="img-responsive" />
-                            <div class="text-box text-justify">
-                                <p>Once you’ve located a property and market of interest use our resources such as valuation reports, investor consultants or network peer to peer with IF Connect so you can thoroughly evaluate and make an informed decision.</p>
-                            </div>
-                        </div>
+                  <div class="col-md-6 col-sm-6 inner-property">
+                    <div class="inner-box">
+                      <img src="./assets/images/gallery/15.jpg" alt="" class="img-responsive" />
+                      <div class="text-box text-justify">
+                        <p>Once you’ve located a property and market of interest use our resources such as valuation reports, investor consultants or network peer to peer with IF Connect so you can thoroughly evaluate and make an informed decision.</p>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </div>
+              </div>
 
-            <div class="col-md-6 col-sm-12 first-box">
+              <div class="col-md-6 col-sm-12 first-box">
                 <div class="sec-title">
                  <h3 class="text-center">Renovate</h3>
-             </div>
-             <div class="row">
+               </div>
+               <div class="row">
                 <div class="col-sm-6 inner-property">
-                    <div class="inner-box">
-                        <img src="./assets/images/gallery/16.jpg" alt="" class="img-responsive" />
-                        <div class="text-box text-justify">
-                            <p>Property renovating can be a daunting task especially when you’re unfamiliar with a market but we have you covered. Search our database of nationwide vetted contractors, plumbers or financiers for renovations.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 inner-property">
-                   <div class="inner-box">
-                    <img src="./assets/images/gallery/17.jpg" alt="" class="img-responsive" />
+                  <div class="inner-box">
+                    <img src="./assets/images/gallery/16.jpg" alt="" class="img-responsive" />
                     <div class="text-box text-justify">
-                        <p>Post renovation list your property for FREE on InvestFar to sell or rent. If you’re interested in having the rehab done for you along with having a tenant placed, please reach out to our client support team directly for tailored solutions.</p>
+                      <p>Property renovating can be a daunting task especially when you’re unfamiliar with a market but we have you covered. Search our database of nationwide vetted contractors, plumbers or financiers for renovations.</p>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-6 col-sm-12 first-box">
-        <div class="sec-title">
-         <h3 class="text-center">Acquire</h3>
-     </div>
-     <div class="row">
-        <div class="col-sm-6 inner-property">
-            <div class="inner-box">
+                <div class="col-sm-6 inner-property">
+                 <div class="inner-box">
+                  <img src="./assets/images/gallery/17.jpg" alt="" class="img-responsive" />
+                  <div class="text-box text-justify">
+                    <p>Post renovation list your property for FREE on InvestFar to sell or rent. If you’re interested in having the rehab done for you along with having a tenant placed, please reach out to our client support team directly for tailored solutions.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-12 first-box">
+            <div class="sec-title">
+             <h3 class="text-center">Acquire</h3>
+           </div>
+           <div class="row">
+            <div class="col-sm-6 inner-property">
+              <div class="inner-box">
                 <img src="./assets/images/gallery/18.jpg" alt="" class="img-responsive" />
                 <div class="text-box text-justify">
-                    <p>Acquiring properties traditionally or by way of investments has been an antiquated process in terms of processing, due diligence and market knowledge. Automate acquisitions by using InvestFar tools and a secure payment system.</p>
+                  <p>Acquiring properties traditionally or by way of investments has been an antiquated process in terms of processing, due diligence and market knowledge. Automate acquisitions by using InvestFar tools and a secure payment system.</p>
                 </div>
+              </div>
             </div>
+
+            <div class="col-sm-6 inner-property">
+             <div class="inner-box">
+              <img src="./assets/images/gallery/19.jpg" alt="" class="img-responsive" />
+              <div class="text-box text-justify">
+                <p>Our vetted international payments system lets you buy outright or bid on properties with confidence, buyers and sellers are verified automatically with a multistep process. After an agreement is made, send or receive legal documents with our tools and release funds for remote closings.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12 first-box">
+        <div class="sec-title">
+         <h3 class="text-center">Rent & Manage</h3>
+       </div>
+       <div class="row">
+        <div class="col-sm-6 inner-property">
+          <div class="inner-box">
+            <img src="./assets/images/gallery/20.jpg" alt="" class="img-responsive" />
+            <div class="text-box text-justify">
+              <p>It can be difficult for residential estates and complexes to maintain a high level of communication between residents and management. With InvestFar management can now be taken into your own hands and automated for ease of communication.</p>
+            </div>
+          </div>
         </div>
 
         <div class="col-sm-6 inner-property">
          <div class="inner-box">
-            <img src="./assets/images/gallery/19.jpg" alt="" class="img-responsive" />
-            <div class="text-box text-justify">
-                <p>Our vetted international payments system lets you buy outright or bid on properties with confidence, buyers and sellers are verified automatically with a multistep process. After an agreement is made, send or receive legal documents with our tools and release funds for remote closings.</p>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-<div class="col-md-6 col-sm-12 first-box">
-    <div class="sec-title">
-     <h3 class="text-center">Rent & Manage</h3>
- </div>
- <div class="row">
-    <div class="col-sm-6 inner-property">
-        <div class="inner-box">
-            <img src="./assets/images/gallery/20.jpg" alt="" class="img-responsive" />
-            <div class="text-box text-justify">
-                <p>It can be difficult for residential estates and complexes to maintain a high level of communication between residents and management. With InvestFar management can now be taken into your own hands and automated for ease of communication.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 inner-property">
-     <div class="inner-box">
-        <img src="./assets/images/gallery/21.jpg" alt="" class="img-responsive" />
-        <div class="text-box text-justify">
+          <img src="./assets/images/gallery/21.jpg" alt="" class="img-responsive" />
+          <div class="text-box text-justify">
             <p>Our property management tool allows contact to management as a resident, as well as allowing management to immediately respond to issues in real time. Simplify reporting capabilities and tenant approvals remotely.</p>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</div>
-</div>
+  </div>
 </div>
 </div>
 </section>
@@ -691,160 +640,160 @@
   <div class="auto-container">
     <!--Section Title-->
     <div class="sec-title">
-        <h2>Consider Our Main Markets</h2>
+      <h2>Consider Our Main Markets</h2>
     </div>  
-</div>
+  </div>
 
-<div class="auto-container markets-container">
+  <div class="auto-container markets-container">
     <!--Masonry-->
     <div class="">  
-        <div class="items-container row clearfix">
-            <!--Default Portfolio Item-->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
-                <div class="inner-box">
-                    <figure class="image-box"><img src="./assets/images/resource/city04.jpg" alt=""></figure>
-                    <!--Overlay Box-->
-                    <div class="overlay-box">
-                        <div class="overlay-inner">
-                            <div class="content">
-                                <h3><a>Kansas City, MO </a></h3>
-                                <a href="./assets/images/resource/city04big.jpg" class="lightbox-image option-btn" title="Kansas City, MO" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
-                                <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
-                            </div>
-                        </div>
-                    </div>
+      <div class="items-container row clearfix">
+        <!--Default Portfolio Item-->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
+          <div class="inner-box">
+            <figure class="image-box"><img src="./assets/images/resource/city04.jpg" alt=""></figure>
+            <!--Overlay Box-->
+            <div class="overlay-box">
+              <div class="overlay-inner">
+                <div class="content">
+                  <h3><a>Kansas City, MO </a></h3>
+                  <a href="./assets/images/resource/city04big.jpg" class="lightbox-image option-btn" title="Kansas City, MO" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
+                  <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
                 </div>
+              </div>
             </div>
-
-
-            <!--Default Portfolio Item-->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
-                <div class="inner-box">
-                    <figure class="image-box"><img src="./assets/images/resource/city02.jpg" alt=""></figure>
-                    <!--Overlay Box-->
-                    <div class="overlay-box">
-                        <div class="overlay-inner">
-                            <div class="content">
-                                <h3><a href="portfolio.html">Chicago, IL</a></h3>
-                                <a href="./assets/images/resource/city02big.jpg" class="lightbox-image option-btn" title="Chicago, IL" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
-                                <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Default Portfolio Item-->
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
-                <div class="inner-box">
-                    <figure class="image-box"><img src="./assets/images/resource/city03.jpg" alt=""></figure>
-                    <!--Overlay Box-->
-                    <div class="overlay-box">
-                        <div class="overlay-inner">
-                            <div class="content">
-                                <h3><a>Columbus, OH</a></h3>
-                                <a href="./assets/images/resource/city03big.jpg" class="lightbox-image option-btn" title="Columbus, OH" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
-                                <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Default Portfolio Item-->
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
-                <div class="inner-box">
-                    <figure class="image-box"><img src="./assets/images/resource/city01.jpg" alt=""></figure>
-                    <!--Overlay Box-->
-                    <div class="overlay-box">
-                        <div class="overlay-inner">
-                            <div class="content">
-                                <h3><a>Atlanta, GA</a></h3>
-                                <a href="./assets/images/resource/city01big.jpg" class="lightbox-image option-btn" title="Atlanta, GA" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
-                                <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Default Portfolio Item-->
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
-                <div class="inner-box">
-                    <figure class="image-box"><img src="./assets/images/resource/city05.jpg" alt=""></figure>
-                    <!--Overlay Box-->
-                    <div class="overlay-box">
-                        <div class="overlay-inner">
-                            <div class="content">
-                                <h3><a>Nashville, TN</a></h3>
-                                <a href="./assets/images/resource/city05big.jpg" class="lightbox-image option-btn" title="Nashville, TN" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
-                                <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+
+        <!--Default Portfolio Item-->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
+          <div class="inner-box">
+            <figure class="image-box"><img src="./assets/images/resource/city02.jpg" alt=""></figure>
+            <!--Overlay Box-->
+            <div class="overlay-box">
+              <div class="overlay-inner">
+                <div class="content">
+                  <h3><a href="portfolio.html">Chicago, IL</a></h3>
+                  <a href="./assets/images/resource/city02big.jpg" class="lightbox-image option-btn" title="Chicago, IL" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
+                  <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Default Portfolio Item-->
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
+          <div class="inner-box">
+            <figure class="image-box"><img src="./assets/images/resource/city03.jpg" alt=""></figure>
+            <!--Overlay Box-->
+            <div class="overlay-box">
+              <div class="overlay-inner">
+                <div class="content">
+                  <h3><a>Columbus, OH</a></h3>
+                  <a href="./assets/images/resource/city03big.jpg" class="lightbox-image option-btn" title="Columbus, OH" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
+                  <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Default Portfolio Item-->
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
+          <div class="inner-box">
+            <figure class="image-box"><img src="./assets/images/resource/city01.jpg" alt=""></figure>
+            <!--Overlay Box-->
+            <div class="overlay-box">
+              <div class="overlay-inner">
+                <div class="content">
+                  <h3><a>Atlanta, GA</a></h3>
+                  <a href="./assets/images/resource/city01big.jpg" class="lightbox-image option-btn" title="Atlanta, GA" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
+                  <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Default Portfolio Item-->
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 default-portfolio-item masonry-item">
+          <div class="inner-box">
+            <figure class="image-box"><img src="./assets/images/resource/city05.jpg" alt=""></figure>
+            <!--Overlay Box-->
+            <div class="overlay-box">
+              <div class="overlay-inner">
+                <div class="content">
+                  <h3><a>Nashville, TN</a></h3>
+                  <a href="./assets/images/resource/city05big.jpg" class="lightbox-image option-btn" title="Nashville, TN" data-fancybox-group="example-gallery"><span class="flaticon-eye-1"></span></a>
+                  <a href="#slider-top" class="option-btn"><span class="flaticon-link"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 </section>
 
 
 <!-- Property Section -->
 <section class="property-style-one">
-    <div class="outer-box clearfix">
-        <!--Services Column-->
-        <!--Content Column-->
-        <div class="content-column left clearfix">
-            <div class="content-box">
-                <div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms" id="fadin-text-two" style="visibility: visible;animation-duration: 1500ms;animation-delay: 0ms;animation-name: fadeInRight;display: none;">
-                    <!--Section Title-->
-                    <div class="sec-title aligned-right">
-                     <h2>Real Estate Agent</h2>
-                 </div>
-                 <div class="text">Are you a real estate agent searching for leads and wants to be considered the market leading expert in your area and promote your listings free? </div>
-                 <div class="link-box"><a class="theme-btn btn-style-two">REGISTER<span class="fa fa-long-arrow-right"></span></a>
-                    <a class="theme-btn btn-style-two">LOG ON<span class="fa fa-long-arrow-right"></span></a></div>
-                </div>
-            </div>
-        </div>
-
-        <!--Content Column-->
-        <div class="content-column right clearfix" id="list-property" >
-            <div class="content-box">
-                <div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms" id="fadin-text-two2" style="visibility: visible;animation-duration: 1500ms;animation-delay: 0ms;animation-name: fadeInRight;display: none;">
-                    <!--Section Title-->
-                    <div class="sec-title aligned-left">
-                     <h2>Property owner</h2>
-                 </div>
-                 <div class="text">Would you like to save up to 3%-6% in fees for selling your most precious asset or savvy enough to sell on your own?</div>
-                 <div class="link-box">
-                     <a class="theme-btn btn-style-two">LIST YOUR PROPERTY<span class="fa fa-long-arrow-right"></span></a>
-                     <a class="theme-btn btn-style-two">LOG ON<span class="fa fa-long-arrow-right"></span></a></div>
-                 </div>
-             </div>
+  <div class="outer-box clearfix">
+    <!--Services Column-->
+    <!--Content Column-->
+    <div class="content-column left clearfix">
+      <div class="content-box">
+        <div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms" id="fadin-text-two" style="visibility: visible;animation-duration: 1500ms;animation-delay: 0ms;animation-name: fadeInRight;display: none;">
+          <!--Section Title-->
+          <div class="sec-title aligned-right">
+           <h2>Real Estate Agent</h2>
          </div>
+         <div class="text">Are you a real estate agent searching for leads and wants to be considered the market leading expert in your area and promote your listings free? </div>
+         <div class="link-box"><a [routerLink]="['/submit-property']" class="theme-btn btn-style-two">REGISTER<span class="fa fa-long-arrow-right"></span></a>
+          <a class="theme-btn btn-style-two">LOG ON<span class="fa fa-long-arrow-right"></span></a></div>
+        </div>
+      </div>
+    </div>
+
+    <!--Content Column-->
+    <div class="content-column right clearfix" id="list-property" >
+      <div class="content-box">
+        <div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms" id="fadin-text-two2" style="visibility: visible;animation-duration: 1500ms;animation-delay: 0ms;animation-name: fadeInRight;display: none;">
+          <!--Section Title-->
+          <div class="sec-title aligned-left">
+           <h2>Property owner</h2>
+         </div>
+         <div class="text">Would you like to save up to 3%-6% in fees for selling your most precious asset or savvy enough to sell on your own?</div>
+         <div class="link-box">
+           <a class="theme-btn btn-style-two" [routerLink]="['/my-properties']">LIST YOUR PROPERTY<span class="fa fa-long-arrow-right"></span></a>
+           <a class="theme-btn btn-style-two">LOG ON<span class="fa fa-long-arrow-right"></span></a></div>
+         </div>
+       </div>
      </div>
+   </div>
  </section>
 
 
  <!--City Link-->
  <section class="cities-section">
-    <div class="auto-container text-center">
-        <div class="sec-title margin-bott-10"><h4>Find your next investment property with diversification and performance on InvestFar in over 30 markets</h4></div>
-        <ul>
-            <li><a>Kansas City MO</a></li>
-            <li><a>Nashville TN</a></li>
-            <li><a>Indianapolis IN</a></li>
-            <li><a>Jacksonville FL</a></li>
-            <li><a>Detroit MI</a></li>
-            <li><a>Augusta GA</a></li>
-            <li><a>Memphis TN</a></li>
-            <li><a>Phoenix AZ</a></li>
-            <li><a>Orlando FL</a></li>
-            <li><a>Chicago IL</a></li>
-        </ul>
-    </div>
+  <div class="auto-container text-center">
+    <div class="sec-title margin-bott-10"><h4>Find your next investment property with diversification and performance on InvestFar in over 30 markets</h4></div>
+    <ul>
+      <li><a>Kansas City MO</a></li>
+      <li><a>Nashville TN</a></li>
+      <li><a>Indianapolis IN</a></li>
+      <li><a>Jacksonville FL</a></li>
+      <li><a>Detroit MI</a></li>
+      <li><a>Augusta GA</a></li>
+      <li><a>Memphis TN</a></li>
+      <li><a>Phoenix AZ</a></li>
+      <li><a>Orlando FL</a></li>
+      <li><a>Chicago IL</a></li>
+    </ul>
+  </div>
 </section>
 <!--City Link-->
 

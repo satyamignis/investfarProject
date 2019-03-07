@@ -13,6 +13,15 @@ export class ApiService {
   constructor(private http: HttpClient) {
 
   }
+    /*File URL*/
+    getFileURL() {
+        return '';
+    }
+
+    /*Services Key*/
+    getservicesKey(){
+      return '';
+    }
 
     // POST Method
     apiPostData(apiSubUri,setPram){
@@ -23,9 +32,14 @@ export class ApiService {
     apiGetData(apiSubUri){
         return this.http.get(this.apiURL+apiSubUri);
     }
-
-    getFileURL() {
-        return '';
+    
+    getYears(){
+    let currentYear = new Date().getFullYear();
+    let years = [];
+    for(let i = currentYear - 200; i < (currentYear + 100); i++){
+      years.push(i)
+    }
+    return years;
     }
 
 

@@ -6,8 +6,9 @@ import { RoutingStateService } from '../services/routing-state.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-
-
+import { AuthService } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
+import { FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   filePreview: string;
   preloadimg:any;
   loginSuccess:any;
-  loginData:any= {email:'',password:'',deviceType: 'Web', serviceKey: 'U2kaw394fckxegsmretk', fcmToken: 'c81e728d9d4c2f636f067f89cc14862c'};
+  loginData:any= {email:'',password:'',deviceType: 'Web', serviceKey: this.api.getservicesKey(), fcmToken: 'c81e728d9d4c2f636f067f89cc14862c'};
   signupData:any={};
   apiLoading:any;
   registerForm:any;
@@ -30,13 +31,21 @@ export class LoginComponent implements OnInit {
   rememberMeCookie:any;
   userRememberMe:any;
 
+  closeResult: string;
+  loginForm : FormGroup;
+  forgotForm : FormGroup;
+  socialUser: SocialUser;
+  socialType = '0';
+  callApi = false;
+
   constructor(
     private api:ApiService,
     private myCookieService : MyCookieService,
     private router : Router,
     private routingStateService : RoutingStateService,
     private toastr: ToastrService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
     ) { }
 
   ngOnInit() {
@@ -55,6 +64,12 @@ export class LoginComponent implements OnInit {
         this.loginData.password=this.userRememberMe.password;
         this.rememberMe=this.userRememberMe.rememberMe;
     }  
+
+
+    this.previousRoute = this.routingStateService.getPreviousUrl();
+    console.log('---------previousRoute', this.previousRoute  );
+    this.getSocialUser();
+
   }
 
   // convenience getter for easy access to form fields
@@ -110,10 +125,60 @@ export class LoginComponent implements OnInit {
       )
 }
 
- setCookieAndNavigate(user){
-    this.myCookieService.setCookie('user', user);
-    this.router.navigate(['/']);
- }
+
+ signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.socialType = '1';
+    this.callApi = true;
+  }
+
+  signInWithLinkedIn(): void {
+    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID);
+    this.socialType = '2';
+    this.callApi = true;
+  }
+
+  getSocialUser(){
+    this.authService.authState.subscribe((user : any) => {
+      this.socialUser = user;
+      if(this.callApi) this.socialLoginApiCall();
+    })
+  }
+
+  socialLoginApiCall(){
+      let socialLoginData = {
+        serviceKey : this.api.getservicesKey(),
+        deviceType : 'Web',
+        registrationType : '1',
+        socialId : this.socialUser.id,
+        socialType : this.socialType,
+        firstName : this.socialUser.firstName,
+        lastName : this.socialUser.lastName,
+        email : this.socialUser.email ? this.socialUser.email : '',
+        profileImage : this.socialUser.email ? this.socialUser.photoUrl : ''
+      }
+      console.log(socialLoginData)
+      this.api.apiPostData('socialLogin', socialLoginData)
+      .subscribe(
+        (response : any) => {
+          if(response.errorCode == '0' || response.errorCode == '3'){
+           console.log(response.data[0]);
+           this.setCookieAndNavigate(response.data[0])
+          } else {
+            this.toastr.error(response.errorMsg, 'Try Again');
+          }
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      )
+  }
+
+
+     setCookieAndNavigate(user){
+        this.myCookieService.setCookie('user', user);
+        this.router.navigate(['/']);
+     }
 
 
     onSubmit() {
