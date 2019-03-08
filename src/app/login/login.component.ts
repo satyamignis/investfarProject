@@ -67,20 +67,20 @@ export class LoginComponent implements OnInit {
 
 
     this.previousRoute = this.routingStateService.getPreviousUrl();
-    console.log('---------previousRoute', this.previousRoute  );
+    console.log('is previousRoute', this.previousRoute  );
     this.getSocialUser();
 
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
+  // get f() { return this.registerForm.controls; }
 
-  registerFormInt(){
-  this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]]
-        });
-  }
+  // registerFormInt(){
+  // this.registerForm = this.formBuilder.group({
+  //           firstName: ['', Validators.required],
+  //           email: ['', [Validators.required, Validators.email]]
+  //       });
+  // }
 
   onFileChanged(event) {
     let reader = new FileReader();

@@ -127,26 +127,19 @@
     </div>
 
     <div class="col-sm-6">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
         <div class="form-outer form-block">
         <div class="default-title"><h2>Sign up for an account</h2></div>
         <div class="form-group">
             <div class="field-label">First Name</div>
-            <input type="text" name="firstName" formControlName="firstName">
-            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                <div *ngIf="f.firstName.errors.required">First Name is required</div>
-            </div>
+            <input type="text" name="firstName" >
          </div>
 
         <div class="row">
         <div class="col-sm-12 col-md-6 no-margin">
         <div class="form-group">
             <div class="field-label">Email</div>
-            <input type="text" name="email" formControlName="email">
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">Email is required</div>
-                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-            </div>
+            <input type="text" name="email">
         </div>
         </div>
 

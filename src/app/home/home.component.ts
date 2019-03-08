@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
 	apiLoading:boolean;
 	cities : any = [];
     years : any = [];
+    eur:any=1;
 
     to_from = [
 		{ value : 1, text: '1'},
@@ -257,6 +258,9 @@ export class HomeComponent implements OnInit {
 			page_no : 1,
 			// home : ''
 		};
+
+		this.eur=0;//we can work on a exchange converter later.;
+
 		this.properties = [];
 	    this.apiLoading=true;
 		this.onSearch('');

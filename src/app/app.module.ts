@@ -135,8 +135,7 @@ export function provideConfig() {
     MenuHeaderComponent,
     OfferTypeSellComponent,
     ForgotPasswordComponent,
-    SetPasswordComponent
-    
+    SetPasswordComponent    
   ],
   imports: [
     BrowserModule,
@@ -173,4 +172,5 @@ export function provideConfig() {
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
