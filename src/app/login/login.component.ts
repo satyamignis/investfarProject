@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
 
 
     this.previousRoute = this.routingStateService.getPreviousUrl();
-    console.log('is previousRoute', this.previousRoute  );
+    //console.log('is previousRoute', this.previousRoute  );
     this.getSocialUser();
 
   }
@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit {
         reader.result.split(',')[1];
         this.fileName = file.name + " " + file.type;
         this.filePreview = 'data:image/png' + ';base64,' + reader.result.split(',')[1];
-        console.log(this.filePreview);
+        //console.log(this.filePreview);
       };
     }
   }
@@ -157,12 +157,12 @@ export class LoginComponent implements OnInit {
         email : this.socialUser.email ? this.socialUser.email : '',
         profileImage : this.socialUser.email ? this.socialUser.photoUrl : ''
       }
-      console.log(socialLoginData)
+      //console.log(socialLoginData)
       this.api.apiPostData('socialLogin', socialLoginData)
       .subscribe(
         (response : any) => {
           if(response.errorCode == '0' || response.errorCode == '3'){
-           console.log(response.data[0]);
+           //console.log(response.data[0]);
            this.setCookieAndNavigate(response.data[0])
           } else {
             this.toastr.error(response.errorMsg, 'Try Again');

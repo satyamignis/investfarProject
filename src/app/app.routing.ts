@@ -37,6 +37,7 @@ import { SubmitPropertyComponent } from './submit-property/submit-property.compo
 import { OfferTypeSellComponent } from './offer-type-sell/offer-type-sell.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
+import { InvestfarComponent } from './investfar/investfar.component';
 
 export const AppRoutes: any = [
     { path: "", component: HomeComponent},
@@ -74,7 +75,10 @@ export const AppRoutes: any = [
     { path: "offer-type-sell", component: OfferTypeSellComponent},
     { path: "set-password", component: SetPasswordComponent},
     { path: "forgot-password", component: ForgotPasswordComponent, canActivate : [UnAuthGaurdService]},
-    { path: 'edit-property/:id', component: SubmitPropertyComponent, canActivate: [ AuthGaurdService ]}
+    { path: 'edit-property/:id', component: SubmitPropertyComponent, canActivate: [ AuthGaurdService ]},
+    { path: 'investfar', component: InvestfarComponent},
+    { path: 'edit-service/:id', component: AddServiceComponent, canActivate: [ AuthGaurdService ]},
+
 ];
 
 export const AppComponents: any = [
@@ -109,5 +113,6 @@ export const AppComponents: any = [
     BankDetailComponent,
     SubmitPropertyComponent,
     SetPasswordComponent,
-    OfferTypeSellComponent
+    OfferTypeSellComponent,
+    InvestfarComponent
 ];

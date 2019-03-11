@@ -66,6 +66,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { OfferTypeSellComponent } from './offer-type-sell/offer-type-sell.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
+import { InvestfarComponent } from './investfar/investfar.component';
 
 export const CustomCurrencyMaskConfig: any = {
   align: "left",
@@ -135,7 +136,8 @@ export function provideConfig() {
     MenuHeaderComponent,
     OfferTypeSellComponent,
     ForgotPasswordComponent,
-    SetPasswordComponent    
+    SetPasswordComponent,
+    InvestfarComponent    
   ],
   imports: [
     BrowserModule,

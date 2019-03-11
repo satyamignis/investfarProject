@@ -167,7 +167,6 @@ export class OfferTypeSellComponent implements OnInit {
   }
   
   onSearch(){
-    console.log('Search')
     let filtered_property_data = this.getFilterProperty().filtered_property_data;
     for (let key in this.filter) {
       if( this.filter[key] != 0 && this.filter[key] != '' && this.filter[key] != null) {

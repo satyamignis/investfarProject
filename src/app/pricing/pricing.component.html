@@ -54,7 +54,7 @@
                                             <ul>
                                                 <li *ngFor="let d of p.desc">{{d}}</li>
                                             </ul>
-                                            <a class="ot-btn">Get Access</a>
+                                            <a class="ot-btn" *ngIf="isNotPlanPurchased(p.product_id)" href="javascript:void(0);" (click)="getAccess(p)">Get Access</a>
                                         </div>
                                     </div>
                                     </div>

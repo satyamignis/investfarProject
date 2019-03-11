@@ -1,94 +1,96 @@
 <!-- *********** Loading ************** -->
-    <div *ngIf="preloadimg" class="preloadingimg">
-        <img src="./assets/images/icons/preloader.gif">
-    </div>
-    <div *ngIf="apiLoading" class="loadingApi">
-        <img src="./assets/images/icons/loading.gif">
-    </div>
+<div *ngIf="preloadimg" class="preloadingimg">
+  <img src="./assets/images/icons/preloader.gif">
+</div>
+<div *ngIf="apiLoading" class="loadingApi">
+  <img src="./assets/images/icons/loading.gif">
+</div>
 <!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 <section class="inner-banner">
-   <div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
-      <!--Header-Lower-->
-      <div class="auto-container">
-         <div class="row clearfix">
-            <!--Title -->
-            <div class="title-column col-sm-12 col-xs-12">
-               <h1>Add Service</h1>
-            </div>
-         </div>
-      </div>
-   </div>
+ <div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+  <!--Header-Lower-->
+  <div class="auto-container">
+   <div class="row clearfix">
+    <!--Title -->
+    <div class="title-column col-sm-12 col-xs-12">
+      <h1  *ngIf="type =='add'">Add Service</h1>
+      <h1  *ngIf="type =='edit'">Edit Service</h1>
+    </div>
+  </div>
+</div>
+</div>
 </section>
 <section>
-   <div class="auto-container">
-      <div class="row login-form agent padd-top-70 padd-bott-60">
-         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <form [formGroup]="addServiceForm" (ngSubmit)="onSubmit()" >
-            <div class="form-outer form-block">
-               <div class="default-title">
-                  <h2>Add Service</h2>
-               </div>
+ <div class="auto-container">
+  <div class="row login-form agent padd-top-70 padd-bott-60">
+   <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <form [formGroup]="addServiceForm" (ngSubmit)="onSubmit()" >
+      <div class="form-outer form-block">
+       <div class="default-title">
+        <h2  *ngIf="type =='add'">Add Service</h2>
+        <h2  *ngIf="type =='edit'">Edit Service</h2>
+       </div>
 
-               <div class="row">
-                  <div class="col-sm-12 col-md-6">
-                     <label class="checkcontainer field-label">Fixed cost services
-                       <input name="radio" type="radio" checked="" formControlName="rate_type" value="0">
-                       <span class="radiobtn"></span>
-                     </label>
-                  </div>
-                  <div class="col-sm-12 col-md-6">
-                     <label class="checkcontainer field-label">Hourly based services
-                       <input name="radio" type="radio" formControlName="rate_type" value="1">
-                       <span class="radiobtn"></span>
-                     </label>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <div class="field-label">Service Name</div>
-                  <input type="text" name="field-name" formControlName="name" placeholder="">
-               </div>
-               <div class="row">
-                  <div class="col-sm-12 col-md-12 no-margin">
-                     <div class="form-group">
-                        <div class="field-label">Select Category</div>
-                        <div class="custom-select">
-                           <div class="select-selected">
-                              <select (change)="getSubCategories($event)" formControlName="catId">
-                                  <option value="">Select Category</option>
-                                  <option *ngFor="let c of categories" [value]="c.id">{{c.catName}}</option>
-                              </select>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-sm-12 col-md-12 no-margin">
-                    <div class="form-group">
-                      <div class="field-label">Select Subcategory</div>
-                      <ng-multiselect-dropdown formControlName="subCat" [ngClass]="{'error-code' : f.subCat.touched && f.subCat.errors && f.subCat.errors.required }" [placeholder]="'Select Sub Category'" [data]="subCategories" [settings]="dropdownSettings">
-                      </ng-multiselect-dropdown>
-                    </div>
-                  </div>
-               </div>
-
-               <div class="form-group">
-                  <div class="field-label">Select Location</div>
-                  <div class="form-group choose-location">
-                    <input class="form-control side_input location" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" formControlName="addr">              
-                  </div>               
-               </div>
-        
-               <div class="form-group">
-                  <div class="field-label">Price for Service</div>
-                  <input currencyMask type="text" name="field-name" formControlName="maxPrice" placeholder="" [min]="0">
-               </div>
-               <button type="submit" class="btn-style-two width_full text-uppercase">Submit</button>
-            </div>
-            </form>
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+           <label class="checkcontainer field-label">Fixed cost services
+             <input name="radio" type="radio" checked="" formControlName="rate_type" value="0">
+             <span class="radiobtn"></span>
+           </label>
          </div>
+         <div class="col-sm-12 col-md-6">
+           <label class="checkcontainer field-label">Hourly based services
+             <input name="radio" type="radio" formControlName="rate_type" value="1">
+             <span class="radiobtn"></span>
+           </label>
+         </div>
+       </div>
+       <div class="form-group">
+        <div class="field-label">Service Name</div>
+        <input type="text" name="field-name" formControlName="name" placeholder="">
       </div>
-   </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 no-margin">
+         <div class="form-group">
+          <div class="field-label">Select Category</div>
+          <div class="custom-select">
+           <div class="select-selected">
+            <select (change)="getSubCategories($event)" formControlName="catId">
+              <option value="">Select Category</option>
+              <option *ngFor="let c of categories" [value]="c.id">{{c.catName}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 no-margin">
+      <div class="form-group">
+        <div class="field-label">Select Subcategory</div>
+        <ng-multiselect-dropdown formControlName="subCat" [ngClass]="{'error-code' : f.subCat.touched && f.subCat.errors && f.subCat.errors.required }" [placeholder]="'Select Sub Category'" [data]="subCategories" [settings]="dropdownSettings">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="field-label">Select Location</div>
+    <div class="form-group choose-location">
+      <input class="form-control side_input location" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" formControlName="addr">              
+    </div>               
+  </div>
+
+  <div class="form-group">
+    <div class="field-label">Price for Service</div>
+    <input currencyMask type="text" name="field-name" formControlName="maxPrice" placeholder="" [min]="0">
+  </div>
+  <button type="submit" class="btn-style-two width_full text-uppercase">Submit</button>
+</div>
+</form>
+</div>
+</div>
+</div>
 </section>
 

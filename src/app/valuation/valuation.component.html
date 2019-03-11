@@ -1,6 +1,11 @@
-<div *ngIf="preloadimg" class="preloadingimg">
-    <img src="./assets/images/icons/preloader.gif">
-</div>
+<!-- *********** Loading ************** -->
+    <div *ngIf="preloadimg" class="preloadingimg">
+        <img src="./assets/images/icons/preloader.gif">
+    </div>
+    <div *ngIf="apiLoading" class="loadingApi">
+        <img src="./assets/images/icons/loading.gif">
+    </div>
+<!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 <section class="inner-banner">
 <div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
@@ -88,21 +93,23 @@
 <div class="auto-container">
     <div class="row valuation-form">
     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <form [formGroup]="valuationForm" (ngSubmit)="onSubmit()">
         <div class="form-outer form-block">
         <div class="form-group">
             <div class="field-label">Enter Zip Code:</div>
-            <input type="email" name="zipcode" value="" placeholder="Enter 5 digit Zip Code">
+            <input class="form-control side_input" [ngClass]="{'error-code' : f.zipcode.touched && f.zipcode.errors && ( f.zipcode.errors.required || f.zipcode.errors.minlength || f.zipcode.errors.maxlength )}" formControlName="zipcode" placeholder="Enter 5 digit Zip Code" type="text">
          </div>
 
           <div class="form-group">
             <div class="field-label">Enter Address: </div>
-            <input type="password" name="address" value="" placeholder="E.g.7904 Verde Springs Dr">
+           <input class="form-control side_input"  [ngClass]="{'error-code' : f.address.touched && f.address.errors && f.address.errors.required }" formControlName="address" placeholder="E.g.7904 Verde Springs Dr" type="text">
          </div>
 
-         <button type="button" class="btn-style-two text-uppercase">Get Details !</button>
+         <button type="submit" class="btn-style-two text-uppercase" [disabled]="!valuationForm.valid">Get Details !</button>
          &nbsp;
-         <button type="button" class="btn-style-two text-uppercase">Clear / Reset</button>
-     </div>
+         <button type="button" (click)="onClear()" class="btn-style-two text-uppercase">Clear / Reset</button>
+        </div>
+        </form>
     </div>
 </div>
 </div>

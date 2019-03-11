@@ -6,7 +6,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-add-service',
   templateUrl: './add-service.component.html',
@@ -19,6 +18,10 @@ export class AddServiceComponent implements OnInit {
   address: any = {};
   apiLoading:any;
   user:any;
+  type = '';
+  editServiceId : any = '';
+  editSerivceData : any;
+
   categories:any;
   dropdownSettings = {
     singleSelection: false,
@@ -31,7 +34,6 @@ export class AddServiceComponent implements OnInit {
     enableCheckAll: false
   };
   subCategories = [];
-  editServiceId : any = '';
   constructor(
     private myCookieService: MyCookieService,
     private apiService: ApiService, 
@@ -44,23 +46,25 @@ export class AddServiceComponent implements OnInit {
 
     this.user = this.myCookieService.getCookie('user');
     this.getCategory();
-  	window.scrollTo(0, 0);
-  	 this.preloadimg=true;
-     setTimeout(() => {  
-         this.preloadimg=false;
-     }, 1000);
+    window.scrollTo(0, 0);
+    this.preloadimg=true;
+    setTimeout(() => {  
+      this.preloadimg=false;
+    }, 1000);
 
     this.createAddServiceForm();
-    //  this.activeRoute.params.subscribe((params) => {
-    //   this.editServiceId = params.id;
-    //   if(this.router.url.includes('edit')){
-    //     this.type = 'edit';
-    //     this.getSeriveDetails();
-    //   } else {
-    //     this.type = 'add' ;
-    //   }
-    // })
-     
+
+    this.activeRoute.params.subscribe((params) => {
+      this.editServiceId = params.id;
+      if(this.router.url.includes('edit')){
+        this.type = 'edit';
+        this.getSeriveDetails();
+      } else {
+        this.type = 'add' ;
+      }
+    })
+
+
   }
 
   createAddServiceForm() {
@@ -85,40 +89,40 @@ export class AddServiceComponent implements OnInit {
 
   getCategory() {
     this.apiService.apiPostData('getCategory', { serviceKey: this.user.serviceKey })
-      .subscribe(
-        (response: any) => {
-          console.log(response);
-          if (response.errorCode == '0') {
-            this.categories = response.data;
-          } else {
-          }
-        },
-        (error: any) => {
-          console.log(error);
+    .subscribe(
+      (response: any) => {
+        console.log(response);
+        if (response.errorCode == '0') {
+          this.categories = response.data;
+        } else {
         }
+      },
+      (error: any) => {
+        console.log(error);
+      }
       )
   }
 
   getSubCategories($event) {
     this.apiService.apiPostData('getSubCategory',
       { serviceKey: this.user.serviceKey, categoryId: this.addServiceForm.value.catId })
-      .subscribe(
-        (response: any) => {
-          console.log(response);
-          if (response.errorCode == '0') {
-            this.subCategories = response.data;
-          } else {
+    .subscribe(
+      (response: any) => {
+        console.log(response);
+        if (response.errorCode == '0') {
+          this.subCategories = response.data;
+        } else {
 
-          }
-        },
-        (error: any) => {
-          console.log(error);
         }
+      },
+      (error: any) => {
+        console.log(error);
+      }
       )
   }
 
 
-   onSubmit() {
+  onSubmit() {
     if (this.isFormValid()) {
       this.apiLoading=true;
       let addServiceData = {
@@ -137,31 +141,31 @@ export class AddServiceComponent implements OnInit {
       for(let s of this.addServiceForm.value.subCat){
         addServiceData['subCatId'] += s.id + ',';
       }
-      // let methodName = '';
-      // if(this.type == 'add'){
-      //   methodName = ('');
-      // } else if (this.type == 'edit'){
-      //   methodName = ('');
-      //   addServiceData['serviceId'] = this.editServiceId;
-      // }
+      let methodName = '';
+      if(this.type == 'add'){
+        methodName = ('addCompanyService');
+      } else if (this.type == 'edit'){
+        methodName = ('updateCompanyService');
+        addServiceData['serviceId'] = this.editServiceId;
+      }
       addServiceData['subCatId'] = addServiceData['subCatId'].substring(0, addServiceData['subCatId'].length - 1);
-      this.apiService.apiPostData('addCompanyService', addServiceData)
-        .subscribe(
-          (response: any) => {
-            console.log(response);
-            if (response.errorCode == '0') {
-              this.toastr.success(response.errorMsg, 'Success');
-              this.router.navigate(['/my-offered-services'])
-            } else {
-              this.toastr.error(response.errorMsg, 'Try Again');
-            }
-              this.apiLoading=false;
-          },
-          (error: any) => {
-            console.log(error);
-            this.apiLoading=false;
-
+      this.apiService.apiPostData(methodName, addServiceData)
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+          if (response.errorCode == '0') {
+            this.toastr.success(response.errorMsg, 'Success');
+            this.router.navigate(['/my-offered-services'])
+          } else {
+            this.toastr.error(response.errorMsg, 'Try Again');
           }
+          this.apiLoading=false;
+        },
+        (error: any) => {
+          console.log(error);
+          this.apiLoading=false;
+
+        }
         )
     }
   }
@@ -173,5 +177,46 @@ export class AddServiceComponent implements OnInit {
     }
     return flag;
   }
+
+  getSeriveDetails(){
+    this.apiService.apiPostData('companySingleServiceDetails', {
+      userId : this.user.userId,
+      serviceKey : this.user.serviceKey,
+      serviceId : this.editServiceId
+    })
+    .subscribe(
+      (response: any) => {
+        console.log(response);
+        if (response.errorCode == '0') {
+          this.editSerivceData = response.data;
+          this.addServiceForm.patchValue({ 
+            catId : this.editSerivceData.categoryId,
+            name : this.editSerivceData.serviceName,
+            maxPrice : this.editSerivceData.maxPrice,
+            addr: this.editSerivceData.address,
+            rate_type : this.editSerivceData.rate_type,
+          })
+          this.address.address = this.editSerivceData.address;
+          this.address.longitude = this.editSerivceData.longitude;
+          this.address.latitude = this.editSerivceData.latitude;
+          this.getSubCategories('');
+          this.addServiceForm.patchValue({
+            subCat : [{
+              id : this.editSerivceData.subCategoryId,
+              subCatName : this.editSerivceData.subCategoryName
+            }]
+          });
+          console.log(this.addServiceForm.value);
+        } else {
+          this.toastr.error(response.errorMsg, 'Try Again');
+        }
+      },
+      (error: any) => {
+        console.log(error);
+      }
+      )
+  }
+
+
 
 }

@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { Observable, fromEvent, merge, of } from 'rxjs';
+import { map, catchError } from "rxjs/operators";
+import { mapTo } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
+  online = false;
+
   apiURL: string = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private toastr: ToastrService) {
 
   }
     /*File URL*/
@@ -21,6 +28,10 @@ export class ApiService {
     /*Services Key*/
     getservicesKey(){
       return '';
+    }
+
+    getShieldPayUrl(){
+    return '';
     }
 
     // POST Method
@@ -41,6 +52,46 @@ export class ApiService {
     }
     return years;
     }
+
+   getValuationDetails(requestData): Observable<any>{
+    this.checkOnlineStatus();
+    if(this.online){
+      let headers = new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization' : ''
+      });
+
+      let options = {
+        headers : headers
+      }
+
+      return this.http.get(``, options)
+        .pipe(
+          map((response: any) => {
+            return response;
+          }),
+          catchError((err) => {
+            console.log(err);
+            this.toastr.error('Report Unavailable', 'Try Again');
+            throw (err)
+          })
+        );
+      } else {
+        this.toastr.error('No Internet Connection', 'Try Again');
+      }
+  }
+
+
+  checkOnlineStatus(){
+    let online = merge(
+      of(navigator.onLine),
+      fromEvent(window, 'online').pipe(mapTo(true)),
+      fromEvent(window, 'offline').pipe(mapTo(false))
+    )
+    online.subscribe(value => {
+      this.online = value;
+    })
+  }
 
 
 }
