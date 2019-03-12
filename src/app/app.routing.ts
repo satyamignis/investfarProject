@@ -15,7 +15,6 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { CareersComponent } from './careers/careers.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ContractorRegistrationComponent } from './contractor-registration/contractor-registration.component';
-import { OwnerFinancedNoBanksNeededComponent } from './owner-financed-no-banks-needed/owner-financed-no-banks-needed.component';
 import { CompaniesRegistrationComponent } from './companies-registration/companies-registration.component';
 import { RealEstateAgentRegistrationComponent } from './real-estate-agent-registration/real-estate-agent-registration.component';
 import { MyPropertiesComponent } from './my-properties/my-properties.component';
@@ -38,6 +37,8 @@ import { OfferTypeSellComponent } from './offer-type-sell/offer-type-sell.compon
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { InvestfarComponent } from './investfar/investfar.component';
+import { PropertyComponent } from './property/property.component';
+
 
 export const AppRoutes: any = [
     { path: "", component: HomeComponent},
@@ -49,13 +50,12 @@ export const AppRoutes: any = [
     { path: "home-improvement-network", component: HomeImprovementNetworkComponent },
     { path: "seminars-events-nvestors-club", component: SeminarsEventsNvestorsClubComponent },
     { path: "valuation", component: ValuationComponent },
-    { path: "real-estate-legal-forms", component: RealEstateLegalFormsComponent },
+    { path: "real-estate-legal-forms", component: RealEstateLegalFormsComponent,canActivate : [AuthGaurdService] },
     { path: "privacy-policy-terms", component: PrivacyPolicyTermsComponent },
     { path: "aboutus", component: AboutusComponent },
     { path: "careers", component: CareersComponent },
     { path: "contact-us", component: ContactUsComponent, canActivate : [UnAuthGaurdService] },
     { path: "contractor-registration", component: ContractorRegistrationComponent },
-    { path: "owner-financed-no-banks-needed", component: OwnerFinancedNoBanksNeededComponent },
     { path: "companies-registration", component: CompaniesRegistrationComponent, canActivate : [UnAuthGaurdService]},
     { path: "real-estate-agent-registration", component: RealEstateAgentRegistrationComponent },
     { path: "my-properties", component: MyPropertiesComponent,canActivate : [AuthGaurdService] },
@@ -66,11 +66,11 @@ export const AppRoutes: any = [
     { path: "add-service", component: AddServiceComponent, canActivate : [AuthGaurdService] },
     { path: "my-offered-services", component: MyOfferedServicesComponent, canActivate : [AuthGaurdService] },
     { path: "manage-services", component: ManageServicesComponent },
-    { path: "organization-login", component: OrganizationLoginComponent },
-    { path: "featured-properties", component: FeaturedPropertiesComponent },
+    { path: "organization-login", component: OrganizationLoginComponent, canActivate : [AuthGaurdService] },
+    { path: "featured-properties", component: FeaturedPropertiesComponent, canActivate : [AuthGaurdService] },
     { path: "offer-type-rent", component: OfferTypeRentComponent },
     { path: "bank-detail", component: BankDetailComponent },
-    { path: "property-search", component: PropertySearchComponent },
+    { path: "property-search", component: PropertySearchComponent, canActivate : [AuthGaurdService] },
     { path: "submit-property", component: SubmitPropertyComponent, canActivate : [AuthGaurdService]},
     { path: "offer-type-sell", component: OfferTypeSellComponent},
     { path: "set-password", component: SetPasswordComponent},
@@ -78,6 +78,7 @@ export const AppRoutes: any = [
     { path: 'edit-property/:id', component: SubmitPropertyComponent, canActivate: [ AuthGaurdService ]},
     { path: 'investfar', component: InvestfarComponent},
     { path: 'edit-service/:id', component: AddServiceComponent, canActivate: [ AuthGaurdService ]},
+    { path: 'property/:title', component: PropertyComponent}
 
 ];
 
@@ -96,7 +97,6 @@ export const AppComponents: any = [
     AboutusComponent,
     CareersComponent,
     ContactUsComponent,
-    OwnerFinancedNoBanksNeededComponent,
     CompaniesRegistrationComponent,
     RealEstateAgentRegistrationComponent,
     MyPropertiesComponent,
@@ -114,5 +114,6 @@ export const AppComponents: any = [
     SubmitPropertyComponent,
     SetPasswordComponent,
     OfferTypeSellComponent,
-    InvestfarComponent
+    InvestfarComponent,
+    PropertyComponent
 ];

@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 
 @Component({
-  selector: 'app-owner-financed-no-banks-needed',
-  templateUrl: './owner-financed-no-banks-needed.component.html',
-  styleUrls: ['./owner-financed-no-banks-needed.component.css']
+  selector: 'app-property',
+  templateUrl: './property.component.html',
+  styleUrls: ['./property.component.css']
 })
-export class OwnerFinancedNoBanksNeededComponent implements OnInit {
+export class PropertyComponent implements OnInit {
 
     imageUrlArray:any;
     preloadimg:any;

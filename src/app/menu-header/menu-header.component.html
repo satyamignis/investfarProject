@@ -26,8 +26,8 @@
                                             <li><a [routerLink]="['/manage-services']">Manage Services</a></li>
                                         </ul>
                                         <ul class="loginOpen" *ngIf="!user">
-                                            <li><a [routerLink]="['/']" >Service Category</a></li>
-                                            <li><a [routerLink]="['/']" >My Booked Services</a></li>
+                                            <li><a (click)="checkAccessibility('/');" >Service Category</a></li>
+                                            <li><a (click)="checkAccessibility('/');" >My Booked Services</a></li>
                                         </ul>
                                     </li>
                             </ul>
@@ -105,14 +105,14 @@
                          
                                 <li class="dropdown"><a>REQUEST</a>
                                     <ul>
-                                        <li><a [routerLink]="['/real-estate-legal-forms']">REAL ESTATE LEGAL FORMS</a></li>
+                                        <li><a (click)="checkAccessibility('/real-estate-legal-forms');">REAL ESTATE LEGAL FORMS</a></li>
                                         <li class="dropdown"><a>MLS PROPERTY SEARCH</a>
                                       <ul>
-                                          <li><a [routerLink]="['/property-search']">Search</a></li>
+                                          <li><a (click)="checkAccessibility('/property-search');">Search</a></li>
                                           <li><a>Map Search</a></li>
                                           <li><a>Open Homes</a></li>
-                                          <li><a [routerLink]="['/featured-properties']">Featured Listings</a></li>
-                                          <li><a [routerLink]="['/organization-login']">Organizer Login</a></li>
+                                          <li><a (click)="checkAccessibility('/featured-properties');">Featured Listings</a></li>
+                                          <li><a (click)="checkAccessibility('/organization-login');">Organizer Login</a></li>
                                       </ul>
                                     </li>
                                     </ul>

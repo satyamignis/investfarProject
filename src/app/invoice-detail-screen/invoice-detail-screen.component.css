@@ -1,0 +1,98 @@
+.invoice-modal button.close{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: #000000;
+	vertical-align: top;
+	font-size: 18px;
+	padding: 0px 5px 4px;
+	line-height: 1.5px;
+	height: 26px;
+	width: 26px;
+	color: #ffffff;
+	z-index: 99;
+	border-radius: 100%;
+	vertical-align: top;
+}
+
+.invoice-modal button.close, .invoice-modal button.close:focus
+{
+	outline: none;
+}
+.invoice-modal.modal-content{
+	border:none;
+	border-radius: 0px;
+}
+
+button:focus{
+	outline: none;
+}
+
+.invoice-modal .modal-body{
+  padding: 0px;
+}
+
+.invoice-modal .profile-pic{
+width: 100%;
+height:300px;
+}
+.invoice-modal .profile-pic img{width: 100%; height: 100%; object-fit: cover;}
+.invoice-modal .invoice-detail{padding: 15px;}
+.invoice-detail .category{font-size: 14px;display:inline-block; color: #666666; margin-top: 5px}
+.invoice-detail .date{font-size: 14px;display:block; color: #888888;margin-top: 5px}
+.category-left-bar{ width: calc(100% - 200px); display: inline-block;}
+.price-right-bar{max-width: 200px; float: right; font-size: 1.2em; font-weight: bold; color:#007bff;}
+.category-left-bar h5{margin-bottom: 0px; line-height: 1.5}
+
+.column-1, .column-bar{width: 100%; float: left;}
+
+.column-1{margin-bottom: 10px;}
+.payment-section{border-top: 1px solid #e2e2e2; margin-top: 20px; padding:10px 0px; display: inline-block; width: 100%;}
+.heading{width:calc(100% - 200px); float: left; font-weight: 500}
+.price{max-width: 200px; float: right; color: #007bff}
+
+.total-amount{border-top:1px solid #e2e2e2; border-bottom:1px solid #e2e2e2; padding:8px 0px; margin-bottom: 15px;}
+
+.invoice-modal .book-btn{
+	background: #2e89cf;
+	padding: 8px 15px;
+	width: 100%;
+	border-radius: 5px;
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+/* Services detailbar */
+
+.service-detail-bar{padding:10px 0px; display: inline-block; width: 100%;}
+.payment-btn{text-align: center}
+.payment-btn .btn{width: auto; display: inline-block; margin:1em 0.5em;}
+.payment-btn .btn i{margin-right:5px;}
+
+.status{display: inline-block;
+    margin-left: 0.5em;
+    border-left: 1px solid #e2e2e2;
+	padding-left: 0.5em;
+    font-size: 14px;
+}
+
+
+
+@media (min-width: 576px){
+	.modal-dialog {
+			max-width:380px !important;
+			margin: 1.75rem auto;
+	}
+}
+
+
+@media (max-width: 480px){
+.payment-btn .btn{
+  margin: 4px;
+	}
+
+	.invoice-modal .book-btn{padding: 8px 12px;}
+}
+
+

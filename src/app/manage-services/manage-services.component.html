@@ -1,272 +1,93 @@
+<!-- *********** Loading ************** -->
 <div *ngIf="preloadimg" class="preloadingimg">
-    <img src="./assets/images/icons/preloader.gif">
+  <img src="./assets/images/icons/preloader.gif">
 </div>
+<div *ngIf="apiLoading" class="loadingApi">
+  <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 
 <section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <!--Title -->
-                <div class="title-column col-md-6 col-sm-12 col-xs-12">
-                    <h1 class="text-uppercase">Manage Services</h1>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="auto-container">
+    <div class="row clearfix">
+      <!--Title -->
+      <div class="title-column col-md-6 col-sm-12 col-xs-12">
+        <h1 class="text-uppercase">Manage Services</h1>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-        <section class="sec-padding">
-        <div class="auto-container">
-            <div class="panel panel-primary" id="services-tab">
-                <div class="panel-heading">
-                <ul class="nav panel-tabs">
-                        <li class="active"><a href="#tab1" data-toggle="tab">New</a></li>
-                        <li><a href="#tab2" data-toggle="tab">Scheduled</a></li>
-                        <li><a href="#tab3" data-toggle="tab">Completed</a></li>
-                </ul>
-                </div>
-                <div class="panel-body">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab1">
-                            <div class="tab-full-block clearfix">
-                            <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                    <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Fundraising</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Los Angeles, CA, USA</address>
-                                        <div class="date-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col">
-                                    <div class="tab-in-right">
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-times"></i> Decline </a>
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-check"></i> Accept</a>
-                                    </div>
-                                </div>
-                        </div>
+<section class="sec-padding">
+  <div class="auto-container">
+    <div class="panel panel-primary" id="services-tab">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs panel-tabs">
+          <li [ngClass]="{'active' : activeTab == 0}">
+            <a class="nav-link" (click)="changeActiveTab('0')" >New</a>
+          </li>
+          <li [ngClass]="{'active' : activeTab == 1}">
+            <a class="nav-link" (click)="changeActiveTab('1')" >Scheduled</a>
+          </li>
+          <li [ngClass]="{'active' : activeTab == 2}">
+            <a class="nav-link" (click)="changeActiveTab('2')" >Completed</a>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <ul class="services-listing-wrap">
+            <h3 class="no-data-avilable" *ngIf="services.length == 0">No data</h3>
+            <li *ngFor="let s of services">
+              <div class="service-listing">
+                <div class="tab-full-block clearfix">
+                  <div class="row rent-row">
+                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
+                      <a (click)="openDetails(s)" >
+                        <img src="{{s.image ||'./assets/images/resource/pro-tab-dummy.jpg' }}" alt="img" title="img" class="img-responsive img-thumbnail" />
+                      </a>
                     </div>
+                    <div class="col-sm-9 col-md-6 col">
+                     <div class="tab-in">
+                      <h3>{{s.customerName}}</h3>
+                      <p class="no-margin">{{s.subCatName}}</p>
+                      <address>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>  {{s.address}}</address>
+                        <div class="date-icon">
+                          <i class="fa fa-calendar pull-left bdr" aria-hidden="true"></i>
+                          <p class="text-primary" *ngIf="s.status == 2 && s.is_paid == 0">Pending Payment</p>
 
-                    <div class="tab-full-block clearfix">
-                            <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                    <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Fundraising</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Los Angeles, CA, USA</address>
-                                        <div class="date-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col">
-                                    <div class="tab-in-right">
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-times"></i> Decline </a>
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-check"></i> Accept</a>
-                                    </div>
-                                </div>
+                          <p class="text-primary" *ngIf="s.status == 2 && s.is_paid != 0">Completed</p>
+
+                          <p class="text-primary" *ngIf="s.status == 3 || s.status == 5">Cancelled</p> 
+
+                          <p *ngIf='s.bookedTime' class="text-primary">{{getTimestring(s.bookedTime) | date:'medium'}}</p>
+
                         </div>
+                      </div>
                     </div>
 
-                    <div class="tab-full-block clearfix">
-                            <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                    <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Fundraising</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Los Angeles, CA, USA</address>
-                                        <div class="date-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col">
-                                    <div class="tab-in-right">
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-times"></i> Decline </a>
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-check"></i> Accept</a>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-full-block clearfix no-bdr">
-                            <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                    <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Fundraising</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Los Angeles, CA, USA</address>
-                                        <div class="date-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col">
-                                    <div class="tab-in-right">
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-times"></i> Decline </a>
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-check"></i> Accept</a>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-
-                        <div class="tab-pane" id="tab2">
-                            <div class="tab-full-block clearfix">
-                            <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                    <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Floor Cleaning</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>  United States</address>
-                                        <div class="date-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col">
-                                    <div class="tab-in-right">
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-check"></i>  Make Complete</a>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                     <div class="tab-full-block clearfix">
-                            <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                    <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Floor Cleaning</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>  United States</address>
-                                        <div class="date-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col">
-                                    <div class="tab-in-right">
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-check"></i>  Make Complete</a>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                     <div class="tab-full-block clearfix no-bdr">
-                            <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                    <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Floor Cleaning</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>  United States</address>
-                                        <div class="date-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col">
-                                    <div class="tab-in-right">
-                                     <a  class="theme-btn btn-style-one" target="_blank"> <i class="fa fa-check"></i>  Make Complete</a>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
+                    <div class="col-sm-12 col-md-4 col" *ngIf="activeTab == 0">
+                      <div class="tab-in-right">
+                       <a (click)="manageBooking(s.bookedId, '3')"  class="theme-btn btn-style-one"> <i class="fa fa-times"></i> Decline </a>
+                       <a (click)="manageBooking(s.bookedId, '1')" class="theme-btn btn-style-one" > <i class="fa fa-check"></i> Accept</a>
                      </div>
-                        <div class="tab-pane" id="tab3">
-                             <div class="tab-full-block clearfix">
-                             <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                     <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Floor Cleaning</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>  United States</address>
-                                        <div class="date-icon">
-                                        <i class="fa fa-calendar pull-left bdr" aria-hidden="true"></i>
-                                        <p class="text-primary">Pending Payment</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="tab-full-block clearfix">
-                             <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                     <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Floor Cleaning</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>  United States</address>
-                                        <div class="date-icon">
-                                        <i class="fa fa-calendar pull-left bdr" aria-hidden="true"></i>
-                                        <p class="text-danger">Cancelled</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="tab-full-block clearfix no-bdr">
-                             <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <a >
-                                    <img src="./assets/images/resource/pro-tab-dummy.jpg" alt="" class="img-responsive img-thumbnail" />
-                                    </a>
-                                    </div>
-                                <div class="col-sm-9 col-md-6 col">
-                                     <div class="tab-in">
-                                        <h3>Joseph Linksman</h3>
-                                        <p class="no-margin">Floor Cleaning</p>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>  United States</address>
-                                        <div class="date-icon">
-                                        <i class="fa fa-calendar pull-left bdr" aria-hidden="true"></i>
-                                        <p class="text-danger">Cancelled</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        </div>
-        </section>
+                   </div>
+
+                   <div class="col-sm-12 col-md-4 col" *ngIf="activeTab == 1">
+                    <div class="tab-in-right">
+                     <a (click)="manageBooking(s.bookedId, '2')" class="theme-btn btn-style-one"> <i class="fa fa-check"></i>  Make Complete</a>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </li>
+       </ul>
+
+     </div>
+   </div>
+ </div>
+</div>
+</section>

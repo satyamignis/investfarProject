@@ -173,7 +173,7 @@ export class HomeComponent implements OnInit {
 						this.numVisible = response.data.length;
 					}
 				} else {
-					console.log('------error-------')
+					console.log('Error')
 				}
 			},
 			(error: any) => {
@@ -203,7 +203,7 @@ export class HomeComponent implements OnInit {
 						} 
 						if(type == 'btn'){ this.scrollToDiv();}
 					} else {
-						console.log('------error-------')
+						console.log('Error')
 					}
 					this.apiLoading=false;
 
@@ -214,6 +214,9 @@ export class HomeComponent implements OnInit {
 			)
 	}	
 
+	getDetails(id){
+        this.router.navigate(['/property/'+id]);
+    }
 
 	getFilterProperty(){
 		let filtered_property_data : any = {};

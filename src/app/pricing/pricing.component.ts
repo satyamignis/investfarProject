@@ -3,6 +3,7 @@ import { ApiService } from '../services/api.service';
 import { MyCookieService } from '../services/my-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+declare const $: any;
 
 @Component({
   selector: 'app-pricing',
@@ -54,7 +55,35 @@ export class PricingComponent implements OnInit {
         }
       });
     });
+
+    this.accordionBox();
   }
+
+  //Accordion Box
+    accordionBox(){
+    $(".accordion-box").on('click', '.acc-btn', function() {
+      var target = $(this).parents('.accordion');
+      if($(this).hasClass('active')!==true){
+        $('.accordion .acc-btn').removeClass('active');
+      }
+      if ($(this).next('.acc-content').is(':visible')){
+        return true;
+      }else{
+        $(this).addClass('active');
+        $('.accordion').removeClass('active-block');
+        $('.accordion .acc-content').slideUp(300);
+        target.addClass('active-block');
+        $(this).next('.acc-content').slideDown(300);  
+      }
+    });  
+
+    $(".accordion-box").on('click', '.acc-btn.active', function() {
+        $('.accordion .acc-btn').removeClass('active');
+        $('.accordion .acc-content').slideUp(300);
+    });
+
+
+    }
 
   getPlans(){
     this.apiService.apiGetData('get_in_app_purchase')

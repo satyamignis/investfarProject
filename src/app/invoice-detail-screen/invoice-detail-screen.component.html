@@ -1,0 +1,71 @@
+ <div class="modal-content invoice-modal">
+  <button type="button" class="close" data-dismiss="modal" (click)="activeModal.dismiss('Cross click')">&times;</button>
+  <div class="modal-body">
+    <div class="profile-pic">
+      <img src="{{data.image || './assets/images/resource/pro-tab-dummy.jpg'" alt="img" title="img">
+    </div>
+    <div class="invoice-detail">
+      <div class="column-bar">
+        <div class="category-left-bar">
+          <h5>{{data.serviceName}}</h5>
+          <span class="category">{{data.subCatName}}</span>
+          <span class="status" *ngIf="data.status == 2 && data.is_paid == 0">Pending Payment</span>
+          <span class="status" *ngIf="data.status == 2 && data.is_paid != 0">Completed</span>
+          <span class="status" *ngIf="data.status == 3 || data.status == 5 ">Cancelled</span>
+          <span class="date">{{data.bookedTime | date:'medium'}}</span>
+        </div>
+        <div class="price-right-bar">
+          {{data.maxPrice | currency}}
+        </div>
+      </div>
+
+
+      <!--- Manage Services Detail -->
+      <div class="service-detail-bar">
+        <h6>Description :</h6>
+        <p>{{data.description}}</p>
+
+        <div class="payment-btn" *ngIf="activeTab == 1 && type == 'company'">
+          <button class="btn book-btn" (click)="doAction('2')"><i aria-hidden="true" class="fa fa-check"></i> Make Complete</button>
+          <button class="btn book-btn" (click)="activeModal.dismiss('Cross click')"><i class="fa fa-remove"></i> Cancel</button>                  
+        </div>
+        <div class="payment-btn" *ngIf="activeTab == 0 && type == 'company'">
+          <button class="btn book-btn" (click)="doAction('3')"><i aria-hidden="true" class="fa fa-remove"></i> Decline</button>
+          <button class="btn book-btn" (click)="doAction('1')"><i class="fa fa-check"></i> Accept</button>                  
+          </div>
+      </div>
+
+
+      <!--- Payment Invoice detail and paynow detail -->
+      <div class="payment-section" *ngIf="type == 'user' && data.status == 2 && data.is_paid == 0" >
+        <div class="column-1">
+          <div class="heading">
+            Sub total:
+          </div>
+          <div class="price">
+            {{data.sub_total | currency}}
+          </div>
+        </div>
+        <div class="column-1">
+          <div class="heading">
+            Tax:
+          </div>
+          <div class="price">
+            {{data.tax | currency}}
+          </div>
+        </div>
+        <div class="column-1 total-amount">
+          <div class="heading">
+            Total:
+          </div>
+          <div class="price">
+            {{data.total_amount | currency}}
+          </div>
+        </div>            
+        <div class="no-space">
+          <button type="button" class="book-btn" (click)="shieldPay()">Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

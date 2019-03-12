@@ -13,6 +13,8 @@ import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from "angularx-social-login";
 import { NgxCurrencyModule } from 'ngx-currency';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ngx-currency/src/currency-mask.config';
+import { StarRatingModule } from 'angular-star-rating';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 /* %%%%%%%%%%%%%% Service %%%%%%%%%%%%%%%%%%*/
@@ -20,6 +22,7 @@ import { ApiService } from './services/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MyCookieService } from './services/my-cookie-service';
 import { AuthGaurdService } from './services/auth-gaurd.service';
+import { MyModalService } from './services/my-modal.service';
 /* //////////////////////////////////////// */
 
 import { AppComponent } from './app.component';
@@ -42,10 +45,8 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { CareersComponent } from './careers/careers.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ContractorRegistrationComponent } from './contractor-registration/contractor-registration.component';
-import { OwnerFinancedNoBanksNeededComponent } from './owner-financed-no-banks-needed/owner-financed-no-banks-needed.component';
 import { CompaniesRegistrationComponent } from './companies-registration/companies-registration.component';
 import { RealEstateAgentRegistrationComponent } from './real-estate-agent-registration/real-estate-agent-registration.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MyPropertiesComponent } from './my-properties/my-properties.component';
 import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
@@ -67,6 +68,9 @@ import { OfferTypeSellComponent } from './offer-type-sell/offer-type-sell.compon
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { InvestfarComponent } from './investfar/investfar.component';
+import { InvoiceDetailScreenComponent } from './invoice-detail-screen/invoice-detail-screen.component';
+import { RatingComponent } from './rating/rating.component';
+import { PropertyComponent } from './property/property.component';
 
 export const CustomCurrencyMaskConfig: any = {
   align: "left",
@@ -116,7 +120,6 @@ export function provideConfig() {
     CareersComponent,
     ContactUsComponent,
     ContractorRegistrationComponent,
-    OwnerFinancedNoBanksNeededComponent,
     CompaniesRegistrationComponent,
     RealEstateAgentRegistrationComponent,
     MyPropertiesComponent,
@@ -137,7 +140,10 @@ export function provideConfig() {
     OfferTypeSellComponent,
     ForgotPasswordComponent,
     SetPasswordComponent,
-    InvestfarComponent    
+    InvestfarComponent,
+    InvoiceDetailScreenComponent,
+    RatingComponent,
+    PropertyComponent    
   ],
   imports: [
     BrowserModule,
@@ -147,11 +153,12 @@ export function provideConfig() {
     HttpClientModule,
     SlideshowModule,
     GooglePlaceModule,
-    NgbModule,
+    NgbModule.forRoot(),
     NgxCurrencyModule,
     SocialLoginModule,
     ToastrModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
+    StarRatingModule.forRoot(),
     CarouselModule,
     FormsModule,
     ReactiveFormsModule,
@@ -163,6 +170,7 @@ export function provideConfig() {
     ApiService,
     CookieService,
     MyCookieService, 
+    MyModalService,
     AuthGaurdService,
     {
       provide: AuthServiceConfig,

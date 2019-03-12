@@ -1,0 +1,28 @@
+<div class="modal-content booking-service-modal">
+  <button type="button" class="close" (click)="activeModal.dismiss()">&times;</button>
+  <div class="modal-body">
+    <div class="review-section">
+      <div class="profile-pic">
+        <img src="{{data.image ||'./assets/images/resource/pro-tab-dummy.jpg' }}" alt="img" title="img">
+      </div>
+      <h5>{{data.customerName}}</h5>
+      <div class="rating-bar">
+        <p>Please rate the services</p>
+        <span class="rating-points">
+          <!-- <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span> -->
+          <star-rating [starType]="'svg'" [hoverEnabled]="true" [staticColor]="'ok'" [rating]="rating" (starClickChange)="onStartClick($event)"></star-rating>
+        </span>
+      </div>
+      <div class="form-group">
+        <textarea type="textarea" class="form-control" [(ngModel)]="comment" placeholder="Comment"></textarea>
+      </div>
+    </div>
+    <div class="form-group no-space">
+      <button class="book-btn" [ngClass]="{'active-book-btn' : comment != '' }" [disabled]="comment == ''" (click)="onSubmit()">Submit Review</button>
+    </div>
+  </div>
+</div>

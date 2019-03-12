@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvestfarComponent implements OnInit {
   preloadimg:any;
+  apiLoading:any;
   constructor() { }
 
   ngOnInit() {

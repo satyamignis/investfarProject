@@ -5,8 +5,8 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { ApiService } from '../services/api.service';
 import { ProfileService } from '../services/profile.service';
 import { ToastrService } from 'ngx-toastr';
+import * as CountryCode from '../../assets/country-code.json';
 declare const $: any;
-
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,15 +14,16 @@ declare const $: any;
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-
+  
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
-  preloadimg:any;
-  countryCode:any;
+  countryCode = (<any>CountryCode).countries;
   user : any = {};
   editProfileForm : FormGroup;
   address : any = {};
   profileImage ;
   profileImagePreview;
+  preloadimg:any;
+  apiLoading:any;
   
   constructor(
     private myCookieService : MyCookieService,
@@ -33,28 +34,14 @@ export class EditProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-     this.user = this.myCookieService.getCookie('user');
+     window.scrollTo(0, 0);
      this.preloadimg=true;
-        setTimeout(() => {  
-           this.preloadimg=false;
-      }, 1000);
-
-
-// this.editProfileForm.patchValue({ firstName: parseInt(this.user.firstName)});
-// this.editProfileForm.patchValue({ lastName: this.user.lastName });
-// this.editProfileForm.patchValue({ companyName: this.user.companyName });
-// this.editProfileForm.patchValue({ email: this.user.email });
-// this.editProfileForm.patchValue({ countryCode: this.user.countryCode });
-// this.editProfileForm.patchValue({ number: this.user.number });
-// this.editProfileForm.patchValue({ addr: this.user.addr });
-// this.editProfileForm.patchValue({ bio: this.user.bio });
-
-
-   
-    console.log(this.placesRef);
+     setTimeout(() => {  
+         this.preloadimg=false;
+     }, 1000);
+    this.user = this.myCookieService.getCookie('user');   
     this.createForm();
   }
-
 
   createForm(){
     let tempPhone : any = this.user.phoneNo;
@@ -73,8 +60,6 @@ export class EditProfileComponent implements OnInit {
         number : [tempPhone[1], Validators.required],
         bio : [this.user.bio]
       })
-
-
     } else {
       this.editProfileForm = this.formBuilder.group({
         companyName : [this.user.companyName, Validators.required],
@@ -110,7 +95,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.editProfileForm.value);
+    this.apiLoading=true;
     if(this.isFormValid){
       let editProfileData =  new FormData();
       for(let key in this.editProfileForm.value){
@@ -147,13 +132,15 @@ export class EditProfileComponent implements OnInit {
             }
             this.myCookieService.setCookie('user', this.user);
             this.profileService.updateProfile.emit();
-            //this.activeModal.dismiss('Cross click');
            } else {
             this.myToasterService.error(response.errorMsg, 'Try Again');
            }
+           this.apiLoading=false;
+
         },
         (error: any) => {
           console.log(error);
+          this.apiLoading=false;
         }
       )
     }
@@ -179,7 +166,6 @@ export class EditProfileComponent implements OnInit {
   }
 
   handleAddressChange(address: any) {
-    console.log('----------address', address);
     this.address.address = address.formatted_address;
     this.address.latitude = address.geometry.location.lat();
     this.address.longitude = address.geometry.location.lng();

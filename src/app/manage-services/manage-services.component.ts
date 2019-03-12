@@ -3,6 +3,11 @@ import { ApiService } from '../services/api.service';
 import { MyCookieService } from '../services/my-cookie-service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { InvoiceDetailScreenComponent } from '../invoice-detail-screen/invoice-detail-screen.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { MyModalService } from '../services/my-modal.service';
+import { RatingComponent } from '../rating/rating.component';
 
 
 @Component({
@@ -15,14 +20,24 @@ export class ManageServicesComponent implements OnInit {
   user : any;
   services :any = [];
   preloadimg:any;
+  apiLoading:any;
 
 
   constructor(
+    private modalService: NgbModal,
     private apiService : ApiService,
     private myCookieService : MyCookieService,
+    private myModalService : MyModalService,
     private router : Router,
     private myToasterService : ToastrService
   ) { }
+
+
+  getTimestring(value){ 
+    if(value !='0000-00-00 00:00:00'){
+     return new Date(value);
+    }
+  }
 
   ngOnInit() {
      this.user = this.myCookieService.getCookie('user');
@@ -36,27 +51,27 @@ export class ManageServicesComponent implements OnInit {
   }
 
   openDetails(s) {
-    // const modalRef = this.modalService.open(InvoiceDetailScreenComponent);
-    // modalRef.componentInstance.data = s;
-    // modalRef.componentInstance.type = 'company';
-    // modalRef.componentInstance.activeTab = this.activeTab;
-    // this.myModalService.bookingManagementAction.subscribe(
-    //   (response : any) => {
-    //     console.log(response);
-    //     this.manageBooking(response.id, response.status);
-    //   }
-    // )
+    const modalRef = this.modalService.open(InvoiceDetailScreenComponent);
+    modalRef.componentInstance.data = s;
+    modalRef.componentInstance.type = 'company';
+    modalRef.componentInstance.activeTab = this.activeTab;
+    this.myModalService.bookingManagementAction.subscribe(
+      (response : any) => {
+        //console.log(response);
+        this.manageBooking(response.id, response.status);
+      }
+    )
   }
 
   openRating(s){
-    // const modalRef = this.modalService.open(RatingComponent);
-    // modalRef.componentInstance.data = s;
-    // modalRef.componentInstance.type = 'companyToCustomer';
-    // this.myModalService.ratingCompanyToCustomerSuccess.subscribe(
-    //   (response : any) => {
-    //     this.getServiceByType();
-    //   }
-    // )
+    const modalRef = this.modalService.open(RatingComponent);
+    modalRef.componentInstance.data = s;
+    modalRef.componentInstance.type = 'companyToCustomer';
+    this.myModalService.ratingCompanyToCustomerSuccess.subscribe(
+      (response : any) => {
+        this.getServiceByType();
+      }
+    )
 
   }
 
@@ -66,6 +81,7 @@ export class ManageServicesComponent implements OnInit {
   }
 
   getServiceByType(){
+    this.apiLoading=true;
     this.apiService.apiPostData('getCompanyServicesListing',{
         serviceKey: this.user.serviceKey, 
         userId: this.user.userId,
@@ -73,15 +89,17 @@ export class ManageServicesComponent implements OnInit {
       })
       .subscribe(
         (response: any) => {
-          console.log(response);
+          //console.log(response);
           if (response.errorCode == '0') {
             this.services = response.data;
           } else {
             this.myToasterService.error(response.errorMsg, 'Try Again');
           }
+          this.apiLoading=false;
         },
         (error: any) => {
           console.log(error);
+          this.apiLoading=false;
         }
       )
   }
@@ -95,6 +113,7 @@ export class ManageServicesComponent implements OnInit {
   }
 
   manageBooking(id, status){
+    this.apiLoading=true;
     this.apiService.apiPostData('bookingManagement',{
         serviceKey: this.user.serviceKey, 
         userId: this.user.userId,
@@ -111,15 +130,17 @@ export class ManageServicesComponent implements OnInit {
           } else {
             this.myToasterService.error(response.errorMsg, 'Try Again');
           }
+          this.apiLoading=false;
         },
         (error: any) => {
           console.log(error);
+          this.apiLoading=false;
         }
       )
   }
 
   setDefaultPic(service){
-    service.image = 'assets/images/ic_company_profile_image.png';
+    service.image = './assets/images/resource/pro-tab-dummy.jpg';
   }
 
 }
