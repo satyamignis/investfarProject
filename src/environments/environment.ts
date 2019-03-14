@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   API: 'http://dev-iis.com/projects/investfar/public/api/',
-  SERVICE_KEY : 'U2kaw394fckxegsmretk'
+  SERVICE_KEY : 'U2kaw394fckxegsmretk',
+  S3_BUCKET_URL : 'amazonaws'
 };
 
 /*

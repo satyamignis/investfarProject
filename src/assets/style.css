@@ -5864,7 +5864,7 @@ Main Footer
     background-clip: text;
     color: transparent;
     text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
-    text-align: center;
+    text-align: left;
     padding: 5px 20px 15px 20px; 
  }
  .pricing-table h3 {
@@ -6806,7 +6806,13 @@ margin-top: 0%;
 .multiselect-dropdown .dropdown-btn .dropdown-up{
      display: none !important;
 }
+.service-block .inner-box{
+     min-height: 186px;
+}
 
+.alertify {
+    z-index: 9999999;
+}
 /*** ==================================================================== 
      my favorites page
 ==================================================================== ***/

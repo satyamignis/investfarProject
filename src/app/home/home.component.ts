@@ -25,42 +25,43 @@ export class HomeComponent implements OnInit {
 	totalCount = 0;
 	apiLoading:boolean;
 	cities : any = [];
-    years : any = [];
-    eur:any=1;
+	years : any = [];
+	eur:any=1;
+	readMore:any;
 
-    to_from = [
-		{ value : 1, text: '1'},
-		{ value : 2, text: '2'},
-		{ value : 3, text: '3'},
-		{ value : 4, text: '4'},
-		{ value : 5, text: '5+'},
+	to_from = [
+	{ value : 1, text: '1'},
+	{ value : 2, text: '2'},
+	{ value : 3, text: '3'},
+	{ value : 4, text: '4'},
+	{ value : 5, text: '5+'},
 	];
 
-    ratingOptions = [ 
-		{ value : 0.5, text: '0.5'},
-		{ value : 1, text: '1'},
-		{ value : 1.5, text: '1.5'},
-		{ value : 2, text: '2'},
-		{ value : 2.5, text: '2.5'},
-		{ value : 3, text: '3'},
-		{ value : 3.5, text: '3.5'},
-		{ value : 4, text: '4'},
-		{ value : 4.5, text: '4.5'},
-		{ value : 5, text: '5'},
+	ratingOptions = [ 
+	{ value : 0.5, text: '0.5'},
+	{ value : 1, text: '1'},
+	{ value : 1.5, text: '1.5'},
+	{ value : 2, text: '2'},
+	{ value : 2.5, text: '2.5'},
+	{ value : 3, text: '3'},
+	{ value : 3.5, text: '3.5'},
+	{ value : 4, text: '4'},
+	{ value : 4.5, text: '4.5'},
+	{ value : 5, text: '5'},
 	];
 
 
 	customOptions: any = {
-	    loop: true,
-	    mouseDrag: false,
-	    touchDrag: false,
-	    pullDrag: false,
-	    dots: true,
-	    autoplay:true,
-	    navSpeed: 1500,
-	    animateIn: 'slideOutDown',
-	    items:1,
-	    nav: false
+		loop: true,
+		mouseDrag: false,
+		touchDrag: false,
+		pullDrag: false,
+		dots: true,
+		autoplay:true,
+		navSpeed: 1500,
+		animateIn: 'slideOutDown',
+		items:1,
+		nav: false
 	}
 
 	showAdvBtn:any=true;
@@ -73,92 +74,96 @@ export class HomeComponent implements OnInit {
 		) { }
 
 	ngOnInit() {
-	  		  window.scrollTo(0, 0);
-			  /*%%%%%%%%%%%%% Map %%%%%%%%%%%%%%*/
-			  var map = AmCharts.makeChart( "chartdiv", {
-			  "type": "map",
-			  "theme": "light",
-			  "projection": "miller",
+		window.scrollTo(0, 0);
+		/*%%%%%%%%%%%%% Map %%%%%%%%%%%%%%*/
+		var map = AmCharts.makeChart( "chartdiv", {
+			"type": "map",
+			"theme": "light",
+			"projection": "miller",
 
-			  "dataProvider": {
-			    "map": "worldLow",
-			    "getAreasFromMap": true
-			  },
-			  "areasSettings": {
-			    "autoZoom": false,
-			    "selectedColor": "#CC0000"
-			  },
-			  "smallMap": {},
-			  "listeners": [{
-			    "event": "init",
-			    "method": function(e) {
-			      
-			      var map = e.chart;
-			      
+			"dataProvider": {
+				"map": "worldLow",
+				"getAreasFromMap": true
+			},
+			"areasSettings": {
+				"autoZoom": false,
+				"selectedColor": "#CC0000"
+			},
+			"smallMap": {},
+			"listeners": [{
+				"event": "init",
+				"method": function(e) {
+					
+					var map = e.chart;
+					
 			       /**
 			       * Log initial zoom settings
 			       */
-			      map.initialZoom = {
-			        "zoomLevel": e.chart.zoomLevel(),
-			        "zoomLongitude": e.chart.zoomLongitude(),
-			        "zoomLatitude": e.chart.zoomLatitude()
-			      };
-			    }
-			  }],
-			  "export": {
-			    "enabled": true,
-			    "position": "bottom-right",
-			    "beforeCapture": function() {
-			      var map = this.setup.chart;
+			       map.initialZoom = {
+			       	"zoomLevel": e.chart.zoomLevel(),
+			       	"zoomLongitude": e.chart.zoomLongitude(),
+			       	"zoomLatitude": e.chart.zoomLatitude()
+			       };
+			   }
+			}],
+			"export": {
+				"enabled": true,
+				"position": "bottom-right",
+				"beforeCapture": function() {
+					var map = this.setup.chart;
 			      /**
 			       * Log current zoom settings so we can restore after export
 			       */
-			      map.currentZoom = {
-			        "zoomLevel": map.zoomLevel(),
-			        "zoomLongitude": map.zoomLongitude(),
-			        "zoomLatitude": map.zoomLatitude()
-			      };
-			      
+			       map.currentZoom = {
+			       	"zoomLevel": map.zoomLevel(),
+			       	"zoomLongitude": map.zoomLongitude(),
+			       	"zoomLatitude": map.zoomLatitude()
+			       };
+			       
 			      /**
 			       * Zoom to initial position
 			       */
-			      map.zoomToLongLat(
-			        map.initialZoom.zoomLevel,
-			        map.initialZoom.zoomLongitude,
-			        map.initialZoom.zoomLatitude,
-			        true
-			      );
-			    },
-			    "afterCapture": function() {
-			      var map = this.setup.chart;
-			      setTimeout(function() {
+			       map.zoomToLongLat(
+			       	map.initialZoom.zoomLevel,
+			       	map.initialZoom.zoomLongitude,
+			       	map.initialZoom.zoomLatitude,
+			       	true
+			       	);
+			   },
+			   "afterCapture": function() {
+			   	var map = this.setup.chart;
+			   	setTimeout(function() {
 			        /**
 			         * Restore current zoom
 			         */
-			        map.zoomToLongLat(
-			          map.currentZoom.zoomLevel,
-			          map.currentZoom.zoomLongitude,
-			          map.currentZoom.zoomLatitude,
-			          true
-			        );
-			      }, 10);
-			    }
-			  }
-			});
+			         map.zoomToLongLat(
+			         	map.currentZoom.zoomLevel,
+			         	map.currentZoom.zoomLongitude,
+			         	map.currentZoom.zoomLatitude,
+			         	true
+			         	);
+			     }, 10);
+			   }
+			}
+		});
 
-	    this.preloadimg=true;
-        setTimeout(() => {  
-           this.preloadimg=false;
-        }, 1000);
+		this.preloadimg=true;
+		setTimeout(() => {  
+			this.preloadimg=false;
+		}, 1000);
 
-        this.user = this.myCookieService.getCookie('user');
+		this.user = this.myCookieService.getCookie('user');
 		this.propertyTypes = PropertyTypes;
 		this.offerTypes = OfferTypes;
-	    this.years = this.api.getYears();
-	    this.clearFilter(); 
-	    this.getCities();
+		this.years = this.api.getYears();
+		this.clearFilter(); 
+		this.getCities();
 	}
 
+
+	onReadMore(iselement){
+		this.readMore=iselement;
+	}
 
 	getCities(){
 		this.api.apiPostData('available_in_this_cities', {})
@@ -179,7 +184,7 @@ export class HomeComponent implements OnInit {
 			(error: any) => {
 				console.log(error);
 			}
-		)
+			)
 	}
 
 	onSearch(type){
@@ -192,31 +197,31 @@ export class HomeComponent implements OnInit {
 			if( this.filter[key] != 0 && this.filter[key] != '' && this.filter[key] != null) 
 				filtered_property_data[key] = this.filter[key]
 		}
-			this.apiLoading=true;
-			this.api.apiPostData('get_filtered_property', filtered_property_data)
-			.subscribe(
-				(response : any) => {
-					if(response.errorCode == '0'){
-						this.properties = [...this.properties, ...response.data];
-						this.totalCount = response.total_count;
-						if(this.properties.length == this.totalCount){
-						} 
-						if(type == 'btn'){ this.scrollToDiv();}
-					} else {
-						console.log('Error')
-					}
-					this.apiLoading=false;
-
-				},
-				(error: any) => {
-					console.log(error);
+		this.apiLoading=true;
+		this.api.apiPostData('get_filtered_property', filtered_property_data)
+		.subscribe(
+			(response : any) => {
+				if(response.errorCode == '0'){
+					this.properties = [...this.properties, ...response.data];
+					this.totalCount = response.total_count;
+					if(this.properties.length == this.totalCount){
+					} 
+					if(type == 'btn'){ this.scrollToDiv();}
+				} else {
+					console.log('Error')
 				}
+				this.apiLoading=false;
+
+			},
+			(error: any) => {
+				console.log(error);
+			}
 			)
 	}	
 
 	getDetails(id){
-        this.router.navigate(['/property/'+id]);
-    }
+		this.router.navigate(['/property/'+id]);
+	}
 
 	getFilterProperty(){
 		let filtered_property_data : any = {};
@@ -265,12 +270,12 @@ export class HomeComponent implements OnInit {
 		this.eur=0;//we can work on a exchange converter later.;
 
 		this.properties = [];
-	    this.apiLoading=true;
+		this.apiLoading=true;
 		this.onSearch('');
 	}
 
 	loadMoreProperties(){
-	    this.apiLoading=true;
+		this.apiLoading=true;
 		this.filter.page_no++;
 		this.onSearch('');
 	}
@@ -286,13 +291,13 @@ export class HomeComponent implements OnInit {
 	}
 
 	scrollToDiv(){
-		  let structure = document.getElementById('structure');
-		  structure.scrollIntoView()
+		let structure = document.getElementById('structure');
+		structure.scrollIntoView()
 	}
 
 	scrollToSearch(){
-		  let search = document.getElementById('searchDiv');
-		  search.scrollIntoView()
+		let search = document.getElementById('searchDiv');
+		search.scrollIntoView()
 	}
 
 }

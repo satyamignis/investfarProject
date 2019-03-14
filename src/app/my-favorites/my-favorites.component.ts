@@ -28,6 +28,7 @@ export class MyFavoritesComponent implements OnInit {
     enableCheckAll: false
   };
   selectedCities : any = [];
+  apiLoading:any;
 
   constructor(
     private apiService : ApiService,
@@ -67,6 +68,7 @@ export class MyFavoritesComponent implements OnInit {
       }
       favoritesData.city_arr = favoritesData.city_arr.slice(0, -1);
     }
+    this.apiLoading=true;
     this.apiService.apiPostData('getFavourite', favoritesData)
       .subscribe(
         (response: any) => {
@@ -80,9 +82,11 @@ export class MyFavoritesComponent implements OnInit {
           } else {
             this.toastr.error(response.errorMsg, 'Try Agian');
           }
+          this.apiLoading=false;
         },
         (error: any) => {
           console.log(error);
+          this.apiLoading=false;
         }
       )
   }

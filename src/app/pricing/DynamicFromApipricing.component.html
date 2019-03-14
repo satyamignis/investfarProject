@@ -1,0 +1,396 @@
+<!-- *********** Loading ************** -->
+    <div *ngIf="preloadimg" class="preloadingimg">
+        <img src="./assets/images/icons/preloader.gif">
+    </div>
+    <div *ngIf="apiLoading" class="loadingApi">
+        <img src="./assets/images/icons/loading.gif">
+    </div>
+<!-- *********** Loading ************** -->
+<app-menu-header></app-menu-header>
+<section class="inner-banner">
+<div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+<!--Header-Lower-->
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-sm-12 col-xs-12">
+                    <h1>Our Plans</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+<section class="pricinig-section">
+                    <div class="title-warp bg-pricing-h2">
+                        <div class="auto-container">
+                            <div class="title-block title-on-dark text-center">
+                            <span class="top-title "></span>
+                            <h2>MOST POPULAR PLAN</h2>
+                            <p class="sub-title">InvestFar is a real estate marketplace that uses powerful and smart technologies to automate investing remotely, with access to human experts for guidance.</p>
+                            <span class="bottom-title"></span>
+                           </div>
+                         </div>
+                    </div>
+                    <div class="auto-container">
+                        <div class="row">
+                            <div class="fix-position-pricing-home2">
+                                <div class="col-md-3 col-sm-6" *ngFor="let p of pricingList; let i = index">
+                                    <div class="pricing-table" [ngClass]="p.title=='Novice' ? 'pt-most-popular' : ''">
+                                    <div class="plan">
+                                        <h3>{{p.title}}
+                                            <span class="price">
+                                                <span class="price-inner">
+                                                <span class="price-home">
+                                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                                </span>
+                                                </span>
+                                            </span> 
+                                        </h3>
+
+                                        <div class="body-table">
+                                            <h4>{{p.price}}</h4>
+                                            <ul>
+                                                <li *ngFor="let d of p.desc">{{d}}</li>
+                                            </ul>
+                                            <a class="ot-btn" [ngClass]="p.title=='Novice' ? 'mid' : ''" *ngIf="isNotPlanPurchased(p.product_id)" href="javascript:void(0);" (click)="getAccess(p)">Get Access</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-md-3 col-sm-6">
+                                    <div class="pricing-table pt-most-popular">
+                                    <div class="plan">
+                                        <h3>Novice
+                                            <span class="price">
+                                                <span class="price-inner">
+                                                <span class="price-home">
+                                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                                </span>
+                                                </span>
+                                            </span> 
+                                        </h3>
+
+                                        <div class="body-table">
+                                            <h4>$24.99/mo</h4>
+                                            <ul>
+                                                <li>5 Valuation / Analytic reports</li>
+												<li>Investor Consultants</li>
+												<li>Directory Access</li>
+												<li>InvestFar App</li>
+												<li>Free listing</li>
+												<li>Blog</li>
+												<li>$7.99 Per Valuation Report</li>
+												<li>$41.99 Mobile Notarization </li>
+												<li>$19.99 20 additional photos</li>
+												<li>$19.99 1-Minute Property Video</li>
+												<li>$74.99 Residential Property Inspection (Exterior Only)</li>
+												<li>$94.99 Residential Property Inspection (Exterior & Interior)</li>
+												<li>$84.99 Documents pick-up & Delivery (Notary docs, notices etc)</li>
+
+                                            </ul> 
+                                            <a class="ot-btn mid">Get Access</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="pricing-table">
+                                    <div class="plan">
+                                        <h3>Apprentice
+                                            <span class="price">
+                                                <span class="price-inner">
+                                                <span class="price-home">
+                                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                                </span>
+                                                </span> 
+                                            </span> 
+                                        </h3>
+
+                                        <div class="body-table">
+                                            <h4>$54.99/mo</h4>
+                                             <ul>
+                                                <li>15 Valuation / Analytic reports</li>
+												<li>Investor Consultants</li>
+												<li>Directory Access</li>
+												<li>InvestFar App</li>
+												<li>Free listing</li>
+												<li>Blog</li>
+												<li>Newsletter</li>
+												<li>Monthly Market report alerts</li>
+												<li>FREE or discounted real estate seminars and events</li>
+												<li>$7.99 Per Valuation Report</li>
+												<li>$41.99 Mobile Notarization </li>
+												<li>$19.99 20 additional photos</li>
+												<li>$19.99 1-Minute Property Video</li>
+												<li>$74.99 Residential Property Inspection (Exterior Only)</li>
+												<li>$94.99 Residential Property Inspection (Exterior & Interior)</li>
+												<li>$84.99 Documents pick-up & Delivery (Notary docs, notices etc)</li>
+                                            </ul> 
+                                            <a class="ot-btn">Get Access</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="pricing-table">
+                                    <div class="plan">
+                                        <h3>Investors Club
+                                            <span class="price">
+                                                <span class="price-inner">
+                                                <span class="price-home">
+                                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                                </span>
+                                                </span>
+                                            </span> 
+                                        </h3>
+
+                                        <div class="body-table">
+                                            <h4>$149.99/mo</h4>
+                                            <ul>
+                                                <li>25 Valuation / Analytic reports</li>
+											    <li>Real Estate legal forms</li>
+												<li>Investor Consultants</li>
+												<li>Directory Access</li>
+												<li>Exclusive Forum</li>
+												<li>InvestFar App</li>
+												<li>Market data</li>
+												<li>Free listing</li>
+												<li>Blog</li>
+												<li>Newsletter</li>
+												<li>Monthly Market report alerts</li>
+												<li>3-Year workmanship warranty</li>
+												<li>Investment criteria property match alerts</li>
+												<li>Private money introductions or joint ventures</li>
+												<li>FREE or discounted real estate seminars and events</li>
+												<li>Contractor project matching&project completion monitoring</li>
+												<li>$7.99 Per Valuation Report</li>
+												<li>$41.99 Mobile Notarization </li>
+												<li>$19.99 20 additional photos</li>
+												<li>$19.99 1-Minute Property Video</li>
+												<li>$74.99 Residential Property Inspection (Exterior Only)</li>
+												<li>$94.99 Residential Property Inspection (Exterior & Interior)</li>
+												<li>$84.99 Documents pick-up & Delivery (Notary docs, notices etc)</li>
+                                              </ul> 
+                                            <a class="ot-btn">Get Access</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+</section>
+
+
+<section class="consultation">
+    <div class="auto-container">
+        <div class="sec-title">
+        <h2>Get started with a Free consultation</h2>
+        </div>
+        <div class="row">
+             <div class="col-sm-6">
+                <ul class="accordion-box">
+                                
+        <!--Block-->
+        <li class="accordion block">
+            <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div> Online Real Estate Investment Platforms</div>
+            <div class="acc-content current" style="display: none;">
+                <div class="content">
+                    <p>Online real estate platforms pool investments and invest in real estate investment opportunities that would otherwise be difficult to find or out of reach on an individual level. Real estate platforms offer investors the ability to invest in single investments or a diversified portfolio of real estate. Some offer only debt investments and others offer both debt and equity investments. And, some focus on a specific city or region and other invest across the country. Many real estate investment platforms carry restrictions such as accreditation requirements and high investment minimums, but not all of them such as InvestFar.</p>
+                </div>
+            </div>
+        </li>
+                                
+    <!--Block-->
+    <li class="accordion block active-block">
+        <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div> The Most Important Questions to Ask Before You Invest in Real Estate</div>
+        <div class="acc-content">
+            <div class="content">
+                <ol>
+                    <li>Do you have the time and expertise to invest actively, or would it make more sense for you to invest passively?</li>
+                    <li>What’s your investment timeline? And, how important will liquidity be to you in the future?</li>
+                    <li>What are the potential tax benefits?</li>
+                    <li>How will real estate affect your overall portfolio?</li>
+                    <li> What makes a particular real estate investment attractive to you? How would you 
+                    define success?</li>
+                </ol>
+            </div>
+        </div>
+    </li>
+                                
+    <!--Block-->
+    <li class="accordion block">
+        <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div>What asset type and strategy are right for you in your given market?</div>
+        <div class="acc-content" style="">
+            <div class="content">
+                <p>The most obvious real estate assets for direct investment are residential — houses or condos. But are there any other variables that might make another asset type a more promising option? Retail or office space? Maybe there’s been a new influx of young professionals, thanks to a change in local laws, and office buildings are increasing in value. But, with a change in real estate class, there’s also a change in expertise required. Assess the options and make sure your money is doing the most it can in any obvious circumstances.</p>
+            </div>
+        </div>
+    </li>
+    
+    <!--Block-->
+    <li class="accordion block">
+        <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div> How well do you understand the specific city where you’re planning to invest? What are the local opportunities and risks?</div>
+        <div class="acc-content" style="">
+            <div class="content">
+                <p>“Location, location, location” is a saying as accurate as it is cliché. A warehouse in Orlando might have an altogether different outlook from an identical structure in Memphis. How can you expect the area you’re eyeing to develop? You need to make sure you account for as many location-specific variables as possible, ranging from natural disaster risks to noise pollution, all of which can make it difficult to secure tenants. For example, maybe the building next door is a school. That can have a major effect on how you’re able to develop and use the property. Be honest with the fidelity of your expertise, try to know what you don’t know and fill in the gaps.</p>
+            </div>
+        </div>
+    </li>
+
+
+    <!--Block-->
+    <li class="accordion block">
+        <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div>How much time do you have available to devote to your real estate investment?</div>
+        <div class="acc-content" style="">
+            <div class="content">
+                <p>For some investors, time is a more scarce commodity than dollars. Likewise, some investment models inherently apply far more of a time strain than others. If your investment requires a landlord, can you spare the hours? If not, can you afford to hire a property manager? Unlike other investments, which require attention only trading hours, an investment property requires constant administration as long as you own the investment.</p>
+            </div>
+        </div>
+    </li>
+
+
+
+<!--Block-->
+<li class="accordion block">
+    <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div>6 Key Characteristics Of Successful Investors in Real Estate</div>
+    <div class="acc-content" style="">
+        <div class="content">
+           <ol>
+               <li>Having a Clear Sense of Financial Goals. </li>
+                <li>Patience. </li>
+                <li>Keeping your eyes on a big-picture view of history. </li>
+                <li>Understanding how to balance risk and reward. </li>
+                <li>Diversifying into multiple economies and alternative asset.  </li>
+                <li>Passive investing style. </li>
+           </ol>
+        </div>
+    </div>
+</li>
+                                
+</ul>
+</div>
+        
+        <div class="col-sm-6">
+        <ul class="accordion-box">
+                                
+        <!--Block-->
+        <li class="accordion block">
+            <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div>Joint Venture Financing</div>
+            <div class="acc-content current" style="display: none;">
+                <div class="content">
+                   <p>InvestFar has access to many sources and providers of joint venture financing. This type of real estate funding is a means of structuring a mortgage and private, accredited equity. This use of other people’s money (OPM) and their balance sheet can help the Client utilize leverage, minimize their cash input, help get their immediate project get funded, and free up their cash reserves for other projects as well. This is achieved by creating a team between the clients with the project together with a Lender/Investor with the added financial capacity. Our sources have the expertise and relationships necessary to secure equity for real estate projects that make sense, whether it involves a single transaction or an entire portfolio. <strong>Typically, the range of funding can be from $75k to $100MM or more.</strong></p>
+                </div>
+            </div>
+        </li>
+                                
+    <!--Block-->
+    <li class="accordion block">
+        <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div> Capitalization (Cap) Rate</div>
+        <div class="acc-content">
+            <div class="content">
+               <p>The capitalization or cap rate measures a property’s yield in a one-year time frame, making it easy to compare one property’s cash flow to another on an equal basis – without taking into account any debt on the asset.</p>
+            </div>
+        </div>
+    </li>
+
+    <!--Block-->
+    <li class="accordion block">
+        <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div>Capital Gains Taxes</div>
+        <div class="acc-content" style="">
+            <div class="content">
+                <p><strong>Short-term capital gains</strong><br>
+                Short-term capital gains do not benefit from any special tax rate – they are taxed at the same rate as your ordinary income. Ordinary tax rates range from 10 percent to 37 percent, depending on your total taxable income.<br>
+                If you sell an asset you have held for one year or less, any profit you make is considered a short-term capital gain. The clock begins ticking from the day after you acquire the asset up to and including the day you sell it.</p>
+                <p><strong>Long-term capital gains</strong><br>
+                If you can manage to hold your assets for longer than a year, you can benefit from a reduced tax rate on your profits. The long-term capital gains tax rates are 0, 15, and 20 percent for most taxpayers. If your ordinary tax rate is already less than 15 percent, you could qualify for the zero percent long-term capital gains rate. For high-income taxpayers, the capital gains rate could save as much as 19.6 percent off the ordinary income rate.<br>
+               <a>*Please consult a tax advisor</a></p>
+
+            </div>
+        </div>
+    </li> 
+                                
+   
+
+    <!--Block-->
+    <li class="accordion block">
+        <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div>1031 Exchange</div>
+        <div class="acc-content" style="">
+            <div class="content">
+                <p>A 1031 exchange gets its name from Section 1031 of the U.S. Internal Revenue Code, which allows you to avoid paying capital gains taxes when you sell an investment <strong>property</strong> and reinvest the proceeds from the sale within certain time limits in a <strong>property</strong> or properties of like kind and equal or greater <strong>value.</strong></p>
+            </div>
+        </div>
+    </li>
+
+
+<!--Block-->
+<li class="accordion block">
+    <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> <span class="icon icon-minus fa fa-minus"></span></div> 3 WAYS TO MAKE REMOTE REAL ESTATE INVESTING EVEN EASIER</div>
+    <div class="acc-content" style="">
+        <div class="content">
+           <ol>
+               <li><strong>Use technology to your advantage.</strong> I mentioned that technology was the biggest driver for remote investing, as computers, the internet and other advancements have made it less essential to be on-site with an investment property. Obviously, if you’re reading this, you’re already making good use of your computer and internet, but these aren’t the only tools at your disposal, and narrowing your focus to specific websites and apps that benefit you the most is key.</li>
+               <li><strong>Prioritize property management. </strong>Another tip for streamlining remote investing is to make property management a priority from Day 1. From the moment you take possession of the property, it’s your job to maintain it properly. This doesn’t just benefit your tenants, but it helps you, as the owner, too. Fixing problems immediately rather than sitting on them can help prevent them from worsening, and keeping your place in good shape also helps it retain/increase its value. When you’re remote, however, it can be more challenging to keep an eye on things. That’s why it’s critical that you partner with a reputable property manager who you can trust to keep your property well-maintained and in good repair.</li>
+               <li><strong>Use market data and local experts. </strong>You can take a lot of the guesswork out of remote investing to score yourself an amazing, cashflowing property that will help you reach your investment goals faster. Use valuation tools, market data and local experts to help you make informed decisions. </li>
+           </ol>
+        </div>
+    </div>
+</li>
+                                
+<!--Block-->
+<li class="accordion block">
+    <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> 
+    <span class="icon icon-minus fa fa-minus"></span></div>Putting it All Together</div>
+    <div class="acc-content" style="">
+        <div class="content">
+            <p>Real estate has a track record of strong performance. Real estate investing offers the potential to earn significant returns and add meaningful diversification to your portfolio. When managed wisely it can become a valuable source of cash flow in your investment portfolio. As with any investment, real estate investments require you to understand and weigh the risks and potential rewards before beginning. Depending on which way you choose invest in real estate, you’ll need varying amounts of time, beginning capital, knowledge, and patience.</p>
+        </div>
+    </div>
+</li>
+
+<!--Block-->
+<li class="accordion block">
+    <div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span> 
+    <span class="icon icon-minus fa fa-minus"></span></div>Opportunity Zone Program</div>
+    <div class="acc-content" style="">
+        <div class="content">
+            <p>The Opportunity Zone program was created to revitalize economically distressed communities using private investments rather than taxpayer dollars. To stimulate private participation in the Opportunity Zone program, taxpayers who invest in Qualified Opportunity Zones are eligible to benefit from capital gains tax incentives available exclusively through the program.</p>
+        </div>
+    </div>
+</li>
+                                
+    </ul>
+    </div>
+    </div>
+    </div>
+</section>
+
+<section class="app-section">
+        <div class="auto-container">
+            <div class="row clearfix">
+                
+                 <div class="column col-md-4 col-sm-4 col-xs-12 centered margin-bott-30">
+                    <img src="./assets/images/resource/mob-app.png" class="center-block" width="150px;" >
+                </div> 
+                <!--Text Column -->
+                <div class="column text-column col-md-8 col-sm-8 col-xs-12">
+                    <!--Section Title-->
+                    <div class="sec-title"><h2>InvestFar</h2></div>
+                    <div class="inner-box">
+                         <div class="text">
+                            <p> InvestFar is the leading real estate investor marketplace and database specifically dedicated to empowering real estate investors with data, resources and knowledge to instill confidence in investing in any market nationwide, by connecting them with the best local investor consultants and tools to make informed buying decisions. </p>
+
+                            <div class="link-box padd-top-20">
+                            <a><img src="./assets/images/resource/app-store.png" width="100%"></a>
+                            <a><img src="./assets/images/resource/google-play.png" width="100%"></a>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>

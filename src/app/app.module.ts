@@ -23,6 +23,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { MyCookieService } from './services/my-cookie-service';
 import { AuthGaurdService } from './services/auth-gaurd.service';
 import { MyModalService } from './services/my-modal.service';
+import { ImagePipe } from './services/image.pipe';
+
 /* //////////////////////////////////////// */
 
 import { AppComponent } from './app.component';
@@ -30,8 +32,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { PricingComponent } from './pricing/pricing.component';
-import { RentComponent } from './rent/rent.component';
-import { SellComponent } from './sell/sell.component';
 import { ContractorsComponent } from './contractors/contractors.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { LoginComponent } from './login/login.component';
@@ -71,6 +71,8 @@ import { InvestfarComponent } from './investfar/investfar.component';
 import { InvoiceDetailScreenComponent } from './invoice-detail-screen/invoice-detail-screen.component';
 import { RatingComponent } from './rating/rating.component';
 import { PropertyComponent } from './property/property.component';
+import { SellComponent } from './sell/sell.component';
+import { RentComponent } from './rent/rent.component';
 
 export const CustomCurrencyMaskConfig: any = {
   align: "left",
@@ -105,8 +107,6 @@ export function provideConfig() {
     FooterComponent,
     HomeComponent,
     PricingComponent,
-    RentComponent,
-    SellComponent,
     ContractorsComponent,
     CompaniesComponent,
     LoginComponent,
@@ -143,7 +143,10 @@ export function provideConfig() {
     InvestfarComponent,
     InvoiceDetailScreenComponent,
     RatingComponent,
-    PropertyComponent    
+    PropertyComponent,
+    ImagePipe,
+    SellComponent,
+    RentComponent    
   ],
   imports: [
     BrowserModule,

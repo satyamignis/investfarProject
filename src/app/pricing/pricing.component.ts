@@ -13,12 +13,112 @@ declare const $: any;
 
 export class PricingComponent implements OnInit {
   preloadimg:any;
-  pricingList = [];
   selectedPlan: any;
   user : any;
   queryParams : any;
   params : any;
   apiLoading:any;
+
+  pricingList:any=[{
+      product_id:"com.investfar.1report_tool",
+      title:"À la carte Services",
+      sub_title:"[Per Valuation / Analytic reports,Investor Consultants,InvestFar App,Free listing]",
+      app_title:"1 Valuation Report",
+      price:"$7.99",
+      color_code:"#BFDCA4",
+      desc:[
+         "$8.99 Per Valuation Report",
+         "$45.99 Mobile Notarization",
+         "$24.99 20 additional photos",
+         "$24.99 1-Minute Property Video",
+         "$84.99 Residential Property Inspection (Exterior Only)",
+         "$99.99 Residential Property Inspection (Exterior & Interior)",
+         "$94.99 Documents pick-up & Delivery (Notary docs, notices etc)"
+      ]
+   },
+   {
+      product_id:"com.investfar.5report_tool",
+      title:"Novice",
+      sub_title:"[5 Valuation / Analytic reports,Investor Consultants,Directory Access,InvestFar App,Free listing,Blog]",
+      app_title:"5 Valuation Reports",
+      price:"$24.99",
+      color_code:"#0463B5",
+      desc:[
+         "5 Valuation / Analytic reports",
+         "Investor Consultants",
+         "Directory Access",
+         "InvestFar App",
+         "Free listing",
+         "Blog",
+         "$7.99 Per Valuation Report",
+         "$41.99 Mobile Notarization",
+         "$19.99 20 additional photos",
+         "$19.99 1-Minute Property Video",
+         "$74.99 Residential Property Inspection (Exterior Only)",
+         "$94.99 Residential Property Inspection (Exterior & Interior)",
+         "$84.99 Documents pick-up & Delivery (Notary docs, notices etc)"
+      ]
+   },
+   {
+      product_id:"com.investfar.15report_tool",
+      title:"Apprentice",
+      sub_title:"[15 Valuation / Analytic reports,Investor Consultants,Directory Access,InvestFar App,Free listing,Blog,Newsletter,Monthly Market report alerts,FREE or discounted real estate seminars and events]",
+      app_title:"15 Valuation Reports",
+      price:"$54.99",
+      color_code:"#7151D0",
+      desc:[
+         "15 Valuation / Analytic reports",
+         "Investor Consultants",
+         "Directory Access",
+         "InvestFar App",
+         "Free listing",
+         "Blog",
+         "Newsletter",
+         "Monthly Market report alerts",
+         "FREE or discounted real estate seminars and events",
+          "$7.99 Per Valuation Report",
+          "$41.99 Mobile Notarization",
+          "$19.99 20 additional photos",
+          "$19.99 1-Minute Property Video",
+          "$74.99 Residential Property Inspection (Exterior Only)",
+          "$94.99 Residential Property Inspection (Exterior & Interior)",
+          "$84.99 Documents pick-up & Delivery (Notary docs, notices etc)"
+      ]
+   },
+   {
+      product_id:"com.investfar.25report_tool",
+      title:"Investors Club",
+      sub_title:"[25 Valuation / Analytic reports,Real Estate legal forms,Investor Consultants,Directory Access,Exclusive Forum,InvestFar App,Market data,Free listing,Blog,Newsletter,Monthly market report alerts,Investment criteria property match alerts,Private money introductions or joint ventures,FREE or discounted real estate seminars and events]",
+      app_title:"25 Valuation Reports",
+      price:"$149.99",
+      color_code:"#DA7EB1",
+      desc:[
+         "25 Valuation / Analytic reports",
+         "Real Estate legal forms",
+         "Investor Consultants",
+         "Directory Access",
+         "Exclusive Forum",
+         "InvestFar App",
+         "Market data",
+         "Free listing",
+         "Blog",
+         "Newsletter",
+         "Monthly market report alerts",
+         "3-Year workmanship warranty",
+         "Investment criteria property match alerts",
+         "Private money introductions or joint ventures",
+         "FREE or discounted real estate seminars and events",
+         "Contractor project matching&project completion monitoring",
+          "$7.99 Per Valuation Report",
+          "$41.99 Mobile Notarization",
+          "$19.99 20 additional photos",
+          "$19.99 1-Minute Property Video",
+          "$74.99 Residential Property Inspection (Exterior Only)",
+          "$94.99 Residential Property Inspection (Exterior & Interior)",
+          "$84.99 Documents pick-up & Delivery (Notary docs, notices etc)"
+      ]
+   }
+];
 
   constructor(
     private apiService : ApiService,
@@ -37,7 +137,10 @@ export class PricingComponent implements OnInit {
      }, 1000);
 
     this.user = this.myCookieService.getCookie('user')
-    this.getPlans();
+
+    // if need call api so use this
+    //this.getPlans();
+
     this.activeRoute.params.subscribe((params) => {
       this.params = params;
       console.log(params);

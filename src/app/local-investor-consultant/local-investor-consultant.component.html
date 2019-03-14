@@ -31,7 +31,7 @@
                             <br>To speak with an investor consultant, download our app now.
                             <br>Looking to be an Investor Consultant for InvestFar, please register below.
                             <!-- <a href="real-estate-agent-registration.html">click here.</a></p> -->
-                            <div class="link-box"><a [routerLink]="['/real-estate-agent-registration']" class="theme-btn btn-style-one text-uppercase"> Agent Registration <span class="fa fa-long-arrow-right"></span></a></div>
+                            <div class="link-box"><a *ngIf="!user" [routerLink]="['/real-estate-agent-registration']" class="theme-btn btn-style-one text-uppercase"> Agent Registration <span class="fa fa-long-arrow-right"></span></a></div>
                         </div>
                         
                         <!--Two Column-->

@@ -154,6 +154,10 @@ export class OfferTypeRentComponent implements OnInit {
     }
   }
 
+  getDetails(id){
+      this.router.navigate(['/property/'+id]);
+  }
+
   getFilterProperty(){
     let filtered_property_data : any = {};
     let length = 0;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MyCookieService } from '../services/my-cookie-service';
 
 @Component({
   selector: 'app-local-investor-consultant',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocalInvestorConsultantComponent implements OnInit {
   preloadimg:any;
-
-  constructor() { }
+  user:any;
+  constructor(private myCookieService:MyCookieService) { }
 
   ngOnInit() {
   	 window.scrollTo(0, 0);
@@ -16,6 +17,9 @@ export class LocalInvestorConsultantComponent implements OnInit {
      setTimeout(() => {  
          this.preloadimg=false;
      }, 1000);
+
+    this.user = this.myCookieService.getCookie('user');
   }
+
 
 }

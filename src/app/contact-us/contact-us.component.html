@@ -1,66 +1,73 @@
+<!-- *********** Loading ************** -->
 <div *ngIf="preloadimg" class="preloadingimg">
     <img src="./assets/images/icons/preloader.gif">
 </div>
+<div *ngIf="apiLoading" class="loadingApi">
+    <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 <section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <!--Title -->
-                <div class="title-column col-md-6 col-sm-12 col-xs-12">
-                    <h1 class="text-uppercase">contact us</h1>
-                </div>
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Title -->
+            <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                <h1 class="text-uppercase">contact us</h1>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
+<section class="sec-padding">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-sm-4">
+                <img src="./assets/images/resource/career.jpg" class="img-responsive img-thumbnail" />
+            </div>
 
-        <section class="sec-padding">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <div class="col-sm-4">
-                    <img src="./assets/images/resource/career.jpg" class="img-responsive img-thumbnail" />
-                </div>
+            <div class="content-side col-sm-8">
+                <div class="content-section services-content">
+                    <div class="text-block text-justify">
 
+                        <div class="form-outer form-block clearfix">
+                            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                              <div class="row">
 
-                <div class="content-side col-sm-8">
-                    <div class="content-section services-content">
-                        <div class="text-block text-justify">
-                            <div class="form-outer form-block clearfix">
-                                  <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
                                         <div class="field-label">First Name:</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
-                                        </div>
+                                        <input type="text" class="form-control" [ngClass]="{'error-code' : f.name.touched && f.name.errors && f.name.errors.required}" id="username" formControlName="name">
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
                                         <div class="field-label">Email:</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
-                                        </div>
+                                        <input type="email" class="form-control" [ngClass]="{'error-code' : f.email.touched && f.email.errors && ( f.email.errors.required || f.email.errors.email )}" id="email" formControlName="email">
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
                                         <div class="field-label">Subject:</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
-                                        </div>
+                                        <input type="text" class="form-control" [ngClass]="{'error-code' : f.subject.touched && f.subject.errors && f.subject.errors.required}" id="subject" formControlName="subject">
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
                                         <div class="field-label">Description:</div>
-                                        <textarea rows="3" type="text"></textarea>
-                                        </div>
+                                        <textarea type="text" rows="3" class="form-control" [ngClass]="{'error-code' : f.description.touched && f.description.errors && f.description.errors.required}" id="message" formControlName="description" rows="3"></textarea>
                                     </div>
-                                  </div>
-                                  <div class="col-sm-offset-3 col-sm-6">
-                                   <button type="button" class="btn-style-two width_full text-uppercase">Send</button>
-                                   <div class="col-sm-12">
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
-         </div>
-        </div>
-        </section>
+                            <div class="col-sm-offset-3 col-sm-6">
+                               <button type="submit" [ngClass]="{'active_sent_btn' : contactForm.valid}" [disabled]="!contactForm.valid" class="btn-style-two width_full text-uppercase">Send</button>
+                               <div class="col-sm-12">
+                               </div>
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+</section>

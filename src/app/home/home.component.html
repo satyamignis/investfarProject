@@ -262,7 +262,7 @@
                      <div class="field-label">PARKING</div>
                      <div class="row">
                       <div class="col-sm-12">
-                      <input type="number" [(ngModel)]="filter.parking" name="field-name" value="" placeholder="Parking" min="0">
+                        <input type="number" [(ngModel)]="filter.parking" name="field-name" value="" placeholder="Parking" min="0">
                       </div>
                     </div>
                   </div>
@@ -408,8 +408,10 @@
                       <div class="inner-box">
                         <div class="icon-box"><span class="flaticon-avatar"></span></div>
                         <h4>Make Predictive Decisions</h4>
-                        <div class="text">With our home valuation tool, make a more informed decision with our predictive data analytic...</div>
-                        <a>Read More</a>
+                        <div *ngIf="readMore != 1" class="text">With our home valuation tool, make a more informed decision with our predictive data analytic...</div>
+
+                        <div *ngIf="readMore == 1" class="text" style="overflow: scroll;overflow-x: hidden;">With our home valuation tool, make a more informed decision with our predictive data analytic valuation report, which supplies you with a 3 year property value forecast, 1 year risk of decline and rental value. Pay one low monthly fee for unlimited or pay per report.</div>
+                        <a *ngIf="readMore != 1" (click)="onReadMore('1')">Read More</a>
                       </div>
                     </div>
                     <!--Service Block-->
@@ -417,8 +419,9 @@
                       <div class="inner-box">
                         <div class="icon-box"><span class="flaticon-bar-graph-on-a-rectangle"></span></div>
                         <h4>Streamline With One Source for Investing</h4>
-                        <div class="text">Take the guesswork out of investing remote by scheduling a consultation with local...</div>
-                        <a>Read More</a>
+                        <div *ngIf="readMore != 2" class="text">Take the guesswork out of investing remote by scheduling a consultation with local...</div>
+                        <div *ngIf="readMore == 2" class="text readmoreContant" style="overflow: scroll;overflow-x: hidden;">Take the guesswork out of investing remote by scheduling a consultation with localconsultants or book any service from plumbing to roof repair, property management or use our self-service tools.</div>
+                        <a *ngIf="readMore != 2" (click)="onReadMore('2')">Read More</a>
                       </div>
                     </div>
                     <!--Service Block-->
@@ -426,8 +429,11 @@
                       <div class="inner-box">
                         <div class="icon-box"><span class="flaticon-home"></span></div>
                         <h4>Receive World Class Service</h4>
-                        <div class="text">Work with the highest quality service providers and investor consultants carefully...</div>
-                        <a>Read More</a>
+                        <div *ngIf="readMore != 3" class="text">Work with the highest quality service providers and investor consultants carefully...</div>
+                        <div *ngIf="readMore == 3" class="text readmoreContant" style="overflow: scroll;overflow-x: hidden;">
+                          Work with the highest quality service providers and investor consultants carefully selected, and vetted by InvestFar.
+                        </div>
+                        <a *ngIf="readMore != 3" (click)="onReadMore('3')">Read More</a>
                       </div>
                     </div>
                     <!--Service Block-->
@@ -435,8 +441,9 @@
                       <div class="inner-box">
                         <div class="icon-box"><span class="flaticon-connection"></span></div>
                         <h4>Safe and Easy Transactions</h4>
-                        <div class="text">Easily and safely buy or sell properties through our payments gateway, which verifies each...</div>
-                        <a>Read More</a>
+                        <div *ngIf="readMore != 4" class="text">Easily and safely buy or sell properties through our payments gateway, which verifies each...</div>
+                        <div *ngIf="readMore == 4" class="text readmoreContant" style="overflow: scroll;overflow-x: hidden;">Easily and safely buy or sell properties through our payments gateway, which verifies each party in the transaction automatically once all legal forms have been signed via docusign through InvestFar directly to the title companies or attorney. Even escrow service provider cost for release once job completion is verified. </div>
+                        <a *ngIf="readMore != 4" (click)="onReadMore('4')">Read More</a>
                       </div>
                     </div>
                     <!--Service Block-->
@@ -444,8 +451,11 @@
                       <div class="inner-box">
                         <div class="icon-box"><span class="flaticon-interface-8"></span></div>
                         <h4>Live Chat for Faster and Clearer Communication</h4>
-                        <div class="text">Our live chat feature allows you to communicate with buyers, sellers, tenants and management to immediatel...</div>
-                        <a>Read More</a>
+                        <div *ngIf="readMore != 5" class="text">Our live chat feature allows you to communicate with buyers, sellers, tenants and management to immediatel...</div>
+                        <div *ngIf="readMore == 5" class="text readmoreContant" style="overflow: scroll;overflow-x: hidden;">
+                          Our live chat feature allows you to communicate with buyers, sellers, tenants and management to immediately respond on any subject matter or build your network of investors internationally. Receive regular updates on what needs to be done withyour properties directly from tenants.
+                        </div>
+                        <a *ngIf="readMore != 5" (click)="onReadMore('5')">Read More</a>
                       </div>
                     </div>
                     <!--Service Block-->
@@ -453,8 +463,11 @@
                       <div class="inner-box">
                         <div class="icon-box"><span class="flaticon-graph"></span></div>
                         <h4>Simplified Reporting Capabilities</h4>
-                        <div class="text">Investors can keep records of all the invoices for service and maintenance work on each property...</div>
-                        <a>Read More</a>
+                        <div *ngIf="readMore != 6" class="text">Investors can keep records of all the invoices for service and maintenance work on each property...</div>
+                        <div *ngIf="readMore == 6" class="text readmoreContant" style="overflow: scroll;overflow-x: hidden;">
+                          Investors can keep records of all the invoices for service and maintenance work on each property and communication with tenants. Service providers can schedule, cancel and manage appointment request.
+                          </div>
+                        <a *ngIf="readMore != 6" (click)="onReadMore('6')">Read More</a>
                       </div>
                     </div>
                   </div>
@@ -513,7 +526,7 @@
 
               <div class="property-listing" *ngIf="properties.length == 0">
                 <div class="no_data_found">
-                <h3>No Data Found</h3>
+                  <h3>No Data Found</h3>
                 </div> 
                 <div class="text-center advance-btn">
                   <a class="theme-btn btn-style-one text-uppercase" target="" (click)="scrollToSearch()"> Back to Search </a></div>

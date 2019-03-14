@@ -1,15 +1,15 @@
 <!-- *********** Loading ************** -->
-    <div *ngIf="preloadimg" class="preloadingimg">
-        <img src="./assets/images/icons/preloader.gif">
-    </div>
-    <div *ngIf="apiLoading" class="loadingApi">
-        <img src="./assets/images/icons/loading.gif">
-    </div>
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<div *ngIf="apiLoading" class="loadingApi">
+    <img src="./assets/images/icons/loading.gif">
+</div>
 <!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 <section class="inner-banner">
-<div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
-<!--Header-Lower-->
+    <div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <!--Header-Lower-->
         <div class="auto-container">
             <div class="row clearfix">
                 <!--Title -->
@@ -21,242 +21,256 @@
     </div>
 </section>
 
-
 <section class="find-advisor style-two top">
-        <div class="auto-container">
-            <div class="row find-row">
-                <div class="col-sm-4 col-md-1 find-box">
+    <div class="auto-container">
+        <div class="row find-row">
+            <div class="col-sm-4 col-md-1 find-box">
                 <div class="custom-select">
+                    <div class="select-selected">
+                      <select>
+                        <option value="1">Buy</option>
+                        <option value="2">Sell</option>
+                        <option value="3">Rentals</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-2 col-xs-6 find-box">
+            <input type="search" class="city" name="search-field" value="" placeholder="City or postcode">
+        </div>
+        <div class="col-sm-4 col-md-2 col-xs-6 find-box">
+            <div class="custom-select">
                 <div class="select-selected">
-                  <select>
-                    <option value="1">Buy</option>
-                    <option value="2">Sell</option>
-                    <option value="3">Rentals</option>
-                  </select>
-                </div>
-                </div>
-                </div>
-                <div class="col-sm-4 col-md-2 col-xs-6 find-box">
-                    <input type="search" class="city" name="search-field" value="" placeholder="City or postcode">
-                </div>
-                <div class="col-sm-4 col-md-2 col-xs-6 find-box">
-                <div class="custom-select">
-               	<div class="select-selected">
                   <select>
                     <option value="0">All types:</option>
                     <option value="1">House</option>
                     <option value="2">Apartment </option>
                     <option value="1">Luxury property</option>
                     <option value="2">Land</option>
-                  </select>
-                </div>
-                </div>
-                </div>
-
-                <div class="col-sm-3 col-md-2 col-xs-6 find-box">
-                     <input type="search" class="price" name="search-field" value="" placeholder="Min price">
-                </div>
-
-                <div class="col-sm-3 col-md-2 col-xs-6 find-box">
-                     <input type="search" class="price" name="search-field" value="" placeholder="Max price">
-                </div>
-
-
-                <div class="col-sm-3 col-md-1 col-xs-6 find-box">
-                <div class="custom-select">
-                <div class="select-selected">
-                  <select>
-                    <option value="0">EUR</option>
-                    <option value="1">&pound;</option>
-                    <option value="2">&yen; </option>
-                    <option value="1">&#36;</option>
-                    <option value="2">&euro;</option>
-                  </select>
-                </div>
-                </div>
-                </div>
-
-                <div class="col-sm-3 col-md-2 col-xs-6 find-box">
-                     <button type="submit" class="theme-btn btn-style-two search">SEARCH<span class="fa fa-long-arrow-right"></span></button>
-                </div>
-
+                </select>
             </div>
         </div>
+    </div>
+
+    <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+     <input type="search" class="price" name="search-field" value="" placeholder="Min price">
+ </div>
+
+ <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+     <input type="search" class="price" name="search-field" value="" placeholder="Max price">
+ </div>
+
+
+ <div class="col-sm-3 col-md-1 col-xs-6 find-box">
+    <div class="custom-select">
+        <div class="select-selected">
+          <select>
+            <option value="0">EUR</option>
+            <option value="1">&pound;</option>
+            <option value="2">&yen; </option>
+            <option value="1">&#36;</option>
+            <option value="2">&euro;</option>
+        </select>
+    </div>
+</div>
+</div>
+
+<div class="col-sm-3 col-md-2 col-xs-6 find-box">
+ <button type="submit" class="theme-btn btn-style-two search">SEARCH<span class="fa fa-long-arrow-right"></span></button>
+</div>
+
+</div>
+</div>
 </section>
 
 
 <section class="login-section sec-padding">     
-<div class="auto-container centered">
-    <h4 class="padd-bott-60">Create a free account for access to advanced home-search features, and sign up for our newsletter to be among the first<br> to learn about exclusive properties, receive insider real estate tips, discover the latest in home trends, and more.</h4>
-</div>
-
-<div class="auto-container">
-    <div class="row login-form">
-    <div class="col-sm-6">
-        <div class="form-outer form-block">
-        <div class="default-title"><h2>Sign in to your account</h2></div>
-        <div class="form-group">
-            <div class="field-label">Email Address </div>
-            <input type="email" name="email" placeholder="" [(ngModel)]="loginData.email" />
-         </div>
-
-          <div class="form-group">
-            <div class="field-label">Password </div>
-            <input type="password" name="password" placeholder="" [(ngModel)]="loginData.password" />
-         </div>
-
-         <div class="form-group check-box">
-            <input type="checkbox" name="RememberMe" [checked]="rememberMe" [(ngModel)]="rememberMe"  id="remember-me"> 
-            <label for="remember-me">&nbsp;Remember me</label>
-        </div>
-
-        <div class="form-group">
-        <a [routerLink]="['/forgot-password']" class="forgot-password">Forgot password?</a>
-        </div>
-
-         <button (click)="doLogin()" type="button" class="btn-style-two width_full text-uppercase">Sign in</button>
-        <p class="text-center">or</p>
-        <div class="login_media text-center">
-        <div class="icon_block"><a (click)="signInWithFB()"  href="javascript:void(0);">
-            <i _ngcontent-c8="" aria-hidden="true" class="fa fa-facebook"></i></a>
-        </div>
-        <div class="icon_block"><a (click)="signInWithLinkedIn()" href="javascript:void(0);">
-            <i aria-hidden="true" class="fa fa-linkedin"></i></a></div>
-        </div>
-     </div>
+    <div class="auto-container centered">
+        <h4 class="padd-bott-60">Create a free account for access to advanced home-search features, and sign up for our newsletter to be among the first<br> to learn about exclusive properties, receive insider real estate tips, discover the latest in home trends, and more.</h4>
     </div>
 
-    <div class="col-sm-6">
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-outer form-block">
-        <div class="default-title"><h2>Sign up for an account</h2></div>
-        <div class="form-group">
-            <div class="field-label">First Name</div>
-            <input type="text" name="firstName" >
-         </div>
+    <div class="auto-container">
+        <div class="row login-form">
+            <div class="col-sm-6">
+                <div class="form-outer form-block">
+                    <div class="default-title"><h2>Sign in to your account</h2></div>
+                    <div class="form-group">
+                        <div class="field-label">Email Address </div>
+                        <input type="email" name="email" placeholder="" [(ngModel)]="loginData.email" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="field-label">Password </div>
+                        <input type="password" name="password" placeholder="" [(ngModel)]="loginData.password" />
+                    </div>
+
+                    <div class="form-group check-box">
+                        <input type="checkbox" name="RememberMe" [checked]="rememberMe" [(ngModel)]="rememberMe"  id="remember-me"> 
+                        <label for="remember-me">&nbsp;Remember me</label>
+                    </div>
+
+                    <div class="form-group">
+                        <a [routerLink]="['/forgot-password']" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <button (click)="doLogin()" type="button" class="btn-style-two width_full text-uppercase">Sign in</button>
+                    <p class="text-center">or</p>
+                    <div class="login_media text-center">
+                        <div class="icon_block"><a (click)="signInWithFB()"  href="javascript:void(0);">
+                            <i _ngcontent-c8="" aria-hidden="true" class="fa fa-facebook"></i></a>
+                        </div>
+                        <div class="icon_block"><a (click)="signInWithLinkedIn()" href="javascript:void(0);">
+                            <i aria-hidden="true" class="fa fa-linkedin"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6" *ngIf="registrationForm">
+                    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                        <div class="form-outer form-block">
+                            <div class="default-title"><h2>Sign up for an account</h2></div>
+                            <div class="form-group">
+                                <div class="field-label">First Name</div>
+                                <input formControlName="companyName" type="text">                    
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 no-margin">
+                                    <div class="form-group">
+                                        <div class="field-label">Email</div>
+                                        <input formControlName="email" type="email">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 no-margin">
+                                 <div class="form-group">
+                                    <div class="field-label">Website URL</div>
+                                    <input formControlName="website" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                         <div class="col-sm-12 col-md-6 no-margin">
+                             <div class="form-group">
+                                <div class="field-label">Select Country</div>
+                                <div class="custom-select">
+                                    <div class="select-selected">
+                                        <select formControlName="countryCode">
+                                            <option value="">Country Code</option>
+                                            <option *ngFor="let c of countryCode" [value]="c.code">{{c.code}} {{c.callingCode}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 no-margin">
+                         <div class="form-group">
+                            <div class="field-label">Phone Number</div>
+                            <input class="form-control side_input" formControlName="number" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                 <div class="col-sm-12 col-md-6 no-margin">
+                     <div class="form-group">
+                        <div class="field-label">Primary Business Address</div>
+                        <div class="form-group choose-location">
+                         <input class="form-control side_input location" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+                         (onAddressChange)="handleAddressChange($event)" type="text" style="display: none; border:none;" placeholder="">
+
+                         <input class="form side_input location" formControlName="addr" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+                         (onAddressChange)="handleAddressChange($event)" type="text" autocomplete="skdmnfjksdnfkjsdfndks" placeholder="">                 
+                     </div> 
+                 </div>
+             </div>
+
+             <div class="col-sm-12 col-md-6 no-margin">
+                <div class="form-group">
+                    <div class="field-label">City</div>
+                    <input class="form-control side_input" formControlName="city" type="text">
+                </div>
+            </div>
+        </div>
 
         <div class="row">
-        <div class="col-sm-12 col-md-6 no-margin">
-        <div class="form-group">
-            <div class="field-label">Email</div>
-            <input type="text" name="email">
-        </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 no-margin">
-         <div class="form-group">
-            <div class="field-label">Website URL</div>
-            <input type="email" name="field-name" value="" placeholder="">
-         </div>
-        </div>
-        </div>
-
-         <div class="row">
-             <div class="col-sm-12 col-md-6 no-margin">
-                 <div class="form-group">
-                    <div class="field-label">Select Country</div>
-                    <div class="custom-select">
-                    <div class="select-selected">
-                    <select>
-                    <option value="0">US + 1</option>
-                    <option value="1">US + 1</option>
-                    <option value="2">US + 1</option>
-                    <option value="1">US + 1</option>
-                    <option value="2">US + 1</option>
-                  </select>
-                </div>
-                 </div>
-                 </div>
-             </div>
-
          <div class="col-sm-12 col-md-6 no-margin">
-         <div class="form-group">
-            <div class="field-label">Phone Number</div>
-            <input type="text" name="field-name" value="" placeholder="">
-         </div>
-          </div>
-         </div>
-
-         <div class="row">
-         <div class="col-sm-12 col-md-6 no-margin">
-         <div class="form-group">
-            <div class="field-label">Primary Business Address</div>
-            <div class="form-group choose-location">
-                    <input class="form-control side_input location" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text">              
-            </div> 
-         </div>
-         </div>
+             <div class="form-group">
+                <div class="field-label">State</div>
+                <input class="form-control side_input" formControlName="state" type="text">
+            </div>
+        </div>
 
         <div class="col-sm-12 col-md-6 no-margin">
-        <div class="form-group">
-            <div class="field-label">City</div>
-            <input type="text" name="field-name" value="" placeholder="">
-        </div>
-        </div>
-        </div>
-
-         <div class="row">
-             <div class="col-sm-12 col-md-6 no-margin">
-                 <div class="form-group">
-                    <div class="field-label">State</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-             </div>
-
-         <div class="col-sm-12 col-md-6 no-margin">
          <div class="form-group">
             <div class="field-label">Zip Code</div>
-            <input type="password" name="field-name" value="" placeholder="">
-         </div>
-          </div>
-
-        <div class="col-sm-12 col-md-6 no-margin">
-              <div class="form-group">
-                    <div class="field-label">Are you a licensed agent?</div>
-                    <div class="custom-select">
-                    <div class="select-selected">
-                    <select>
-                    <option value="">Yes</option>
-                    <option value="">No</option>
-                  </select>
-                </div>
-                </div>
-              </div>
+            <input formControlName="zipcode" type="text" >
         </div>
-
-        <div class="col-sm-12 col-md-6 no-margin">
-         <div class="form-group">
-            <div class="field-label">Other licenses</div>
-            <input type="text" name="field-name" value="" placeholder="">
-         </div>
-      </div>
-
-      <div class="col-sm-12 col-md-6 no-margin">
-         <div class="form-group">
-            <div class="field-label">Broker Address</div>
-            <input type="text" name="field-name" value="" placeholder="">
-         </div>
-      </div>
-
-     <div class="col-sm-12 col-md-6 no-margin">
-         <div class="form-group">
-            <div class="field-label">Website</div>
-            <input type="text" name="field-name" value="" placeholder="">
-         </div>
-     </div>
-     </div>
-
-        <div class="form-group">
-            <div class="upload-btn-wrapper">
-            <button class="upload-btn"> Please Attach Certificates:</button>
-            <input type="file" name="myfile" (change)="onFileChanged($event)" />
-            </div> 
-        </div>
-
-        <button type="submit" class="btn-style-two width_full text-uppercase">submit</button>
-     </div>
-     </form>
     </div>
+    <div class="col-sm-12 col-md-12 no-margin">
+     <div class="form-group">
+         <div class="field-label">Password</div>
+         <input formControlName="password" type="password">
+     </div>
+ </div>
+
+
+ <div class="col-sm-12 col-md-6 no-margin">
+  <div class="form-group">
+    <div class="field-label">Are you a licensed agent?</div>
+    <div class="custom-select">
+        <div class="select-selected">
+            <select>
+                <option value="">Yes</option>
+                <option value="">No</option>
+            </select>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="col-sm-12 col-md-6 no-margin">
+ <div class="form-group">
+    <div class="field-label">Other licenses</div>
+    <input type="text" name="field-name" value="" placeholder="">
+</div>
+</div>
+
+<div class="col-sm-12 col-md-6 no-margin">
+ <div class="form-group">
+    <div class="field-label">Broker Address</div>
+    <input type="text" name="field-name" value="" placeholder="">
+</div>
+</div>
+
+<div class="col-sm-12 col-md-6 no-margin">
+ <div class="form-group">
+    <div class="field-label">Website</div>
+    <input type="text" name="field-name" value="" placeholder="">
+</div>
+</div>
+</div>
+
+<div class="form-group">
+    <div class="upload-btn-wrapper">
+        <button class="upload-btn"> Please Attach Certificates:</button>
+        <input id="upload-file-selector" type="file" accept="image/*" multiple (change)="onImageFile($event.target.files)">
+    </div> 
+</div>
+
+<div class="col-sm-12 col-md-6 no-margin imagePreview">
+    <div class="preview-img" *ngFor="let img of imagePreview; let i=index">
+        <img class="preview" [src]="img">
+        <button type="button" class="close-btn" (click)="deleteImage(i)"><i class="fa fa-close"></i></button>
+    </div>
+</div>
+<input type="checkbox" id="myCheck" formControlName="isCertified" (change)="imageCheck()" style="visibility: hidden;">
+<button [ngClass]="{'active_side_btn' : isFormValid()}" type="submit" class="btn-style-two width_full text-uppercase">submit</button>
+</div>
+</form>
+</div>
 </div>
 </div>
 </section>

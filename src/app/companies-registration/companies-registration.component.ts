@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
-import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
+import * as CountryCode from '../../assets/country-code.json';
 import { MyCookieService } from '../services/my-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 declare const $: any;
+
 
 @Component({
   selector: 'app-companies-registration',
@@ -14,6 +16,7 @@ declare const $: any;
 })
 export class CompaniesRegistrationComponent implements OnInit {
   @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+  countryCode = (<any>CountryCode).countries;
   companyType = 0;
   currentCountry = '';
   registrationForm : FormGroup;
@@ -23,8 +26,9 @@ export class CompaniesRegistrationComponent implements OnInit {
   imagePreview : any = [];
   registrationType = '2';
   defaultCertificate = 2;
-
   preloadimg:any;
+  apiLoading:any;
+
   constructor( 
     private router : Router,
     private apiService : ApiService,
@@ -35,26 +39,32 @@ export class CompaniesRegistrationComponent implements OnInit {
 
   ngOnInit() {
   		window.scrollTo(0, 0);
-  		/*$(".toggle-open").slideToggle(0);
-	    $(".toggle-click").click(function(){
-	        $(".toggle-open").slideToggle(1000);
-	    });*/
-
         this.preloadimg=true;
         setTimeout(() => {  
            this.preloadimg=false;
         }, 1000);
 
-
-    if(this.router.url.includes('company')){
+    if(this.router.url.includes('companies-registration')){
       this.companyType = 1;
-    } else if(this.router.url.includes('contractor')) {
+    } else if(this.router.url.includes('contractor-registration')) {
       this.companyType = 2;
+    } else if(this.router.url.includes('real-estate-agent-registration')) {
+      this.companyType = 3;
     }
     this.getCurrentLocation();
   }
 
-   handleAddressChange(address : any){
+  citiesGet(){
+    if(this.registrationForm.value['moreCities']){
+      $('.Morecities').hide('slow');
+
+    }else{
+      $('.Morecities').show('slow');
+    }
+  }
+
+
+ handleAddressChange(address : any){
     this.address.address = address.formatted_address;
     this.address.latitude = address.geometry.location.lat()
     this.address.longitude = address.geometry.location.lng()
@@ -72,12 +82,13 @@ export class CompaniesRegistrationComponent implements OnInit {
       (response : any) => {
         this.currentCountry = response.country
         console.log(this.currentCountry)
-        this.createForm();
         },
         (error: any) => {
           console.log(error);
         }
       )
+
+      this.createForm();
   }
   
   createForm(){
@@ -92,14 +103,14 @@ export class CompaniesRegistrationComponent implements OnInit {
       state: ['', Validators.required],
       zipcode : ['', Validators.required],
       moreCities : [false, Validators.required],
-      // registered_as : ['1', Validators.required],
-      isCertified : [false, Validators.required],
+      registered_as : ['1', Validators.required],
+      isCertified : [true, Validators.required],
       password: ['', Validators.required],
-      add_more_city_state : this.formBuilder.array([])
+      //add_more_city_state : this.formBuilder.array([])
     })  
-    console.log(this.registrationForm.value)
-    this.control = <FormArray>this.registrationForm.controls.add_more_city_state;
-    // this.createItem();
+    //console.log(this.registrationForm.value)
+    //this.control = <FormArray>this.registrationForm.controls.add_more_city_state;
+    //this.createItem();
   }
 
   createItem() {
@@ -113,9 +124,8 @@ export class CompaniesRegistrationComponent implements OnInit {
   get f() { return this.registrationForm.controls; }
 
   onSubmit(){
-    console.log(this.registrationForm.value);
-    console.log(this.registrationForm.valid);
     if(this.isFormValid()){
+      this.apiLoading=true;
       let registrationData =  new FormData();
       for(let key in this.registrationForm.value){
         if(key == 'add_more_city_state'){
@@ -151,12 +161,15 @@ export class CompaniesRegistrationComponent implements OnInit {
            } else {
             this.myToasterService.error(response.errorMsg, 'Try Again');
            }
+           this.apiLoading=false;
         },
         (error: any) => {
           console.log(error);
+          this.apiLoading=false;
         }
       )
     }
+    
   }
 
   isFormValid(){
@@ -204,13 +217,13 @@ export class CompaniesRegistrationComponent implements OnInit {
   }
 
   getDailingCode(value){
-    // let callingCode = ''
-    // for(let c of this.countryCode){
-    //   if(c.code == value){
-    //     callingCode = c.callingCode
-    //   }
-    // }
-    // return callingCode;
+    let callingCode = ''
+    for(let c of this.countryCode){
+      if(c.code == value){
+        callingCode = c.callingCode
+      }
+    }
+    return callingCode;
   }
 
   imageCheck(){
@@ -224,5 +237,4 @@ export class CompaniesRegistrationComponent implements OnInit {
     this.images.splice(index,1)
     this.imagePreview.splice(index,1)
   }
-
 }

@@ -311,7 +311,7 @@
         <p class="item-location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{p.address}}</p>
           <p class="year-ago">{{ p.posted_at }}</p>
           </div>
-          <a class="theme-btn btn-style-one text-center">DETAILS</a>
+          <a class="theme-btn btn-style-one text-center" (click)="getDetails(p.property_slug)">DETAILS</a>
         </div>
 
       </div>

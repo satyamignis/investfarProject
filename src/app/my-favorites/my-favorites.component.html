@@ -1,107 +1,142 @@
-<div *ngIf="preloadimg" class="preloadingimg">
-    <img src="./assets/images/icons/preloader.gif">
-</div>
+<!-- *********** Loading ************** -->
+    <div *ngIf="preloadimg" class="preloadingimg">
+        <img src="./assets/images/icons/preloader.gif">
+    </div>
+    <div *ngIf="apiLoading" class="loadingApi">
+        <img src="./assets/images/icons/loading.gif">
+    </div>
+<!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 <section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <!--Title -->
-                <div class="title-column col-md-6 col-sm-12 col-xs-12">
-                    <h1 class="text-uppercase">My Favorites</h1>
-                </div>
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Title -->
+            <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                <h1 class="text-uppercase">My Favorites</h1>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-        <section class="sec-padding">
-        <div class="auto-container">
-           <div class="multi-drop-down">
-            <ng-multiselect-dropdown *ngIf="activeTab == 1" [(ngModel)]="selectedCities" [placeholder]="'Select Cities'" [data]="property_cities" [settings]="dropdownSettings"
-                (onSelect)="onSelect($event)" (onDeSelect)="onDeSelect($event)">
-            </ng-multiselect-dropdown>
-            <ng-multiselect-dropdown *ngIf="activeTab == 2" [(ngModel)]="selectedCities" [placeholder]="'Select Cities'" [data]="company_cities" [settings]="dropdownSettings"
-              (onSelect)="onSelect($event)" (onDeSelect)="onDeSelect($event)">
-            </ng-multiselect-dropdown>
-          </div>
+<section class="sec-padding">
+    <div class="auto-container">
+     <div class="multi-drop-down">
+        <ng-multiselect-dropdown *ngIf="activeTab == 1" [(ngModel)]="selectedCities" [placeholder]="'Select Cities'" [data]="property_cities" [settings]="dropdownSettings"
+        (onSelect)="onSelect($event)" (onDeSelect)="onDeSelect($event)">
+    </ng-multiselect-dropdown>
+    <ng-multiselect-dropdown *ngIf="activeTab == 2" [(ngModel)]="selectedCities" [placeholder]="'Select Cities'" [data]="company_cities" [settings]="dropdownSettings"
+    (onSelect)="onSelect($event)" (onDeSelect)="onDeSelect($event)">
+</ng-multiselect-dropdown>
+</div>
 
-            <div class="panel panel-primary" id="services-tab">
-                <div class="panel-heading">
+<div class="panel panel-primary" id="services-tab">
+    <div class="panel-heading">
                     <!--  <ul class="nav panel-tabs">
                         <li class="active"><a href="#tab1" data-toggle="tab">Properties</a></li>
                     </ul> -->
                     <ul class="nav panel-tabs">
                       <li class="nav-item">
                         <a class="nav-link" (click)="changeActiveTab('1')" [ngClass]="{'active' : activeTab == 1}">Properties</a>
-                      </li>
-                      <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" *ngIf="user.registrationType == 1" (click)="changeActiveTab('2')" [ngClass]="{'active' : activeTab == 2}">Companies</a>
-                      </li>
-                    </ul>
-                </div>
-                <div class="panel-body">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab1" *ngIf="activeTab == '1'">
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="new" *ngIf="activeTab == '1'">
+                        <ul class="services-listing-wrap">
+                         <li *ngFor="let p of properties">
                             <div class="tab-full-block clearfix">
-                            <div class="row rent-row">
+                                <div class="row rent-row">
                                     <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <img src="./assets/images/resource/pro-tab-01.jpg" alt="" class="img-responsive img-thumbnail" /></div>
-                                <div class="col-sm-9 col-md-6 col">
-                                    <div class="tab-in">
-                                        <h3>SOLD</h3>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> 4813 E Brill St, Phoenix, AZ 85008, USA</address>
-                                        <div class="rating">
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <a href="#" class="like"><i class="fa fa-heart"></i></a>
+                                        <img src="{{p.propertyImg || './assets/images/resource/pro-tab-01.jpg'}}" alt="" class="img-responsive img-thumbnail" /></div>
+                                        <div class="col-sm-9 col-md-6 col">
+                                            <div class="tab-in">
+                                                <h3>{{p.title}}</h3>
+                                                <address>
+                                                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{p.address}}</address>
+                                                   <!--  <star-rating [starType]="'svg'" [staticColor]="getColor(p.rating)" [showHalfStars]="true" [disabled]="true" [rating]="p.rating"></star-rating> -->
+                                                    <div class="rating">
+                                                        <i class="fa fa-star star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star star" aria-hidden="true"></i>
+                                                        <a (click)="unFavourite(p)" class="like"><i class="fa fa-heart"></i></a>
+                                                    </div>
+                                                    <div class="price">
+                                                        <span *ngIf="p.price != '-1'">{{p.price | currency}}</span> 
+                                                        <span *ngIf="p.price == '-1'">See Valuation Report</span>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4 col">
+                                                <div class="tab-in-right">
+                                                    <img src="{{p.userImage || './assets/images/resource/tab-logo.jpg'}}" width="60px" class="pull-left">
+                                                    <p>{{p.userName}}</p></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="price">$228,000.00</div>
+                                    </li>
+                                    <li *ngIf="properties.length == 0">
+                                      <div class="service-listing text-center">
+                                        No Data
                                     </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col">
-                                    <div class="tab-in-right">
-                                    <img src="./assets/images/resource/tab-logo.jpg" width="60px" class="pull-left">
-                                    <p>Matt bring anything with Mclane</p></div>
-                                </div>
-                                </div>
+                                </li>
+                            </ul>
                         </div>
 
-                         <div class="tab-full-block clearfix" *ngIf="activeTab == '2' && user.registrationType == 1">
-                            <div class="row rent-row">
-                                    <div class="col-sm-3 col-md-2 margin-bott-10 col">
-                                    <img src="./assets/images/resource/pro-tab-01.jpg" alt="" class="img-responsive img-thumbnail" /></div>
-                                <div class="col-sm-9 col-md-6 col">
-                                    <div class="tab-in">
-                                        <h3>SOLD</h3>
-                                        <address>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> 4813 E Brill St, Phoenix, AZ 85008, USA</address>
-                                        <div class="rating">
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <i class="fa fa-star star" aria-hidden="true"></i>
-                                            <a href="#" class="like"><i class="fa fa-heart"></i></a>
+                        <div class="tab-pane active" id="scheduled" *ngIf="activeTab == '2' && user.registrationType == 1">
+                            <ul class="services-listing-wrap">
+                             <li *ngFor="let c of companies">
+                                <div class="tab-full-block clearfix">
+                                    <div class="row rent-row">
+                                        <div class="col-sm-3 col-md-2 margin-bott-10 col">
+                                            <img src="{{c.propertyImg || './assets/images/resource/pro-tab-01.jpg'}}" alt="" class="img-responsive img-thumbnail" /></div>
+                                            <div class="col-sm-9 col-md-6 col">
+                                                <div class="tab-in">
+                                                    <h3>{{c.companyName}}</h3>
+                                                    <address>
+                                                        <i class="fa fa-map-marker" aria-hidden="true"></i> {{c.address}}</address>
+                                                        <span class="email-box">
+                                                          <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                          <b>{{c.email}}</b>
+                                                        </span>
+                                                      <span class="email-box">
+                                                          <i class="fa fa-phone" aria-hidden="true"></i>
+                                                          <b>{{c.phoneNo}}</b>
+                                                      </span>
+                                                      <span class="email-box border-0">
+                                                          <i class="fa fa-globe" aria-hidden="true"></i>
+                                                          <b>{{c.website}}</b>
+                                                      </span>   
+                                                      <div class="rating">
+                                                        <a (click)="unFavourite(c)" class="like"><i class="fa fa-heart"></i></a>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4 col">
+                                                <div class="tab-in-right">
+                                                    <img src="{{p.userImage || './assets/images/resource/tab-logo.jpg'}}" width="60px" class="pull-left">
+                                                    <p>{{p.userName}}</p></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="price">$228,000.00</div>
+                                    </li>
+                                    <li *ngIf="companies.length == 0">
+                                      <div class="service-listing text-center">
+                                        No Data
                                     </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col">
-                                    <div class="tab-in-right">
-                                    <img src="./assets/images/resource/tab-logo.jpg" width="60px" class="pull-left">
-                                    <p>Matt bring anything with Mclane</p></div>
-                                </div>
-                                </div>
-                        </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-        </div>
-        </section>
+    </section>
 
 
-  
