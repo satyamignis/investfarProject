@@ -1,0 +1,126 @@
+<!-- *********** Loading ************** -->
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<div *ngIf="apiLoading" class="loadingApi">
+    <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
+<app-menu-header></app-menu-header>
+<section class="inner-banner">
+    <div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <!--Header-Lower-->
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-sm-12 col-xs-12">
+                    <h1>Compare Property</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="compare-properties-container">
+ <div class="container compare-container">
+      <table class="compare_tbl" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr class="floatCNav sticky">
+            <td>
+              <div><input id="differences" [(ngModel)]="differenceOnly" type="checkbox"> Show Differences Only</div>
+            </td>
+            <td *ngFor="let p of properties">
+              <div class="selected_item" *ngIf="p.image1">
+                  <a herf="#"><img src="{{p.image1 | image:'property'}}" alt="img" title="img" class="img-responsive"></a>
+              </div>
+              <div class="selected_item" *ngIf="!p.image1">
+                    <a herf="#"><img src="assets/images/detail-img-1.jpg" alt="img" title="img" class="img-responsive"></a>
+                </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" data-ht="Summary" style="display: table-cell;">
+              <table class="compare-table" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                  <tr class="property-name">
+                    <td class="title">Property Name</td>
+                    <td class="val" *ngFor="let p of properties"><a [routerLink]="['/property/'+p.property_slug]">{{p.title}}</a></td>
+                  </tr>
+                  <tr class="performance">
+                    <td class="title">Address</td>
+                    <td class="val" *ngFor="let p of properties">{{p.address}}</td>
+                  </tr>
+                  <tr class="display" *ngIf="checkDifference('rating')">
+                      <td class="title">Ratings</td>
+                      <td class="val"  *ngFor="let p of properties">{{p.rating}}</td>
+                  </tr>
+                  <tr class="storage" *ngIf="checkDifference('property_category')">
+                      <td class="title">Property type</td>
+                      <td class="val" *ngFor="let p of properties" [innerHTML]="getPropertyName(p.property_category)"></td>
+                  </tr>
+                  <tr class="camera" *ngIf="checkDifference('search_type')">
+                      <td class="title">Offer type</td>
+                      <td class="val" *ngFor="let p of properties" [innerHTML]="getOfferName(p.search_type)"></td>
+                  </tr>
+                  <tr class="battery"  *ngIf="checkDifference('city')">
+                      <td class="title">City</td>
+                      <td class="val" *ngFor="let p of properties">{{p.city}}</td>
+                  </tr>
+                  <tr class="ram" *ngIf="checkDifference('bed_rooms')">
+                        <td class="title">Bedrooms</td>
+                        <td class="val" *ngFor="let p of properties">{{p.bed_rooms}}</td>
+                    </tr>
+                  <tr class="ram" *ngIf="checkDifference('bath_rooms')">
+                      <td class="title">Bathrooms</td>
+                      <td class="val" *ngFor="let p of properties">{{p.bath_rooms}}</td>
+                  </tr>
+                  <tr class="ram" *ngIf="checkDifference('property_size')">
+                      <td class="title">Property size</td>
+                      <td class="val" *ngFor="let p of properties">{{p.property_size}} ft²</td>
+                  </tr>
+                  <tr class="ram" *ngIf="checkDifference('year')">
+                      <td class="title">Year</td>
+                      <td class="val" *ngFor="let p of properties">{{p.year}}</td>
+                  </tr>
+                  <tr class="ram" *ngIf="checkDifference('price')">
+                      <td class="title">Asking Price</td>
+                      <td class="val" *ngFor="let p of properties">
+                        <span *ngIf="p.price == '-1'">See Valuation Report</span>
+                        <span *ngIf="p.price != '-1'">{{p.price | currency}}</span>
+                      </td>
+                  </tr>
+                  <!-- <tr class="ram">
+                      <td class="title">Condition</td>
+                      <td class="val" *ngFor="let p of properties">{{p.condition}}</td>
+                  </tr>                                                                         -->
+                  <tr class="amenities-list" *ngIf="checkDifference('feature')">
+                      <td class="title">Amenities</td>
+                      <td class="val" *ngFor="let features of filteredFeatures">                          
+                          <ul>
+                            <li *ngFor="let f of features">{{f.text}}</li>
+                          </ul>                        
+                      </td>
+                  </tr>   
+                  <tr class="ram" *ngIf="checkDifference('live')">
+                      <td class="title">Is the home vacant, rented or lived in ?</td>
+                      <td class="val" *ngFor="let p of properties">{{p.live}}</td>
+                  </tr>   
+                  <tr class="ram" *ngIf="checkDifference('home')">
+                      <td class="title">How much do you think the home is worth ?</td>
+                      <td class="val" *ngFor="let p of properties">
+                          <span *ngIf="p.home != '-1'">{{p.home | currency}}</span>
+                          <span *ngIf="p.home == '-1'">See Valuation Report</span>
+                        </td>
+                  </tr>   
+                  <tr class="ram" *ngIf="checkDifference('selling')">
+                      <td class="title">Why are you selling?</td>
+                      <td class="val" *ngFor="let p of properties">{{p.selling}}</td>
+                  </tr>                                                                        
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </section>

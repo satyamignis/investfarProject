@@ -5,3 +5,6 @@
 .offer-form input, .offer-form textarea {
     color: #626262;
 }
+.star-rating {
+    padding-right: 65px;
+}

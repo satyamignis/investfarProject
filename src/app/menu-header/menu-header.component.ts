@@ -36,6 +36,8 @@ export class MenuHeaderComponent implements OnInit {
     } else if(this.user && this.user.product_id != '' ){
       if((path.includes('real-estate-legal-forms'))
         || (path.includes('property-search'))
+        || (path.includes('map-search'))
+        || (path.includes('open-home-search'))
         || (path.includes('featured-properties'))
         || (path.includes('organization-login'))
         ){
@@ -80,8 +82,9 @@ logout(){
   this.user = undefined;
   this.toastr.success('Successfully Logout.','Success');
   setInterval(() => { 
+    this.myCookieService.deleteCookieAll();
     this.apiLoading= false;
-  }, 500);
+  }, 1000);
 }
 
 }

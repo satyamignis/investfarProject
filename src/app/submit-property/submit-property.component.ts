@@ -21,6 +21,7 @@ export class SubmitPropertyComponent implements OnInit {
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
 
   preloadimg:any;
+  isDisable:any = true;
   propertyForm: FormGroup;
   apiLoading:any;
   //propertyTypes = PropertyTypes;
@@ -145,6 +146,7 @@ export class SubmitPropertyComponent implements OnInit {
     console.log('address', this.address)
     console.log('property image', this.propertyImages.length)
     console.log('plan image', this.planImages.length)
+debugger;
     this.isFormValid()
     if (this.isFormValid()) {
       this.apiLoading=true;
@@ -269,10 +271,12 @@ export class SubmitPropertyComponent implements OnInit {
     if (this.propertyPreviewImages.length >= 1 && this.propertyForm.valid && this.address.address) {
       if (this.propertyForm.value.floor_plan) {
         if (this.planPreviewImages.length >= 1) {
-          flag = true
+          flag = true;
+          this.isDisable = false;
         }
       } else {
-        flag = true
+        flag = true;
+        this.isDisable = false;
       }
     }
     return flag;

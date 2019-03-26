@@ -169,7 +169,6 @@ export class CompaniesRegistrationComponent implements OnInit {
         }
       )
     }
-    
   }
 
   isFormValid(){

@@ -748,7 +748,6 @@
 .main-header .social-links-one{
 	top:0px;
 }
-
 .main-header .header-top .top-left,
 .main-header .header-top .top-right{
 	float:none !important;
@@ -880,6 +879,26 @@
 .login-form .col-sm-6{
    flex: 1 0 299px;
 }
+/*mmm*/
+.header-upper .appt-btn{
+	width: 100%;
+}
+.main-header .main-menu, .main-menu .navigation{
+	width: 100% !important;
+	float: none !important;
+}
+.header-upper.appt-btn{
+	width: 100%;
+}
+.header-upper .btn-outer.top,
+.main-menu .navigation > li{
+	float: none !important;
+}
+.select-lang{
+	right: 12px !important;
+	top: 120px !important;
+	left: 0px !important;
+}
 }
 
 @media only screen and (max-width: 499px) {
@@ -937,7 +956,6 @@
     padding: 4px 10px;*/
     width:100%;
     padding: 4px 35px;
-
 
 }
 .select-lang{

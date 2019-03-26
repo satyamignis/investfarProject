@@ -1,0 +1,104 @@
+<section class="find-advisor style-two top">
+    <div class="auto-container">
+        <div class="row find-row">
+            <div class="col-sm-4 col-md-1 find-box">
+                <div class="custom-select">
+                    <div class="select-selected">
+                     <select [(ngModel)]="filter.offer_type" >
+                      <option value="0">All Offer</option>
+                      <option *ngFor="let t of offerTypes" [value]="t.value">{{t.text}}</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-4 col-md-2 col-xs-6 find-box">
+       <div class="custom-select">
+        <div class="select-selected">
+          <select [(ngModel)]="filter.city">
+            <option value="">City</option>
+            <option *ngFor="let c of cities" [value]="c.city">{{c.city}}
+            </select>
+        </div>
+    </div>
+
+</div>
+<div class="col-sm-4 col-md-2 col-xs-6 find-box">
+    <div class="custom-select">
+        <div class="select-selected">
+          <select [(ngModel)]="filter.property_type">
+              <option value="0">All types</option>
+              <option *ngFor="let p of propertyTypes" [value]="p.value">{{p.text}}</option>
+          </select>
+      </div>
+  </div>
+</div>
+
+<div class="col-sm-3 col-md-2 col-xs-6 find-box">
+  <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Min price" [(ngModel)]="filter.min_price"> </div>
+
+  <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+     <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Max price" [(ngModel)]="filter.max_price">
+ </div>
+
+
+ <div class="col-sm-3 col-md-1 col-xs-6 find-box">
+    <div class="custom-select">
+        <div class="select-selected">
+         <select [(ngModel)]="eur">
+            <option value="0">EUR</option>
+            <option value="1">&#36;</option>
+                        <!--<option value="2">&pound;</option>
+                        <option value="3">&yen; </option>
+                        <option value="4">&euro;</option>-->
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-md-2 col-xs-6 find-box">
+           <button type="submit" class="theme-btn btn-style-two search" (click)="onSearch('btn')">SEARCH<span class="fa fa-long-arrow-right"></span></button>
+       </div>
+
+   </div>
+</div>
+</section>
+
+<!--latest-listings-->
+<section class="latest-listings" #structure id="structure" *ngIf="showfilterpro">
+    <div class="auto-container">
+      <div class="sec-title">
+        <h2> PROPERTIES </h2>
+    </div> 
+
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let p of properties">
+          <a class="listing-main" (click)="getDetails(p.property_slug)">
+            <div class="listing-img">
+              <div class="price" *ngIf="p.price != '-1'">{{p.price | currency}}</div>
+
+              <div class="price" *ngIf="p.price == '-1'">See Valuation Report</div>
+              <div class="star"><i class="fa fa-star-o" aria-hidden="true"></i></div>
+              <img src="{{p.image1}}" alt="" class="img-responsive" width="100%" />
+          </div>
+
+          <div class="listting-inner">
+              <h4 class="item-title">{{p.title}}</h4>
+              <p class="item-location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{p.address}}</p>
+          </div>
+            </a>
+        </div>
+
+        <div class="property-listing" *ngIf="properties.length == 0">
+            <div class="no_data_found">
+              <h3>No Data Found</h3>
+          </div> 
+<!--           <div class="text-center advance-btn">
+              <a class="theme-btn btn-style-one text-uppercase" target="" (click)="scrollToSearch()"> Back to Search </a></div> -->
+          </div>
+      </div>
+      <div class="text-center advance-btn" *ngIf="properties.length > 3">
+
+        <a class="theme-btn btn-style-one text-uppercase" target="" (click)="loadMoreProperties()">  <i *ngIf="apiLoading"  class="fa fa-refresh fa-spin fa-3x fa-fw"></i> Load More </a>
+    </div>
+</div>
+</section>

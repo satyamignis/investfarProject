@@ -25,11 +25,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { MyOfferedServicesComponent } from './my-offered-services/my-offered-services.component';
 import { ManageServicesComponent } from './manage-services/manage-services.component';
-import { OrganizationLoginComponent } from './organization-login/organization-login.component';
-import { FeaturedPropertiesComponent } from './featured-properties/featured-properties.component';
 import { OfferTypeRentComponent } from './offer-type-rent/offer-type-rent.component';
 import { BankDetailComponent } from './bank-detail/bank-detail.component';
-import { PropertySearchComponent } from './property-search/property-search.component';
 import { AuthGaurdService } from './services/auth-gaurd.service';
 import { UnAuthGaurdService } from './services/unauth-gaurd.service';
 import { SubmitPropertyComponent } from './submit-property/submit-property.component';
@@ -38,6 +35,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { InvestfarComponent } from './investfar/investfar.component';
 import { PropertyComponent } from './property/property.component';
+import { ComparePropertyComponent } from './compare-property/compare-property.component';
+import { MlsPropertyComponent } from './mls-property/mls-property.component';
+import { MapComponent } from './map/map.component';
 
 
 export const AppRoutes: any = [
@@ -66,11 +66,8 @@ export const AppRoutes: any = [
     { path: "add-service", component: AddServiceComponent, canActivate : [AuthGaurdService] },
     { path: "my-offered-services", component: MyOfferedServicesComponent, canActivate : [AuthGaurdService] },
     { path: "manage-services", component: ManageServicesComponent },
-    { path: "organization-login", component: OrganizationLoginComponent, canActivate : [AuthGaurdService] },
-    { path: "featured-properties", component: FeaturedPropertiesComponent, canActivate : [AuthGaurdService] },
     { path: "offer-type-rent", component: OfferTypeRentComponent },
-    { path: "bank-detail", component: BankDetailComponent },
-    { path: "property-search", component: PropertySearchComponent, canActivate : [AuthGaurdService] },
+    { path: "bank-detail", component: BankDetailComponent, canActivate : [AuthGaurdService] },
     { path: "submit-property", component: SubmitPropertyComponent, canActivate : [AuthGaurdService]},
     { path: "offer-type-sell", component: OfferTypeSellComponent},
     { path: "set-password", component: SetPasswordComponent},
@@ -78,8 +75,10 @@ export const AppRoutes: any = [
     { path: 'edit-property/:id', component: SubmitPropertyComponent, canActivate: [ AuthGaurdService ]},
     { path: 'investfar', component: InvestfarComponent},
     { path: 'edit-service/:id', component: AddServiceComponent, canActivate: [ AuthGaurdService ]},
-    { path: 'property/:title', component: PropertyComponent}
-
+    { path: 'property/:title', component: PropertyComponent},
+    { path: 'compare-property/:title', component: ComparePropertyComponent},
+    { path: "mls-property/:title", component: MlsPropertyComponent, canActivate : [AuthGaurdService]},
+    { path: "map", component: MapComponent}
 ];
 
 export const AppComponents: any = [
@@ -107,13 +106,13 @@ export const AppComponents: any = [
     AddServiceComponent,
     MyOfferedServicesComponent,
     ManageServicesComponent,
-    OrganizationLoginComponent,
-    FeaturedPropertiesComponent,
     OfferTypeRentComponent,
     BankDetailComponent,
     SubmitPropertyComponent,
     SetPasswordComponent,
     OfferTypeSellComponent,
     InvestfarComponent,
-    PropertyComponent
+    PropertyComponent,
+    MlsPropertyComponent,
+    MapComponent
 ];

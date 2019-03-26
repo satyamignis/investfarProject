@@ -1,17 +1,22 @@
+<!-- *********** Loading ************** -->
 <div *ngIf="preloadimg" class="preloadingimg">
-    <img src="./assets/images/icons/preloader.gif">
+  <img src="./assets/images/icons/preloader.gif">
 </div>
+<div *ngIf="apiLoading" class="loadingApi">
+  <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 <section class="inner-banner financed-top" data-toggle="modal" data-target="#myModal">
-    <div class="page-title financed-title" style="background-image:url(./assets/images/thumb-slider/financed-slide01.jpg);">
-     <div class="arrow-block clearfix">
+    <div class="page-title financed-title" [ngStyle]="{ 'background-image': 'url(' + imageUrlArray[0] + ')'}">
+       <div class="arrow-block clearfix">
         <img src="./assets/images/thumb-slider/arrow-left.png" alt="" class="pull-left" />
         <img src="./assets/images/thumb-slider/arrow-right.png" alt="" class="pull-right" />               
     </div>
     <div class="auto-container">
         <div class="row clearfix">
             <div class="title-column col-sm-12 col-xs-12">
-                <h1>Owner Financed – No Banks Needed!</h1>
+                <h1>{{propertyData.title}}</h1>
             </div>
         </div>
     </div>
@@ -21,14 +26,12 @@
 <!--Pop Up Slider -->
 <div class="modal" id="myModal">
     <div class="modal-dialog financed-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="top:0px;">
             <button type="button" class="close slider-close " data-dismiss="modal">×</button>
             <div id="main" role="main">
-
-
                 <div class="detail_main_slider slider">
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <slideshow #slideshow
+                        <slideshow #slideshow
                         [minHeight]="'450px'"
                         [autoPlay]="false"
                         [showArrows]="true"
@@ -38,56 +41,34 @@
                     </slideshow>
 
                     <ul class="nav nav-pills nav-justified detail_controller slides">
-                      <li>
-                          <a (click)="changerImage(0)"><img src="./assets/images/thumb-slider/financed-thumb01.jpg" alt="" class="img-responsive"></a></li>
-
-                          <li>
-                              <a (click)="changerImage(1)"><img src="./assets/images/thumb-slider/financed-thumb02.jpg" alt="" class="img-responsive"></a></li>
-
-                              <li>
-                                  <a (click)="changerImage(2)"><img src="./assets/images/thumb-slider/financed-thumb03.jpg" alt="" class="img-responsive"></a></li>
-
-                                  <li>
-                                      <a (click)="changerImage(3)"><img src="./assets/images/thumb-slider/financed-thumb04.jpg" alt="" class="img-responsive"></a></li>
-                                  </ul>
-                              </div>
-                          </div><!-- End Carousel -->
-
-
-<!--  <div class="slider">
-        <div id="slider" class="flexslider">
-          <ul class="slides">
-            <li><img src="./assets/images/thumb-slider/financed-slide01.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-slide02.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-slide03.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-slide04.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-slide01.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-slide02.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-slide03.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-slide04.jpg" /></li>
-          </ul>
+                        <li *ngFor="let img of imageUrlArray; let i=index;">
+                            <a (click)="changerImage(i)">
+                                <img src="{{img | image: 'property-detail'}}" alt="" class="img-responsive" width="150px" height="150px">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- End Carousel -->
         </div>
-
-        <div id="carousel" class="flexslider">
-          <ul class="slides">
-            <li><img src="./assets/images/thumb-slider/financed-thumb01.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-thumb02.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-thumb03.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-thumb04.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-thumb01.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-thumb02.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-thumb03.jpg" /></li>
-            <li><img src="./assets/images/thumb-slider/financed-thumb04.jpg" /></li>
-          </ul>
-        </div>
-    </div> -->
-    <!-- slider -->
-
-</div>
-</div>
+    </div>
 </div>
 </div>
 <!--Pop Up Slider -->
+
+<h3 *ngIf="planImages.length > 0">Floor Plan</h3>
+<div class="detail_main_slider" *ngIf="planImages.length > 0">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+        <ul class="nav nav-pills nav-justified detail_controller">
+            <li *ngFor="let img of planImages; let i=index;">
+                <a (click)="changerImage(i)">
+                    <img src="{{img | image: 'property-detail'}}"  (click)="openImage(i, 'plan')" alt="" class="img-responsive">
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
 
 
 <!--One Third Section-->
@@ -97,168 +78,184 @@
             <div class="col-sm-9">
             	<div class="description">
                     <div class="sec-title">
-                     <h2>Description</h2>
-                 </div>
-                 <div class="description-block">
+                       <h2>Description</h2>
+                   </div>
+                   <div class="description-block">
                     <h5>
-                        <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 4813 E Brill St, Phoenix, AZ 85008, USA</a>
+                        <a><i class="fa fa-map-marker" aria-hidden="true"></i>  {{propertyData.address}}</a>
                         <div class="pull-right star">
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                        </div>
-                    </h5>
+                          <span class="star-rating">
+                            <star-rating [starType]="'svg'" [staticColor]="getColor(propertyData.rating)" [showHalfStars]="true" [disabled]="true" [rating]="propertyData.rating"></star-rating>
+                        </span>
+                    </div>
+                </h5>
 
 
-                    
-                    <div class="description-type clearfix">
-                        <div class="col-sm-4 descri-type-block">
-                            <p>Property type:</p>
-                            <a href="#">Single Family</a> 
-                        </div>
-                        <div class="col-sm-4 descri-type-block">
-                            <p>Offer type:</p>
-                            <a href="#">Sell</a> 
-                        </div>
-                        <div class="col-sm-4 descri-type-block">
-                            <p>City:</p>
-                            <a href="#">Phoenix</a> 
-                        </div>
+
+                <div class="description-type clearfix">
+                    <div class="col-sm-4 descri-type-block">
+                        <p>Property type:</p>
+                        <a (click)="navigate('property-type', propertyData.property_type)">{{ propertyData.property_name}}</a>
                     </div>
-                    <div class="description-type clearfix">
-                        <div class="col-sm-4 descri-type-block">
-                            <p>Bedrooms:</p>
-                            <p class="sub-type">2</p> 
-                        </div>
-                        <div class="col-sm-4 descri-type-block">
-                            <p>Bathrooms:</p>
-                            <p class="sub-type">2</p>
-                        </div>
-                        <div class="col-sm-4 descri-type-block">
-                            <p>Property size:</p>
-                            <p class="sub-type">1407 ft²</p>
-                        </div>
+                    <div class="col-sm-4 descri-type-block">
+                        <p>Offer type:</p>
+                        <a >{{ propertyData.offer_name}}</a> 
                     </div>
-                    <div class="description-type clearfix">
-                        <div class="col-sm-4 descri-type-block">
-                            <p>Year:</p>
-                            <p class="sub-type">Single Family</p>
-                        </div>
-                        <div class="col-sm-4 descri-type-block">
-                            <p>Asking Price:</p>
-                            <p class="sub-type">$228,000.00</p>
+                    <div class="col-sm-4 descri-type-block">
+                        <p>City:</p>
+                        <a class="link" href="javascript:void(0);" (click)="navigate('city', propertyData.city)">{{propertyData.city}}</a>
+                    </div>
+                </div>
+                <div class="description-type clearfix">
+                    <div class="col-sm-4 descri-type-block">
+                        <p>Bedrooms:</p>
+                        <p class="sub-type">{{propertyData.bed_rooms}}</p>
+                    </div>
+                    <div class="col-sm-4 descri-type-block">
+                        <p>Bathrooms:</p>
+                        <p class="sub-type">{{propertyData.bath_rooms}}</p>
+                    </div>
+                    <div class="col-sm-4 descri-type-block">
+                        <p>Property size:</p>
+                        <p class="sub-type">{{propertyData.property_size}} ft²</p>
+                    </div>
+                </div>
+                <div class="description-type clearfix">
+                    <div class="col-sm-4 descri-type-block">
+                        <p>Year:</p>
+                        <p class="sub-type">{{propertyData.year}}</p>
+                    </div>
+                    <div class="col-sm-4 descri-type-block">
+                        <p>Asking Price:</p>
+                        <p class="sub-type"><span *ngIf="propertyData.price != '-1'">{{propertyData.price | currency}}</span>
+                            <span *ngIf="propertyData.price == '-1'">See Valuation Report</span></p>
                         </div>
                         <div class="col-sm-4 descri-type-block">
                             <p>Date:</p>
-                            <p class="sub-type">Sep 29, 2018, 6:00:48 AM</p> 
+                            <p class="sub-type">{{propertyData.created_date | date : 'medium'}}</p> 
                         </div>
                     </div>
 
+                    <div  class="description-type clearfix" >
+
+
+                        <div *ngIf="propertyData.features != '-1'">
+                            <div class="col-sm-12"><p>Amenities:</p></div>
+
+                            <div class="col-sm-6 col-md-3 descri-type-block text-center" *ngFor="let f of features">
+                                <div class="icon-block"><img src="{{f.selected_icon}}" alt=""></div>
+                                <p>{{f.text}}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 infoColumn" *ngIf="propertyData.features == '-1'">
+                            <strong>Amenities:</strong>
+                            <div>See Valuation Report</div>
+                        </div>
+                    </div>
+
+                    <div class="description-type question clearfix">
+                        <div class="col-xs-12">
+                            <p>How much do you think the home is worth : <strong>  <span *ngIf="propertyData.worth != '-1'">{{propertyData.worth | currency}}</span>
+                                <span *ngIf="propertyData.worth == '-1'">See Valuation Report</span></strong></p>
+                            </div>
+                        </div>
+                        <div class="description-type question clearfix">
+                            <div class="col-xs-12">
+                                <p>Is the home vacant, rented or lived in : <strong>{{propertyData.live}}</strong></p>
+                            </div>
+                        </div>
+                        <div class="description-type question clearfix">
+                            <div class="col-xs-12">
+                                <p>Why are you selling : <strong>{{propertyData.selling}}</strong> </p>
+                            </div>
+                        </div>
+
+                        <div class="description-type centered">
+                         <a (click)="onValuation()" class="theme-btn btn-style-two center-block">Property Valution Report</a>
+                     </div>
+
+                     <div class="centered" style="padding-top:20px;">
+                         <p>Location pre-approved</p>
+                         <a class="theme-btn btn-style-two center-block">Obtain Funding</a>
+                     </div>
+                 </div>
+
+                 <div class="description-block option-block clearfix">
+                     <div class="col-sm-3 text-center">
+                        <a href="https://www.calculator.net/rental-property-calculator.html" target="_blank" class="in-option">
+                            <div class="" id="diamond">
+                                <span><img src="./assets/images/icons/calculator.png" width="40px" /></span>
+                            </div>
+                            <p>Cash Flow Calculator</p>
+                        </a>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <a  class="in-option" (click)="open(content, '*')">
+                            <div class="" id="diamond">
+                                <span><img src="./assets/images/icons/person-walking.png" width="40px" /></span>
+                            </div>
+                            <p>Walkscore</p>
+                        </a>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <a (click)="open(content, 'school')" class="in-option">
+                            <div class="" id="diamond">
+                                <span><img src="./assets/images/icons/school.png" width="40px" /></span>
+                            </div>
+                            <p>School</p>
+                        </a>
+                    </div>
+                    
+                    <div class="col-sm-3 text-center">
+                        <a [routerLink]="['/compare-property/'+propertyId]"  class="in-option">
+                            <div class="" id="diamond">
+                                <span><img src="./assets/images/icons/statistics.png" width="40px" /></span>
+                            </div>
+                            <p>Compare</p>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="description-block">
+                    <h5>
+                        <a ><i class="fa fa-file-text" aria-hidden="true"></i> Details</a>
+                    </h5>
                     <div class="description-type clearfix">
-                        <div class="col-sm-12"><p>Amenities:</p></div>
-
-                        <div class="col-sm-6 col-md-3 descri-type-block text-center">
-                            <div class="icon-block"><img src="./assets/images/icons/air-conditioner.png" alt=""></div>
-                            <p>Air Condition</p>
-                        </div>
-                        <div class="col-sm-6 col-md-3 descri-type-block text-center">
-                            <div class="icon-block"><img src="./assets/images/icons/fire-place.png" alt=""></div>
-                            <p>Fire Place</p>
-                        </div>
-                        <div class="col-sm-6 col-md-3 descri-type-block text-center">
-                            <div class="icon-block"><img src="./assets/images/icons/laundry.png" alt=""></div>
-                            <p>laundry</p>
-                        </div>
-                        <div class="col-sm-6 col-md-3 descri-type-block text-center">
-                            <div class="icon-block"><img src="./assets/images/icons/swimming-pool.png" alt=""></div>
-                            <p>Pool</p>
+                        <div class="col-sm-12">
+                            <p>{{propertyData.description}}</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="description-type question clearfix">
-                        <div class="col-xs-12">
-                            <p>How much do you think the home is worth : <strong>$265,500.00</strong></p>
-                        </div>
-                    </div>
-                    <div class="description-type question clearfix">
-                        <div class="col-xs-12">
-                            <p>Is the home vacant, rented or lived in : <strong>Rented</strong></p>
-                        </div>
-                    </div>
-                    <div class="description-type question clearfix">
-                        <div class="col-xs-12">
-                            <p>Why are you selling : <strong>Not looking to manage</strong> </p>
-                        </div>
-                    </div>
 
-                    <div class="description-type centered">
-                       <a href="#" class="theme-btn btn-style-two center-block">Property Valution Report</a>
-                   </div>
-               </div>
-
-               <div class="description-block option-block clearfix">
-                   <div class="col-sm-3 text-center">
-                    <a href="https://www.calculator.net/rental-property-calculator.html" target="_blank" class="in-option">
-                        <div class="" id="diamond">
-                            <span><img src="./assets/images/icons/calculator.png" width="40px" /></span>
-                        </div>
-                        <p>Cash Flow Calculator</p>
-                    </a>
-                </div>
-                <div class="col-sm-3 text-center">
-                    <a href="#" class="in-option">
-                        <div class="" id="diamond">
-                            <span><img src="./assets/images/icons/person-walking.png" width="40px" /></span>
-                        </div>
-                        <p>Walkscore</p>
-                    </a>
-                </div>
-                <div class="col-sm-3 text-center">
-                    <a href="#" class="in-option">
-                        <div class="" id="diamond">
-                            <span><img src="./assets/images/icons/school.png" width="40px" /></span>
-                        </div>
-                        <p>School</p>
-                    </a>
-                </div>
-                <div class="col-sm-3 text-center">
-                    <a href="#" class="in-option">
-                        <div class="" id="diamond">
-                            <span><img src="./assets/images/icons/statistics.png" width="40px" /></span>
-                        </div>
-                        <p>Compare</p>
-                    </a>
-                </div>
             </div>
-
-
-            <div class="description-block">
-                <h5>
-                    <a href="#"><i class="fa fa-file-text" aria-hidden="true"></i> Details</a>
-                </h5>
-                <div class="description-type clearfix">
-                    <div class="col-sm-12">
-                        <p>Take advantage of this great Owner Finance option on this nice home with a pool in Phoenix near Sky Harbor Airport. Perfect Buy and Hold situation. ARV: $265,000 Wholesale: $26,000 Down Payment Seller Carry: $202,000 for 5 Years Monthly Payment: $1,405 PITI 48th St and McDowell Rd Owner occupied. Showings limited.</p>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
-    </div>
-    <div class="col-sm-3">
-        <aside class="sidebar inner-sidebar">
-            <div class="sidebar-widget tabbed-links">
-                <ul class="tabbed-nav">
-                    <li><a href="#">
-                        <i class="fa fa-heart" aria-hidden="true"></i> Add to favorites </a></li>
-                        <li><a href="#">
-                            <i class="fa fa-eye" aria-hidden="true"></i> 0</a></li>
-                        </ul>
-                        <ul class="files">
-                            <li><a href="#">$228,000.00</a></li>
+        <div class="col-sm-3">
+            <aside class="sidebar inner-sidebar">
+                <div class="sidebar-widget tabbed-links">
+                    <ul class="tabbed-nav">
+                        <li>
+
+                         <div class="inactive-favorites_hading mb_10" *ngIf="propertyData.favourite == '0'" (click)="addToFavorites('1')">
+                            <a href="javascript:void(0);" class="black">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i> Add to favorites
+                            </a>
+                        </div>
+                        <div class="favorites_hading mb_10" *ngIf="propertyData.favourite == '1'" (click)="addToFavorites('2')">
+                            <a href="javascript:void(0);" class="black">
+                                <i class="fa fa-heart" aria-hidden="true"></i> Favorite
+                            </a>
+                        </div>
+                        
+                    </li>
+                    <li><a >
+                        <i class="fa fa-eye" aria-hidden="true"></i> 0</a></li>
+                    </ul>
+                    <ul class="files">
+                        <li><a *ngIf="propertyData.price == '-1'">See Valuation Report</a>
+                            <a *ngIf="propertyData.price != '-1'">{{propertyData.price | currency}}</a></li>
                         </ul>
                     </div>
 
@@ -266,8 +263,8 @@
                         <ul class="tabbed-nav">
                             <li>
                                 <a href="tel:+ 1-855-737-4338">
-                                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i> + 1-855-737-4338 </a></li>
-                                    <li><a href="#">
+                                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i> {{propertyData.user_phone_no}} </a></li>
+                                    <li><a [routerLink]="['/map']" [queryParams]="{lat: propertyData.latitude, lng : propertyData.longitude, title : propertyData.title}">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                                         See Map</a></li>
                                     </ul>
@@ -280,7 +277,7 @@
                                     <div class="offer-form">
                                         <p class="text-right">
 
-                                            <a href="#" data-toggle="modal" data-target="#myBtn">Our Legal Notice</a></p>
+                                            <a  data-toggle="modal" data-target="#myBtn">Our Legal Notice</a></p>
                                             <div class="form-group">
                                                 <input type="text" name="field-name" value="" placeholder="Your Name">
                                             </div>
@@ -294,11 +291,11 @@
                                                 <input  currencyMask type="text" name="field-name" value="" placeholder="Offer Amount">
                                             </div>
                                             <div class="form-group">
-                                             <textarea rows="4" placeholder="Message"></textarea>
-                                         </div>
-                                     </div>
-                                     <ul class="files">
-                                        <li><a href="#" class="text-center">SEND</a></li>
+                                               <textarea rows="4" placeholder="Message"></textarea>
+                                           </div>
+                                       </div>
+                                       <ul class="files">
+                                        <li><a  class="text-center">SEND</a></li>
                                     </ul>
                                 </div>
 
@@ -312,7 +309,7 @@
                                                 <i class="fa fa-envelope" aria-hidden="true"></i> info@investfar.com</a></li>
                                             </ul>
                                             <ul class="files">
-                                                <li><a href="#" class="text-center">All by InvestFar</a></li>
+                                                <li><a  class="text-center">All by InvestFar</a></li>
                                             </ul>
                                         </div>
                                     </aside>
@@ -359,3 +356,50 @@
             </div>
             <!-- Legal Notice -->
 
+            <!--==================Detail Page=======================-->
+
+            <ng-template #compare let-modal class="compare-property-wrap">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Near By Places</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </ng-template>  
+
+        <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Near By 
+                  <span *ngIf="googleSearchType == '*'">Places</span>
+                  <span *ngIf="googleSearchType == 'school'">School</span>
+              </h4>
+              <button type="button" class="close" aria-label="Close" (click)="modelRef.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <ul class="property-listing">
+            <li *ngFor="let g of googleResponses">
+                <div class="service-listing">
+                    <div class="services-provider-icon">
+                        <img src="{{g.icon}}" alt="img" title="img">
+                    </div>
+                    <div class="services-provider-shortdetail">
+                        <div class="detail">
+                            <div class="left mr-auto">
+                             
+                              <h3>{{g.name}}</h3>
+                              <span class="location-area">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                {{g.vicinity}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</ng-template>  
+<div id="map"></div>

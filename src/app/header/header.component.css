@@ -1,0 +1,149 @@
+.select-lang{
+	position: absolute;
+	z-index: 9999;
+	top: 15px;
+	right: 180px;
+}
+
+@media only screen and (max-width: 1525px){
+	.select-lang{
+		right: 178px;
+	}
+}
+@media only screen and (max-width: 1520px){
+	.select-lang{
+		right: 178px;
+	}
+}
+@media only screen and (max-width: 1517px){
+	.select-lang{
+		right: 174px;
+	}
+}
+@media only screen and (max-width: 1500px){
+	.select-lang{
+		right: 167px;
+	}
+}
+@media only screen and (max-width: 1495px){
+	.select-lang{
+		right: 165px;
+	}
+}
+@media only screen and (max-width: 1490px){
+	.select-lang{
+		right: 160px;
+	}
+}
+@media only screen and (max-width: 1485px){
+	.select-lang{
+		right: 155px;
+	}
+}
+@media only screen and (max-width: 1470px){
+	.select-lang{
+		right: 150px;
+	}
+}
+@media only screen and (max-width: 1465px){
+	.select-lang{
+		right: 145px;
+	}
+}
+@media only screen and (max-width: 1455px){
+	.select-lang{
+		right: 139px;
+	}
+}
+
+@media only screen and (max-width: 1440px){
+	.select-lang{
+		right: 135px;
+	}
+}
+@media only screen and (max-width: 1435px){
+	.select-lang{
+		right: 130px;
+	}
+}
+@media only screen and (max-width: 1430px){
+	.select-lang{
+		right: 129px;
+	}
+}
+@media only screen and (max-width: 1427px){
+	.select-lang{
+		right: 127px;
+	}
+}
+@media only screen and (max-width: 1416px){
+	.select-lang{
+		right: 123px;
+	}
+}
+@media only screen and (max-width: 1408px){
+	.select-lang{
+		right: 118px;
+	}
+}
+@media only screen and (max-width: 1398px){
+	.select-lang{
+		right: 113px;
+	}
+}
+@media only screen and (max-width: 1387px){
+	.select-lang{
+		right: 100px;
+	}
+}
+@media only screen and (max-width: 1350px){
+	.select-lang{
+		right: 68px;
+	}
+}
+@media only screen and (max-width: 1301px){
+	.select-lang{
+		right: 19px;
+}
+}
+@media only screen and (min-width: 1208px) and (max-width: 1300px){
+	.select-lang{
+		right: 1.7%;
+	}
+}
+@media only screen and (min-width: 1224px) and (max-width: 1300px){
+	.select-lang{
+		right: 2.2%;
+	}
+}
+@media only screen and (min-width: 1232px) and (max-width: 1300px){
+	.select-lang{
+		right: 2.6%;
+	}
+}
+
+
+/*@media only screen and (max-width: 1283px){
+	.select-lang{
+		right: 58px;
+
+	}
+}*/
+@media only screen and (max-width: 480px){
+	.select-lang{
+		right: 0;
+		top: 115px;
+		width: 100%;
+		padding: 0px 13px 0px 18px;
+		background-color: #1c75bc;
+		text-align: center;
+		color: #fff;
+	}
+
+	select{
+		color: #fff;
+		text-align: center;
+		background: #1c75bc;
+	}
+}
+

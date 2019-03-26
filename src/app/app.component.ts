@@ -19,7 +19,9 @@ declare const $: any;
 
 export class AppComponent {
 
-	constructor() { }
+	constructor(private routingStateService: RoutingStateService) { 
+		routingStateService.loadRouting();
+	}
 	
 	title = 'app';
 	user:any;

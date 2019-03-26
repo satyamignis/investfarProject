@@ -15,7 +15,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ngx-currency/src/currency-mask.config';
 import { StarRatingModule } from 'angular-star-rating';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 /* %%%%%%%%%%%%%% Service %%%%%%%%%%%%%%%%%%*/
 import { ApiService } from './services/api.service';
@@ -24,9 +24,10 @@ import { MyCookieService } from './services/my-cookie-service';
 import { AuthGaurdService } from './services/auth-gaurd.service';
 import { MyModalService } from './services/my-modal.service';
 import { ImagePipe } from './services/image.pipe';
+import { PhonePipe } from './services/phone.pipe';
+import { PropertyAndOfferService } from './services/property-and-offer.service';
 
 /* //////////////////////////////////////// */
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -56,11 +57,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { MyOfferedServicesComponent } from './my-offered-services/my-offered-services.component';
 import { ManageServicesComponent } from './manage-services/manage-services.component';
-import { OrganizationLoginComponent } from './organization-login/organization-login.component';
-import { FeaturedPropertiesComponent } from './featured-properties/featured-properties.component';
 import { OfferTypeRentComponent } from './offer-type-rent/offer-type-rent.component';
 import { BankDetailComponent } from './bank-detail/bank-detail.component';
-import { PropertySearchComponent } from './property-search/property-search.component';
 import { SubmitPropertyComponent } from './submit-property/submit-property.component';
 import { MenuHeaderComponent } from './menu-header/menu-header.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -73,6 +71,10 @@ import { RatingComponent } from './rating/rating.component';
 import { PropertyComponent } from './property/property.component';
 import { SellComponent } from './sell/sell.component';
 import { RentComponent } from './rent/rent.component';
+import { ComparePropertyComponent } from './compare-property/compare-property.component';
+import { FilterPropertyComponent } from './filter-property/filter-property.component';
+import { MlsPropertyComponent } from './mls-property/mls-property.component';
+import { MapComponent } from './map/map.component';
 
 export const CustomCurrencyMaskConfig: any = {
   align: "left",
@@ -129,12 +131,9 @@ export function provideConfig() {
     EditProfileComponent,
     AddServiceComponent,
     MyOfferedServicesComponent,
-    ManageServicesComponent,
-    OrganizationLoginComponent,
-    FeaturedPropertiesComponent,
+    ManageServicesComponent, 
     OfferTypeRentComponent,
     BankDetailComponent,
-    PropertySearchComponent,
     SubmitPropertyComponent,
     MenuHeaderComponent,
     OfferTypeSellComponent,
@@ -145,8 +144,13 @@ export function provideConfig() {
     RatingComponent,
     PropertyComponent,
     ImagePipe,
+    PhonePipe,
     SellComponent,
-    RentComponent    
+    RentComponent,
+    ComparePropertyComponent,
+    FilterPropertyComponent,
+    MlsPropertyComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -167,13 +171,17 @@ export function provideConfig() {
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDrCZsgteqhXOaC6l8qFnki2H3GMNRAW0U'
-    })
+    }),
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    
   ],
   providers: [
     ApiService,
     CookieService,
     MyCookieService, 
     MyModalService,
+    PropertyAndOfferService,
     AuthGaurdService,
     {
       provide: AuthServiceConfig,

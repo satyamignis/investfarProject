@@ -21,68 +21,7 @@
     </div>
 </section>
 
-<section class="find-advisor style-two top">
-    <div class="auto-container">
-        <div class="row find-row">
-            <div class="col-sm-4 col-md-1 find-box">
-                <div class="custom-select">
-                    <div class="select-selected">
-                      <select>
-                        <option value="1">Buy</option>
-                        <option value="2">Sell</option>
-                        <option value="3">Rentals</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-2 col-xs-6 find-box">
-            <input type="search" class="city" name="search-field" value="" placeholder="City or postcode">
-        </div>
-        <div class="col-sm-4 col-md-2 col-xs-6 find-box">
-            <div class="custom-select">
-                <div class="select-selected">
-                  <select>
-                    <option value="0">All types:</option>
-                    <option value="1">House</option>
-                    <option value="2">Apartment </option>
-                    <option value="1">Luxury property</option>
-                    <option value="2">Land</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-3 col-md-2 col-xs-6 find-box">
-     <input type="search" class="price" name="search-field" value="" placeholder="Min price">
- </div>
-
- <div class="col-sm-3 col-md-2 col-xs-6 find-box">
-     <input type="search" class="price" name="search-field" value="" placeholder="Max price">
- </div>
-
-
- <div class="col-sm-3 col-md-1 col-xs-6 find-box">
-    <div class="custom-select">
-        <div class="select-selected">
-          <select>
-            <option value="0">EUR</option>
-            <option value="1">&pound;</option>
-            <option value="2">&yen; </option>
-            <option value="1">&#36;</option>
-            <option value="2">&euro;</option>
-        </select>
-    </div>
-</div>
-</div>
-
-<div class="col-sm-3 col-md-2 col-xs-6 find-box">
- <button type="submit" class="theme-btn btn-style-two search">SEARCH<span class="fa fa-long-arrow-right"></span></button>
-</div>
-
-</div>
-</div>
-</section>
-
+<app-filter-property></app-filter-property>
 
 <section class="login-section sec-padding">     
     <div class="auto-container centered">
@@ -143,7 +82,7 @@
                                 </div>
 
                                 <div class="col-sm-12 col-md-6 no-margin">
-                                 <div class="form-group">
+                                   <div class="form-group">
                                     <div class="field-label">Website URL</div>
                                     <input formControlName="website" type="text">
                                 </div>
@@ -151,8 +90,8 @@
                         </div>
 
                         <div class="row">
-                         <div class="col-sm-12 col-md-6 no-margin">
-                             <div class="form-group">
+                           <div class="col-sm-12 col-md-6 no-margin">
+                               <div class="form-group">
                                 <div class="field-label">Select Country</div>
                                 <div class="custom-select">
                                     <div class="select-selected">
@@ -166,7 +105,7 @@
                         </div>
 
                         <div class="col-sm-12 col-md-6 no-margin">
-                         <div class="form-group">
+                           <div class="form-group">
                             <div class="field-label">Phone Number</div>
                             <input class="form-control side_input" formControlName="number" type="text">
                         </div>
@@ -174,20 +113,20 @@
                 </div>
 
                 <div class="row">
-                 <div class="col-sm-12 col-md-6 no-margin">
-                     <div class="form-group">
+                   <div class="col-sm-12 col-md-6 no-margin">
+                       <div class="form-group">
                         <div class="field-label">Primary Business Address</div>
                         <div class="form-group choose-location">
-                         <input class="form-control side_input location" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
-                         (onAddressChange)="handleAddressChange($event)" type="text" style="display: none; border:none;" placeholder="">
+                           <input class="form-control side_input location" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+                           (onAddressChange)="handleAddressChange($event)" type="text" style="display: none; border:none;" placeholder="">
 
-                         <input class="form side_input location" formControlName="addr" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
-                         (onAddressChange)="handleAddressChange($event)" type="text" autocomplete="skdmnfjksdnfkjsdfndks" placeholder="">                 
-                     </div> 
-                 </div>
-             </div>
+                           <input class="form side_input location" formControlName="addr" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+                           (onAddressChange)="handleAddressChange($event)" type="text" autocomplete="skdmnfjksdnfkjsdfndks" placeholder="">                 
+                       </div> 
+                   </div>
+               </div>
 
-             <div class="col-sm-12 col-md-6 no-margin">
+               <div class="col-sm-12 col-md-6 no-margin">
                 <div class="form-group">
                     <div class="field-label">City</div>
                     <input class="form-control side_input" formControlName="city" type="text">
@@ -196,57 +135,57 @@
         </div>
 
         <div class="row">
-         <div class="col-sm-12 col-md-6 no-margin">
-             <div class="form-group">
+           <div class="col-sm-12 col-md-6 no-margin">
+               <div class="form-group">
                 <div class="field-label">State</div>
                 <input class="form-control side_input" formControlName="state" type="text">
             </div>
         </div>
 
         <div class="col-sm-12 col-md-6 no-margin">
-         <div class="form-group">
+           <div class="form-group">
             <div class="field-label">Zip Code</div>
             <input formControlName="zipcode" type="text" >
         </div>
     </div>
     <div class="col-sm-12 col-md-12 no-margin">
-     <div class="form-group">
-         <div class="field-label">Password</div>
-         <input formControlName="password" type="password">
-     </div>
- </div>
+       <div class="form-group">
+           <div class="field-label">Password</div>
+           <input formControlName="password" type="password">
+       </div>
+   </div>
 
 
- <div class="col-sm-12 col-md-6 no-margin">
-  <div class="form-group">
-    <div class="field-label">Are you a licensed agent?</div>
-    <div class="custom-select">
-        <div class="select-selected">
-            <select>
-                <option value="">Yes</option>
-                <option value="">No</option>
-            </select>
+   <div class="col-sm-12 col-md-6 no-margin">
+      <div class="form-group">
+        <div class="field-label">Are you a licensed agent?</div>
+        <div class="custom-select">
+            <div class="select-selected">
+                <select>
+                    <option value="">Yes</option>
+                    <option value="">No</option>
+                </select>
+            </div>
         </div>
     </div>
 </div>
-</div>
 
 <div class="col-sm-12 col-md-6 no-margin">
- <div class="form-group">
+   <div class="form-group">
     <div class="field-label">Other licenses</div>
     <input type="text" name="field-name" value="" placeholder="">
 </div>
 </div>
 
 <div class="col-sm-12 col-md-6 no-margin">
- <div class="form-group">
+   <div class="form-group">
     <div class="field-label">Broker Address</div>
     <input type="text" name="field-name" value="" placeholder="">
 </div>
 </div>
 
 <div class="col-sm-12 col-md-6 no-margin">
- <div class="form-group">
+   <div class="form-group">
     <div class="field-label">Website</div>
     <input type="text" name="field-name" value="" placeholder="">
 </div>

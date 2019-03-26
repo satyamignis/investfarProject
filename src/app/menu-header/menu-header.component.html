@@ -51,10 +51,19 @@
                                     </li>
                             </ul>
                         </div>
+
+                        <div style="opacity: 0;" class="main-menu loginSuccessMenu">
+                            <ul class="navigation clearfix">
+                                  <li class="dropdown menudropdown"><a class="appt-btn theme-btn pd" >Select Language</a>
+                                       
+                                    </li>
+                            </ul>
+                        </div>
                         
-                        <!--  <div class="select-lang">
+                       <!--  <div class="select-lang">
                         <div id="google_translate_element"></div>
                         </div> -->
+
                    </div>
 
                 </div>
@@ -95,7 +104,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a>BUY / RENT</a>
+                                <li class="dropdown"><a>BUY / SELL</a>
                                     <ul>
                                         <li><a [routerLink]="['/offer-type-sell']">Sell</a></li>
                                         <li><a [routerLink]="['/offer-type-rent']">Rent</a></li>
@@ -108,11 +117,11 @@
                                         <li><a (click)="checkAccessibility('/real-estate-legal-forms');">REAL ESTATE LEGAL FORMS</a></li>
                                         <li class="dropdown"><a>MLS PROPERTY SEARCH</a>
                                       <ul>
-                                          <li><a (click)="checkAccessibility('/property-search');">Search</a></li>
-                                          <li><a>Map Search</a></li>
-                                          <li><a>Open Homes</a></li>
-                                          <li><a (click)="checkAccessibility('/featured-properties');">Featured Listings</a></li>
-                                          <li><a (click)="checkAccessibility('/organization-login');">Organizer Login</a></li>
+                                          <li><a (click)="checkAccessibility('/mls-property/property-search');">Search</a></li>
+                                          <li><a (click)="checkAccessibility('mls-property/map-search');">Map Search</a></li>
+                                          <li><a (click)="checkAccessibility('/mls-property/open-home-search');">Open Homes</a></li>
+                                          <li><a (click)="checkAccessibility('/mls-property/featured-properties');">Featured Listings</a></li>
+                                          <li><a (click)="checkAccessibility('/mls-property/organization-login');">Organizer Login</a></li>
                                       </ul>
                                     </li>
                                     </ul>
@@ -166,7 +175,7 @@
                                     </ul>
                                 </li>
 
-                               <li class="dropdown"><a>BUY / RENT</a>
+                               <li class="dropdown"><a>BUY / SELL</a>
                                     <ul>
                                         <li><a [routerLink]="['/offer-type-sell']">Sell</a></li>
                                         <li><a [routerLink]="['/offer-type-rent']">Rent</a></li>
@@ -180,11 +189,11 @@
                                         <li><a [routerLink]="['/real-estate-legal-forms.component']">REAL ESTATE LEGAL FORMS</a></li>                
                                         <li class="dropdown"><a>MLS PROPERTY SEARCH</a>
                                       <ul>
-                                          <li><a [routerLink]="['/property-search']">Search</a></li>
-                                          <li><a>Map Search</a></li>
-                                          <li><a>Open Homes</a></li>
-                                          <li><a [routerLink]="['/featured-properties']">Featured Listings</a></li>
-                                          <li><a [routerLink]="['/organization-login']">Organizer Login</a></li>
+                                          <li><a [routerLink]="['/mls-property/property-search']">Search</a></li>
+                                          <li><a [routerLink]="['/mls-property/map-search']">Map Search</a></li>
+                                          <li><a [routerLink]="['/mls-property/open-home-search']">Open Homes</a></li>
+                                          <li><a [routerLink]="['/mls-property/featured-properties']">Featured Listings</a></li>
+                                          <li><a [routerLink]="['/mls-property/organization-login']">Organizer Login</a></li>
                                       </ul>
                                     </li>
                                     </ul>

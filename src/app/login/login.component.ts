@@ -12,7 +12,6 @@ import { FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-lo
 import * as CountryCode from '../../assets/country-code.json';
 declare const $: any;
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -62,8 +61,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-
-    //this.previousRoute = this.routingStateService.getPreviousUrl();
+    this.previousRoute = this.routingStateService.getPreviousUrl();
     window.scrollTo(0, 0);
     this.preloadimg=true;
     setTimeout(() => {  
@@ -168,176 +166,180 @@ export class LoginComponent implements OnInit {
 
   setCookieAndNavigate(user){
     this.myCookieService.setCookie('user', user);
+    //   if(this.previousRoute.includes('/property') 
+    //     || this.previousRoute.includes('/pricing')
+    //     || this.previousRoute.includes('/valuation-request-form')
+    //     || this.previousRoute.includes('/local-investor-consultant')){
+    //     this.router.navigate([this.previousRoute]);
+    // } else {
     this.router.navigate(['/']);
+    //}
+}
+
+
+citiesGet(){
+  if(this.registrationForm.value['moreCities']){
+    $('.Morecities').hide('slow');
+
+  }else{
+    $('.Morecities').show('slow');
   }
+}
 
 
-  citiesGet(){
-    if(this.registrationForm.value['moreCities']){
-      $('.Morecities').hide('slow');
-
-    }else{
-      $('.Morecities').show('slow');
+handleAddressChange(address : any){
+  this.address.address = address.formatted_address;
+  this.address.latitude = address.geometry.location.lat()
+  this.address.longitude = address.geometry.location.lng()
+  for(let c of address.address_components){
+    if(JSON.stringify(c.types).includes('postal_code')){
+      //console.log('zipcode :: ',c.long_name)
+      this.registrationForm.patchValue({zipcode : c.long_name})
     }
   }
+}
 
+getCurrentLocation(){
+  this.api.getCurrentIpLocation()
+  .subscribe(
+    (response : any) => {
+      this.currentCountry = response.country
+      //console.log(this.currentCountry)
+    },
+    (error: any) => {
+      console.log(error);
+    }
+    )
 
-  handleAddressChange(address : any){
-    this.address.address = address.formatted_address;
-    this.address.latitude = address.geometry.location.lat()
-    this.address.longitude = address.geometry.location.lng()
-    for(let c of address.address_components){
-      if(JSON.stringify(c.types).includes('postal_code')){
-        //console.log('zipcode :: ',c.long_name)
-        this.registrationForm.patchValue({zipcode : c.long_name})
+  this.createForm();
+}
+
+createForm(){
+  this.registrationForm = this.formBuilder.group({
+    companyName : ['', Validators.required],
+    email : ['', Validators.compose([Validators.required, Validators.email])],
+    website : [''],
+    countryCode : [this.currentCountry, Validators.required],
+    number : ['', Validators.required],
+    addr : [''],
+    city : ['', Validators.required],
+    state: ['', Validators.required],
+    zipcode : ['', Validators.required],
+    moreCities : [false, Validators.required],
+    registered_as : ['1', Validators.required],
+    isCertified : [true, Validators.required],
+    password: ['', Validators.required],
+  })  
+}
+
+get f() { return this.registrationForm.controls; }
+
+onSubmit(){
+  if(this.isFormValid()){
+    this.apiLoading=true;
+    let registrationData =  new FormData();
+    for(let key in this.registrationForm.value){
+      if(key == 'add_more_city_state'){
+        registrationData.append(key, JSON.stringify(this.registrationForm.value[key]));
+      } else {
+        registrationData.append(key, this.registrationForm.value[key]);
       }
     }
-  }
-  
-  getCurrentLocation(){
-    this.api.getCurrentIpLocation()
+    for(let key in this.address){
+      registrationData.append(key, this.address[key])
+    }
+    if(!this.registrationForm.value.isCertified){
+      let i = 0;
+      for(let img of this.images){
+        i++;
+        let key = 'documenet' + 1;
+        registrationData.append(key, img)
+      }
+    }
+    registrationData.append('phoneNo', this.getDailingCode(this.registrationForm.value.countryCode) + '-' + this.registrationForm.value.number)
+    registrationData.append('deviceType', 'Web');
+    registrationData.append('serviceKey', this.api.getservicesKey());
+    registrationData.append('registrationType', this.registrationType);
+    registrationData.append('companyType', this.companyType.toString());
+    this.api.apiPostData('register', registrationData)
     .subscribe(
       (response : any) => {
-        this.currentCountry = response.country
-        //console.log(this.currentCountry)
+        //console.log(response)
+        if(response.errorCode == '0'){
+          this.toastr.success(response.errorMsg, 'Success');
+          this.myCookieService.setCookie('user', response.data[0]);
+          this.router.navigate(['/bank-detail']);
+        } else {
+          this.toastr.error(response.errorMsg, 'Try Again');
+        }
+        this.apiLoading=false;
       },
       (error: any) => {
         console.log(error);
+        this.apiLoading=false;
       }
       )
-
-    this.createForm();
-  }
-  
-  createForm(){
-    this.registrationForm = this.formBuilder.group({
-      companyName : ['', Validators.required],
-      email : ['', Validators.compose([Validators.required, Validators.email])],
-      website : [''],
-      countryCode : [this.currentCountry, Validators.required],
-      number : ['', Validators.required],
-      addr : [''],
-      city : ['', Validators.required],
-      state: ['', Validators.required],
-      zipcode : ['', Validators.required],
-      moreCities : [false, Validators.required],
-      registered_as : ['1', Validators.required],
-      isCertified : [true, Validators.required],
-      password: ['', Validators.required],
-    })  
   }
 
-  get f() { return this.registrationForm.controls; }
+}
 
-  onSubmit(){
-    if(this.isFormValid()){
-      this.apiLoading=true;
-      let registrationData =  new FormData();
-      for(let key in this.registrationForm.value){
-        if(key == 'add_more_city_state'){
-          registrationData.append(key, JSON.stringify(this.registrationForm.value[key]));
-        } else {
-          registrationData.append(key, this.registrationForm.value[key]);
-        }
-      }
-      for(let key in this.address){
-        registrationData.append(key, this.address[key])
-      }
-      if(!this.registrationForm.value.isCertified){
-        let i = 0;
-        for(let img of this.images){
-          i++;
-          let key = 'documenet' + 1;
-          registrationData.append(key, img)
-        }
-      }
-      registrationData.append('phoneNo', this.getDailingCode(this.registrationForm.value.countryCode) + '-' + this.registrationForm.value.number)
-      registrationData.append('deviceType', 'Web');
-      registrationData.append('serviceKey', this.api.getservicesKey());
-      registrationData.append('registrationType', this.registrationType);
-      registrationData.append('companyType', this.companyType.toString());
-      this.api.apiPostData('register', registrationData)
-      .subscribe(
-        (response : any) => {
-          //console.log(response)
-          if(response.errorCode == '0'){
-            this.toastr.success(response.errorMsg, 'Success');
-            this.myCookieService.setCookie('user', response.data[0]);
-            this.router.navigate(['/bank-detail']);
-          } else {
-            this.toastr.error(response.errorMsg, 'Try Again');
-          }
-          this.apiLoading=false;
-        },
-        (error: any) => {
-          console.log(error);
-          this.apiLoading=false;
-        }
-        )
-    }
-    
-  }
-
-  isFormValid(){
-    let flag = false;
-    if(this.registrationForm.valid && this.address.address){
-      if(!this.registrationForm.value.isCertified){
-        if(this.images.length > 0){
-          flag = true;
-        } else {
-          flag = false;
-        }
-      } else {
+isFormValid(){
+  let flag = false;
+  if(this.registrationForm.valid && this.address.address){
+    if(!this.registrationForm.value.isCertified){
+      if(this.images.length > 0){
         flag = true;
+      } else {
+        flag = false;
       }
-    }
-    return flag
-  }
-
-
-
-  deleteControls(){
-    if(this.control.length > 0){
-      this.control.removeAt(0);
-      this.deleteControls();
+    } else {
+      flag = true;
     }
   }
+  return flag
+}
 
-  onImageFile(files){
-    for(let f of files){
-      if(this.images.length < this.defaultCertificate && f.type.includes('image')){
-        this.images.push(f)    
-        var reader = new FileReader();
-        reader.onload = (event:any) => {
-          this.imagePreview.push(event.target.result);
-        }
-        reader.readAsDataURL(f);
+
+
+deleteControls(){
+  if(this.control.length > 0){
+    this.control.removeAt(0);
+    this.deleteControls();
+  }
+}
+
+onImageFile(files){
+  for(let f of files){
+    if(this.images.length < this.defaultCertificate && f.type.includes('image')){
+      this.images.push(f)    
+      var reader = new FileReader();
+      reader.onload = (event:any) => {
+        this.imagePreview.push(event.target.result);
       }
+      reader.readAsDataURL(f);
     }
   }
+}
 
-  getDailingCode(value){
-    let callingCode = ''
-    for(let c of this.countryCode){
-      if(c.code == value){
-        callingCode = c.callingCode
-      }
-    }
-    return callingCode;
-  }
-
-  imageCheck(){
-    if(this.registrationForm.value.isCertified){
-      this.images = [];
-      this.imagePreview = [];
+getDailingCode(value){
+  let callingCode = ''
+  for(let c of this.countryCode){
+    if(c.code == value){
+      callingCode = c.callingCode
     }
   }
+  return callingCode;
+}
 
-  deleteImage(index){
-    this.images.splice(index,1)
-    this.imagePreview.splice(index,1)
+imageCheck(){
+  if(this.registrationForm.value.isCertified){
+    this.images = [];
+    this.imagePreview = [];
   }
+}
 
-
-  
+deleteImage(index){
+  this.images.splice(index,1)
+  this.imagePreview.splice(index,1)
+}
 }

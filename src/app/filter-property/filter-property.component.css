@@ -1,0 +1,17 @@
+.no_data_found h3{
+    text-align: center;
+    color: red;
+    border: 1px solid #e0e0e0;
+    height: 94px;
+    padding: 25px;
+}
+.no_data_found{
+    padding:0px 15px
+}
+
+.listting-inner {
+    min-height: 132px;
+}
+.listing-img img {
+    height: 195px;
+}

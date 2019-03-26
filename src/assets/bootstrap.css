@@ -6813,8 +6813,9 @@ a.list-group-item-danger.active:hover {
 }
 
 .close {
+
 	float: right;
-	font-size: 21px;
+	font-size: 35px;
 	font-weight: 700;
 	line-height: 1;
 	color: #000;
@@ -6886,6 +6887,7 @@ button.close {
 }
 
 .modal-content {
+	top:150px;
 	position: relative;
 	background-color: #fff;
 	-webkit-background-clip: padding-box;
@@ -6910,7 +6912,7 @@ button.close {
 
 .modal-backdrop.fade {
 	filter: alpha(opacity=0);
-	opacity: 0
+	opacity: 0.5!important;
 }
 
 .modal-backdrop.in {
@@ -6925,7 +6927,7 @@ button.close {
 }
 
 .modal-header .close {
-	margin-top: -2px
+	margin-top: -30px
 }
 
 .modal-title {
@@ -6935,7 +6937,9 @@ button.close {
 
 .modal-body {
 	position: relative;
-	padding: 15px
+	padding: 15px;
+	height: 450px;
+overflow-y: scroll;
 }
 
 .modal-footer {
@@ -7567,7 +7571,8 @@ button.close {
 }
 
 .show {
-	display: block!important
+	display: block!important;
+	opacity: 1!important;
 }
 
 .invisible {

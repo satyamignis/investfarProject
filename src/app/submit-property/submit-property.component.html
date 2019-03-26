@@ -300,7 +300,7 @@
 
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4">
-                    <button type="submit" class="btn-style-two width_full text-uppercase margin-top-30">Submit</button>
+                    <button [disabled]="!propertyForm.valid" type="submit" class="btn-style-two width_full text-uppercase margin-top-30">Submit</button>
                 </div>
             </div>
             </form>

@@ -52,3 +52,6 @@
     border: none;
     line-height: 20px;
 }
+button[disabled],button[disabled]:hover{
+  background-color: #d3d3d3;
+}

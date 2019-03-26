@@ -33,7 +33,7 @@ export class PricingComponent implements OnInit {
          "$24.99 1-Minute Property Video",
          "$84.99 Residential Property Inspection (Exterior Only)",
          "$99.99 Residential Property Inspection (Exterior & Interior)",
-         "$94.99 Documents pick-up & Delivery (Notary docs, notices etc)"
+         "$184.99 Document pick-up & Delivery (Notary & title closing)"
       ]
    },
    {

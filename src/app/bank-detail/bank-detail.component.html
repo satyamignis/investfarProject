@@ -1,138 +1,151 @@
+<!-- *********** Loading ************** -->
 <div *ngIf="preloadimg" class="preloadingimg">
-    <img src="./assets/images/icons/preloader.gif">
+  <img src="./assets/images/icons/preloader.gif">
 </div>
+<div *ngIf="apiLoading" class="loadingApi">
+  <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 
 <section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <!--Title -->
-                <div class="title-column col-md-6 col-sm-12 col-xs-12">
-                    <h1 class="text-uppercase">Bank Detail & KYC Verification</h1>
-                </div>
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Title -->
+            <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                <h1 class="text-uppercase">Bank Detail & KYC Verification</h1>
             </div>
         </div>
+    </div>
 </section>
 
 <section>
-<div class="auto-container">
-    <div class="row login-form padd-top-70 padd-bott-40">
-    <div class="col-sm-12 col-md-12">
-        <div class="form-outer form-block">
-        <p class="margin-bott-20">We Require your bank detail and KYC information for online payment receive. Please fill all valid information.</p>
-        <div class="default-title padd-bott-10"><h2>Bank Detail</h2></div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Account Holder Name</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Swift Bic</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">IBAN</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-        </div>
+    <div class="auto-container">
+        <div class="row login-form padd-top-70 padd-bott-40">
+            <div class="col-sm-12 col-md-12">
+                <div class="form-outer form-block">
+                    <p class="margin-bott-20">We Require your bank detail and KYC information for online payment receive. Please fill all valid information.</p>
+                    <form [formGroup]="bankDetailForm" (ngSubmit)="onSubmit()">
+                        <div class="default-title padd-bott-10"><h2>Bank Detail</h2></div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="field-label">Account Holder Name</div>
+                                    <input type="text" formControlName="AccountHolderName" [ngClass]="{ 'error-code' : f.AccountHolderName.touched && f.AccountHolderName.errors && f.AccountHolderName.errors.required }">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="field-label">Swift Bic</div>
+                                    <input type="text" formControlName="BankAccountNumber" [ngClass]="{ 'error-code' : f.BankAccountNumber.touched && f.BankAccountNumber.errors && f.BankAccountNumber.errors.required }">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="field-label">IBAN</div>
+                                    <input type="text" formControlName="IBAN" [ngClass]="{ 'error-code' : f.IBAN.touched && f.IBAN.errors && f.IBAN.errors.required }" >                 
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="is_only_bank == 0">
+                            <div class="default-title padd-top-40 padd-bott-10"><h2>KYC Verification</h2></div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Title</div>
+                                        <input type="text" formControlName="Title" [ngClass]="{ 'error-code' : f.Title.touched && f.Title.errors && f.Title.errors.required }">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">First Name</div>
+                                        <input type="text" formControlName="FirstName" [ngClass]="{ 'error-code' : f.FirstName.touched && f.FirstName.errors && f.FirstName.errors.required }">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Last Name</div>
+                                        <input type="text" formControlName="LastName" [ngClass]="{ 'error-code' : f.LastName.touched && f.LastName.errors && f.LastName.errors.required }">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Gender</div>
+                                        <input type="radio" name="Gender" formControlName="Gender" id="test1" value="M">
+                                        Male
+                                        
+                                        <input type="radio" name="Gender" formControlName="Gender" id="test2" value="F">
+                                        Female
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Date Of Birth</div>
+                                        <input type="text" name="date" formControlName="DateOfBirth" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1">
+                                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Flat Number</div>
+                                        <input type="text" formControlName="FlatNumber" [ngClass]="{ 'error-code' : f.FlatNumber.touched && f.FlatNumber.errors && f.FlatNumber.errors.required }">
+                                    </div>
+                                </div>
+                            </div>
 
-          <div class="default-title padd-top-40 padd-bott-10"><h2>KYC Verification</h2></div>
-          <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Title</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">First Name</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Last Name</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Title</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Date Of Birth</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Flat Number</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-        </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Building Number</div>
+                                        <input type="text" formControlName="BuildingNumber" [ngClass]="{ 'error-code' : f.BuildingNumber.touched && f.BuildingNumber.errors && f.BuildingNumber.errors.required }" >
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Street</div>
+                                        <input type="text" formControlName="Street"  [ngClass]="{ 'error-code' : f.Street.touched && f.Street.errors && f.Street.errors.required }" >
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Town</div>
+                                        <input type="text" formControlName="Town" [ngClass]="{ 'error-code' : f.Town.touched && f.Town.errors && f.Town.errors.required }" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">State</div>
+                                        <input type="text" formControlName="State"  [ngClass]="{ 'error-code' : f.State.touched && f.State.errors && f.State.errors.required }" >
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Country</div>
+                                        <input type="text" formControlName="Country"  [ngClass]="{ 'error-code' : f.Country.touched && f.Country.errors && f.Country.errors.required }" >
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="field-label">Postcode</div>
+                                        <input type="text" formControlName="Postcode" [ngClass]="{ 'error-code' : f.Postcode.touched && f.Postcode.errors && f.Postcode.errors.required }">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-         <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Building Number</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Street</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Town</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">State</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Country</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-               <div class="col-sm-4">
-                <div class="form-group">
-                    <div class="field-label">Postcode</div>
-                    <input type="text" name="field-name" value="" placeholder="">
-                 </div>
-            </div>
-        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <button type="submit" [disabled]="!bankDetailForm.valid" class="submit-btn" [ngClass]="{ 'submit-btn-active' : bankDetailForm.valid}" class="btn-style-two width_full text-uppercase">SUBMIT</button></div>
+                            </div>
+                        </form>
+                    </div>
 
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-            <button type="button" class="btn-style-two width_full text-uppercase">SUBMIT</button></div>
+                </div>
+            </div>
         </div>
-     </div>
-
-     </div>
-    </div>
-</div>
-</section>
+    </section>
 

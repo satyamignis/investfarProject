@@ -1,0 +1,42 @@
+<!-- *********** Loading ************** -->
+<div *ngIf="preloadimg" class="preloadingimg">
+  <img src="./assets/images/icons/preloader.gif">
+</div>
+<div *ngIf="apiLoading" class="loadingApi">
+  <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Title -->
+                <div class="title-column col-md-6 col-sm-12 col-xs-12">
+                    <h1 class="text-uppercase">{{title}}</h1>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section class="mls_serching">
+<div *ngIf="url == '/mls-property/property-search'" >
+  <iframe style="width:80%; height: 800px;" src="https://idxhome.com/homesearch/107543"></iframe> 
+</div>
+<div *ngIf="url == '/mls-property/map-search'">
+  <iframe style="width:80%; height: 800px;" src="https://idxhome.com/mapsearch/107543"></iframe>
+</div>
+<div>
+  <iframe *ngIf="url == '/mls-property/open-home-search'" 
+  style="width:80%; height: 800px;" src="https://idxhome.com/openhomes/107543"></iframe>
+</div>
+<div *ngIf="url == '/mls-property/organization-login'">
+  <iframe style="width:80%; height: 800px;" src="https://idxhome.com/login/107543"></iframe>
+</div>
+<div *ngIf="url == '/mls-property/featured-properties'">
+  <iframe style="width:80%; height: 800px;" src="https://idxhome.com/featured/107543"></iframe>
+</div>
+<div *ngIf="url.includes('/mls-property/property') && property">
+  <iframe style="width:80%; height: 800px;" [src]="propertyUrl"></iframe>
+  <!-- <iframe style="width:100%; height: 2000px;" src="https://www.idxhome.com/homes/107543/32/850-HIGHWAY-466-LADY-LAKE-FL-32159/O5415005/"></iframe> -->
+</div>
+</section>

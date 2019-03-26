@@ -30,6 +30,7 @@
      background-repeat:no-repeat;
      background-position:center top;
      -webkit-font-smoothing: antialiased;
+     top: 0px !important;
 }
  a{
      text-decoration:none;
@@ -764,6 +765,7 @@
      border:1px solid #ffffff;
      z-index:1;
      letter-spacing: 0.8px;
+     min-width: 135px;
 }
  .header-upper .btn-outer.top .appt-btn:hover{
      color:#1c75bc;
@@ -6280,6 +6282,7 @@ Main Footer
     color: #fff;
     left: -20px !important;
     top: 30px;
+    z-index: 1;
 }
 .financed-title{
      padding-top: 28%;
@@ -6791,7 +6794,7 @@ margin-top: 0%;
 .multiselect-dropdown .dropdown-btn{
   color: #808080;
   padding: 8px 10px 0 17px !important;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e0e0e0 !important;
   cursor: pointer;
   height: 44px;
   border-radius: 0px !important;
@@ -6813,6 +6816,34 @@ margin-top: 0%;
 .alertify {
     z-index: 9999999;
 }
+#\:1\.container{
+     display: none;
+}
+
+#goog-gt-tt {
+    display: none !important;
+}
+
+/*.mls_serching{
+     border: solid 2px red !important;
+}
+.mls_serching .ng-star-inserted{
+     position: static;
+     max-width: 1200px;
+     padding: 0px 15px;
+     margin: 0 auto;
+}
+.mls_serching .ng-star-inserted iframe{
+     overflow: hidden !important;
+     margin: 0;
+     padding: 0;
+     width: 100%
+}*/
+/*.menudropdown, .menudropdown a{
+     min-width: 118px;
+     width: auto;
+}*/
+
 /*** ==================================================================== 
      my favorites page
 ==================================================================== ***/
