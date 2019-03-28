@@ -81,10 +81,9 @@ logout(){
   this.myCookieService.deleteCookie('user');
   this.user = undefined;
   this.toastr.success('Successfully Logout.','Success');
-  setInterval(() => { 
+  setTimeout(() => { 
     this.myCookieService.deleteCookieAll();
     this.apiLoading= false;
   }, 1000);
 }
-
 }

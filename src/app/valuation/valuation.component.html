@@ -1,15 +1,15 @@
 <!-- *********** Loading ************** -->
-    <div *ngIf="preloadimg" class="preloadingimg">
-        <img src="./assets/images/icons/preloader.gif">
-    </div>
-    <div *ngIf="apiLoading" class="loadingApi">
-        <img src="./assets/images/icons/loading.gif">
-    </div>
+<div *ngIf="preloadimg" class="preloadingimg">
+    <img src="./assets/images/icons/preloader.gif">
+</div>
+<div *ngIf="apiLoading" class="loadingApi">
+    <img src="./assets/images/icons/loading.gif">
+</div>
 <!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
 <section class="inner-banner">
-<div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
-<!--Header-Lower-->
+    <div class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+        <!--Header-Lower-->
         <div class="auto-container">
             <div class="row clearfix">
                 <!--Title -->
@@ -19,37 +19,36 @@
             </div>
         </div>
     </div>
-    </section>
+</section>
 
-    <app-filter-property></app-filter-property>
-
+<app-filter-property></app-filter-property>
 
 <section class="login-section sec-padding">     
-<div class="auto-container centered">
-    <h4 class="padd-bott-60">Enter the zip code and address of the property so we can find the most comprehensive residential data impacting homes; including hostorial,macroeconomic, and local market analytics to create a home valuation report to aid in your buying decisions.</h4>
-</div>
-
-<div class="auto-container">
-    <div class="row valuation-form">
-    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-        <form [formGroup]="valuationForm" (ngSubmit)="onSubmit()">
-        <div class="form-outer form-block">
-        <div class="form-group">
-            <div class="field-label">Enter Zip Code:</div>
-            <input class="form-control side_input" [ngClass]="{'error-code' : f.zipcode.touched && f.zipcode.errors && ( f.zipcode.errors.required || f.zipcode.errors.minlength || f.zipcode.errors.maxlength )}" formControlName="zipcode" placeholder="Enter 5 digit Zip Code" type="text">
-         </div>
-
-          <div class="form-group">
-            <div class="field-label">Enter Address: </div>
-           <input class="form-control side_input"  [ngClass]="{'error-code' : f.address.touched && f.address.errors && f.address.errors.required }" formControlName="address" placeholder="E.g.7904 Verde Springs Dr" type="text">
-         </div>
-
-         <button type="submit" class="btn-style-two text-uppercase" [disabled]="!valuationForm.valid">Get Details !</button>
-         &nbsp;
-         <button type="button" (click)="onClear()" class="btn-style-two text-uppercase">Clear / Reset</button>
-        </div>
-        </form>
+    <div class="auto-container centered">
+        <h4 class="padd-bott-60">Enter the zip code and address of the property so we can find the most comprehensive residential data impacting homes; including hostorial,macroeconomic, and local market analytics to create a home valuation report to aid in your buying decisions.</h4>
     </div>
-</div>
-</div>
+
+    <div class="auto-container">
+        <div class="row valuation-form">
+            <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <form [formGroup]="valuationForm" (ngSubmit)="onSubmit()">
+                    <div class="form-outer form-block">
+                        <div class="form-group">
+                            <div class="field-label">Enter Zip Code:</div>
+                            <input class="form-control side_input" [ngClass]="{'error-code' : f.zipcode.touched && f.zipcode.errors && ( f.zipcode.errors.required || f.zipcode.errors.minlength || f.zipcode.errors.maxlength )}" formControlName="zipcode" placeholder="Enter 5 digit Zip Code" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="field-label">Enter Address: </div>
+                            <input class="form-control side_input"  [ngClass]="{'error-code' : f.address.touched && f.address.errors && f.address.errors.required }" formControlName="address" placeholder="E.g.7904 Verde Springs Dr" type="text">
+                        </div>
+
+                        <button type="submit" class="btn-style-two text-uppercase" [disabled]="!valuationForm.valid">Get Details !</button>
+                        &nbsp;
+                        <button type="button" (click)="onClear()" class="btn-style-two text-uppercase">Clear / Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>

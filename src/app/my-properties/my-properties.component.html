@@ -37,7 +37,7 @@
             </tr>
             <tr *ngFor="let p of properties; let i = index;">
                 <td>{{(i + 1)+((pageNo - 1) * limit)}}</td>
-                <td><a class="mh-browse-estate__image">
+                <td><a class="mh-browse-estate__image" [routerLink]="['/property/'+p.slug_name]">
                   <img src="{{p.propertyImg }}" (error)="setDefaultPic(p)" alt="p.title" class="Properties-img" width="120px">
                 </a></td>
                 <td>{{p.title}}</td>

@@ -1,0 +1,54 @@
+<!-- *********** Loading ************** -->
+<div *ngIf="preloadimg" class="preloadingimg">
+	<img src="./assets/images/icons/preloader.gif">
+</div>
+<div *ngIf="apiLoading" class="loadingApi">
+	<img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+	<div class="auto-container">
+		<div class="row clearfix">
+			<!--Title -->
+			<div class="title-column col-md-6 col-sm-12 col-xs-12">
+				<h1 class="text-uppercase">Reviews</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="sec-padding my-properties">
+	<div class="auto-container">
+		<div class="details_page">
+			<div class="details_page-container">
+				<div class="container">
+					<div class="wrapper no-space">
+						<ul class="services-listing-wrap">
+							<h3 class="no-data-avilable" *ngIf="ratings.length == 0">No Data</h3>
+							<li *ngFor="let r of ratings">
+								<div class="service-listing">
+									<div class="services-provider-icon">
+										<img src="{{ r.user_image | image:'profile'}}" alt="img" title="img">
+									</div>
+									<div class="services-provider-shortdetail">
+										<div class="detail">
+											<div class="left mr-auto">
+												<h3>{{r.first_name}} {{r.last_name}}</h3>
+												<span class="rating-points">
+													<star-rating [starType]="'svg'" [staticColor]="getColor(r.rating)" [showHalfStars]="true" [disabled]="true" [rating]="r.rating"></star-rating>
+												</span>
+												<p>{{r.review_comment}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+

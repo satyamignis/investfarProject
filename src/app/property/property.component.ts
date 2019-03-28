@@ -231,6 +231,7 @@ offerListArr:any = [
   }
 
   addToFavoriteApiCall(favourite) {
+    this.apiLoading=true;
     let favouriteData = {
       serviceKey: this.user.serviceKey,
       userId: this.user.userId,
@@ -238,8 +239,7 @@ offerListArr:any = [
       favourite: favourite,
       vendorType: 1
     }
-    console.log(favouriteData)
-    this.apiService.apiPostData('getFavourite', favouriteData)
+    this.apiService.apiPostData('favourite', favouriteData)
       .subscribe(
         (response: any) => {
           console.log(response)
@@ -249,9 +249,11 @@ offerListArr:any = [
           } else {
             this.myToasterService.error(response.errorMsg, 'Try Again');
           }
+          this.apiLoading=false;
         },
         (error: any) => {
           console.log(error);
+          this.apiLoading=false;
         }
       )
   }
@@ -269,7 +271,7 @@ offerListArr:any = [
   onSubmit() {
     if (this.contactForm.valid) {
       if (this.user) {
-        console.log(this.contactForm.value);
+        this.apiLoading=true;
         let contactFormData = this.contactForm.value
         contactFormData.user_id = this.user.userId;
         contactFormData.property_id = this.propertyData.property_id
@@ -282,9 +284,11 @@ offerListArr:any = [
               } else {
                 this.myToasterService.error(response.errMsg, 'Try Again')
               }
+              this.apiLoading=false;
             },
             (error: any) => {
               console.log(error);
+              this.apiLoading=false;
             }
           )
       } else {

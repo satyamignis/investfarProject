@@ -262,7 +262,7 @@
                     <div class="sidebar-widget tabbed-links">
                         <ul class="tabbed-nav">
                             <li>
-                                <a href="tel:+ 1-855-737-4338">
+                                <a>
                                     <i class="fa fa-volume-control-phone" aria-hidden="true"></i> {{propertyData.user_phone_no}} </a></li>
                                     <li><a [routerLink]="['/map']" [queryParams]="{lat: propertyData.latitude, lng : propertyData.longitude, title : propertyData.title}">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -273,6 +273,7 @@
 
                                 <!-- Tabbed Links -->
                                 <div class="sidebar-widget">
+                                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
                                     <div class="sidebar-title"><h3>Make an offer</h3></div>
                                     <div class="offer-form">
                                         <p class="text-right">
@@ -282,34 +283,39 @@
                                                 <input type="text" name="field-name" value="" placeholder="Your Name">
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="field-name" value="" placeholder="Mail">
+                                                <input type="text" name="field-name" value="" placeholder="Mail"  formControlName="email" >
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="field-name" value="" placeholder="Phone">
+                                                <input type="text" name="field-name" value="" placeholder="Phone" formControlName="phone">
                                             </div> 
                                             <div class="form-group">
-                                                <input  currencyMask type="text" name="field-name" value="" placeholder="Offer Amount">
+                                                <input  currencyMask type="text" name="field-name" placeholder="Offer Amount">
                                             </div>
                                             <div class="form-group">
-                                               <textarea rows="4" placeholder="Message"></textarea>
+                                               <textarea rows="4" formControlName="message" placeholder="Message"></textarea>
                                            </div>
                                        </div>
                                        <ul class="files">
-                                        <li><a  class="text-center">SEND</a></li>
+                                        <li> <button [disabled]="!contactForm.valid" type="submit" class="btn-style-two width_full text-uppercase margin-top-30">SEND</button></li>
                                     </ul>
+                                    </form>
                                 </div>
 
                                 <div class="sidebar-widget">
                                     <div class="sidebar-title"><h3>Profile</h3></div>
                                     <ul class="tabbed-nav">
-                                        <li><a href="tel:+ 1-855-737-4338">
+                                        <li><a>
                                             <i class="fa fa-volume-control-phone" aria-hidden="true"></i> 
                                             + 1-855-737-4338 </a></li>
                                             <li><a href="mailto:info@investfar.com">
                                                 <i class="fa fa-envelope" aria-hidden="true"></i> info@investfar.com</a></li>
                                             </ul>
-                                            <ul class="files">
-                                                <li><a  class="text-center">All by InvestFar</a></li>
+                                            <ul *ngIf="propertyData.user_name != ''" [routerLink]="['/properties-user/'+propertyData.user_id+'/'+propertyData.user_name]"  class="files">
+                                                <li><a  class="text-center">All by {{propertyData.user_name}}</a></li>
+                                            </ul>  
+
+                                            <ul *ngIf="propertyData.user_name == ''" [routerLink]="['/properties-user/'+propertyData.user_id+'/'+propertyData.user_email]"   class="files">
+                                                <li><a  class="text-center">All by {{propertyData.user_email}}</a></li>
                                             </ul>
                                         </div>
                                     </aside>

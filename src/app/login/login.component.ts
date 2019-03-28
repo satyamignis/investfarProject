@@ -166,14 +166,14 @@ export class LoginComponent implements OnInit {
 
   setCookieAndNavigate(user){
     this.myCookieService.setCookie('user', user);
-    //   if(this.previousRoute.includes('/property') 
-    //     || this.previousRoute.includes('/pricing')
-    //     || this.previousRoute.includes('/valuation-request-form')
-    //     || this.previousRoute.includes('/local-investor-consultant')){
-    //     this.router.navigate([this.previousRoute]);
-    // } else {
+    if(this.previousRoute.includes('/property') 
+      || this.previousRoute.includes('/pricing')
+      || this.previousRoute.includes('/valuation-request-form')
+      || this.previousRoute.includes('/local-investor-consultant')){
+      this.router.navigate([this.previousRoute]);
+  } else {
     this.router.navigate(['/']);
-    //}
+  }
 }
 
 

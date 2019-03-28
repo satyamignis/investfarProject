@@ -96,11 +96,11 @@
                   </div>
 
                   <div class="col-sm-3 col-md-2 col-xs-6 find-box">
-                   <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Min price" [(ngModel)]="filter.min_price">
+                   <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Min price" autocomplete="off" [(ngModel)]="filter.min_price">
                  </div>
 
                  <div class="col-sm-3 col-md-2 col-xs-6 find-box">
-                   <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Max price" [(ngModel)]="filter.max_price">
+                   <input currencyMask type="search" class="price" name="search-field" value="" placeholder="Max price" autocomplete="off" [(ngModel)]="filter.max_price">
                  </div>
 
 
@@ -131,8 +131,8 @@
                      <div class="form-group">
                        <div class="field-label">PRICE ($)</div>
                        <div class="row">
-                        <div class="col-xs-6"><input currencyMask type="text" name="field-name" [(ngModel)]="filter.min_price" placeholder="From"></div>
-                        <div class="col-xs-6"><input currencyMask type="text" name="field-name" [(ngModel)]="filter.max_price" placeholder="To"></div>
+                        <div class="col-xs-6"><input currencyMask type="text" name="field-name" autocomplete="off" [(ngModel)]="filter.min_price" placeholder="From"></div>
+                        <div class="col-xs-6"><input currencyMask type="text" name="field-name" autocomplete="off" [(ngModel)]="filter.max_price" placeholder="To"></div>
                       </div>
                     </div>
                   </div>
@@ -513,14 +513,8 @@
                     <div class="listting-inner">
                       <h4 class="item-title">{{p.title}}</h4>
                       <p class="item-location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{p.address}}</p>
+                       <p class="year-ago">{{ p.posted_at | timeAgo }}</p>
                     </div>
-                     <!--  <div class="item-details">
-                      <ul class="text-center clearfix">
-                        <li class="pull-left in-meters"><i class="fa fa-home" aria-hidden="true"></i> 100 </li>
-                        <li class="pull-left">&nbsp;</li>
-                        <li class="pull-left"><i class="fa fa-bed" aria-hidden="true"></i> 5</li>
-                    </ul>
-                  </div> -->
                 </a>
               </div>
 

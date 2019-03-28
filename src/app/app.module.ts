@@ -26,6 +26,7 @@ import { MyModalService } from './services/my-modal.service';
 import { ImagePipe } from './services/image.pipe';
 import { PhonePipe } from './services/phone.pipe';
 import { PropertyAndOfferService } from './services/property-and-offer.service';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 /* //////////////////////////////////////// */
 import { AppComponent } from './app.component';
@@ -75,6 +76,8 @@ import { ComparePropertyComponent } from './compare-property/compare-property.co
 import { FilterPropertyComponent } from './filter-property/filter-property.component';
 import { MlsPropertyComponent } from './mls-property/mls-property.component';
 import { MapComponent } from './map/map.component';
+import { UserPropertyComponent } from './user-property/user-property.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 export const CustomCurrencyMaskConfig: any = {
   align: "left",
@@ -145,12 +148,15 @@ export function provideConfig() {
     PropertyComponent,
     ImagePipe,
     PhonePipe,
+    TimeAgoPipe,
     SellComponent,
     RentComponent,
     ComparePropertyComponent,
     FilterPropertyComponent,
     MlsPropertyComponent,
-    MapComponent
+    MapComponent,
+    UserPropertyComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,

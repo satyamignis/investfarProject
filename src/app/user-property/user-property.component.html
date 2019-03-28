@@ -1,0 +1,66 @@
+<div *ngIf="preloadimg" class="preloadingimg">
+  <img src="./assets/images/icons/preloader.gif">
+</div>
+<div *ngIf="apiLoading" class="loadingApi">
+  <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+  <div class="auto-container">
+    <div class="row clearfix">
+      <!--Title -->
+      <div class="title-column col-md-6 col-sm-12 col-xs-12">
+        <h1 class="text-uppercase" *ngIf="params">ALL BY {{ params.name | uppercase }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--latest-listings-->
+<section class="latest-listings" #structure id="structure">
+  <div class="auto-container">
+    <div class="found mb_10">
+      <strong>{{totalCount}} FOUND</strong>
+    </div> 
+
+    <div class="row">
+    <div class="col-sm-12 col-md-4" *ngFor="let p of properties" >
+        <div class="listing-main" target="_blank">
+          <div class="listing-img">
+            <div class="price" *ngIf="p.price != '-1'" >{{p.price | currency}}</div>
+            <div class="price" *ngIf="p.price == '-1'" >See Valuation Report</div>
+            <div class="star"><i class="fa fa-star-o" aria-hidden="true"></i></div>
+            <img src="{{p.image1}}" alt="" class="img-responsive" width="100%">
+          </div>
+
+          <div class="listting-inner">
+            <div class="properties_details">
+              <h4 class="item-title">{{p.title}}</h4>
+              <p class="item-location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{p.address}}</p>
+              <p class="year-ago">{{ p.posted_at | timeAgo}}</p>
+            </div>
+            <a class="theme-btn btn-style-one text-center" (click)="getDetails(p.property_slug)" style="width: 100%;">DETAILS</a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="property-listing" *ngIf="properties.length == 0">
+        <div class="no_data_found">
+          <h3>No Data Found</h3>
+        </div> 
+        </div>
+      </div>
+      <div class="text-center advance-btn" *ngIf="properties.length > 3">
+
+        <a class="theme-btn btn-style-one text-uppercase" target="" (click)="loadMoreProperties()">  <i *ngIf="apiLoading"  class="fa fa-refresh fa-spin fa-3x fa-fw"></i> Load More </a>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+

@@ -309,11 +309,10 @@
       <div class="properties_details">
         <h4 class="item-title">{{p.title}}</h4>
         <p class="item-location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{p.address}}</p>
-          <p class="year-ago">{{ p.posted_at }}</p>
+          <p class="year-ago">{{ p.posted_at | timeAgo }}</p>
           </div>
           <a class="theme-btn btn-style-one text-center" (click)="getDetails(p.property_slug)">DETAILS</a>
         </div>
-
       </div>
     </div>
    <!--  <div class="col-sm-12 col-md-6">
