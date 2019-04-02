@@ -40,6 +40,8 @@ import { MlsPropertyComponent } from './mls-property/mls-property.component';
 import { MapComponent } from './map/map.component';
 import { UserPropertyComponent } from './user-property/user-property.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 
 export const AppRoutes: any = [
@@ -82,7 +84,10 @@ export const AppRoutes: any = [
     { path: "mls-property/:title", component: MlsPropertyComponent, canActivate : [AuthGaurdService]},
     { path: "map", component: MapComponent},
     { path: "properties-user/:id/:name", component: UserPropertyComponent},
-    { path: "reviews", component: ReviewsComponent,canActivate : [AuthGaurdService] }
+    { path: "reviews", component: ReviewsComponent,canActivate : [AuthGaurdService] },
+    { path: "payment", component: PaymentComponent,canActivate : [AuthGaurdService] },
+    { path: "makePayment/:tranID", component: PaymentSuccessComponent,canActivate : [AuthGaurdService] }
+
     
 ];
 
@@ -121,5 +126,7 @@ export const AppComponents: any = [
     MlsPropertyComponent,
     MapComponent,
     UserPropertyComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    PaymentComponent,
+    PaymentSuccessComponent
 ];

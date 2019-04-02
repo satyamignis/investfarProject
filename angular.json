@@ -61,7 +61,8 @@
               "src/assets/js/toogle.js",
               "src/assets/js/map/ammap.js",
               "src/assets/js/map/light.js",
-              "src/assets/js/map/worldLow.js"
+              "src/assets/js/map/worldLow.js",
+              "src/assets/js/paymentform.js"
             ]
           },
           "configurations": {
@@ -144,7 +145,8 @@
               "src/assets/js/wow.js",
               "src/assets/js/map/ammap.js",
               "src/assets/js/map/light.js",
-              "src/assets/js/map/worldLow.js"
+              "src/assets/js/map/worldLow.js",
+              "src/assets/js/paymentform.js"
             ],
             "assets": [
               "src/favicon.ico",

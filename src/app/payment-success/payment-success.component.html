@@ -1,0 +1,43 @@
+<!-- *********** Loading ************** -->
+<div *ngIf="preloadimg" class="preloadingimg">
+   <img src="./assets/images/icons/preloader.gif">
+</div>
+<div *ngIf="apiLoading" class="loadingApi">
+   <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+   <div class="auto-container">
+      <div class="row clearfix">
+         <!--Title -->
+         <div class="title-column col-md-6 col-sm-12 col-xs-12">
+            <h1 class="text-uppercase">Payment</h1>
+         </div>
+      </div>
+   </div>
+</section>
+
+<section class="investor_club_body seminars sec-padding">
+
+  <div class="auto-container" style="color:#2dae58" *ngIf="transaction_id !='PaymentFailed'">
+    <div class="in_club_hedding text-justify clearfix no-margin-bottom">
+    <h2><img src="./assets/images/icons/paymentSuccess.png">
+    Payment Complete. <img height="30px;" src="./assets/images/icons/happy.png"></h2>
+    <p>Thank you. Your payment has been processed successfully and you Plan is confirmed.</p>
+    </div>
+    <div class="seminars-events">
+    <p style="color:#000">Transaction ID:- {{transaction_id}}</p>
+    </div>
+  </div>
+
+  <div class="auto-container" style="color:#e74c3c" *ngIf="transaction_id =='PaymentFailed'">
+    <div class="in_club_hedding text-justify clearfix no-margin-bottom">
+    <h2><img src="./assets/images/icons/error-filled.png">
+    Transaction has failed. <img height="30px;" src="./assets/images/icons/sad.png"></h2>
+    <p>Sorry. Your payment has been failed. Please try again.</p>
+    </div>
+  </div>
+
+</section>
+

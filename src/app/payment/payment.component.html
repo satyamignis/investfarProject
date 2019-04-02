@@ -1,0 +1,116 @@
+<!-- *********** Loading ************** -->
+<div *ngIf="preloadimg" class="preloadingimg">
+   <img src="./assets/images/icons/preloader.gif">
+</div>
+<div *ngIf="apiLoading" class="loadingApi">
+   <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** -->
+<app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+   <div class="auto-container">
+      <div class="row clearfix">
+         <!--Title -->
+         <div class="title-column col-md-6 col-sm-12 col-xs-12">
+            <h1 class="text-uppercase">Checkout</h1>
+         </div>
+      </div>
+   </div>
+</section>
+<section class="main-education mt_50 mb_50">
+   <form class="uk-form billing-form uk-flex uk-flex-wrap" id="nonce-form" novalidate method="post">
+      <div class="container text-justify">
+         <div class="row checkout-row">
+            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-8 text-left join-now-coach">
+               <div class="review-box">
+                  <div class="review-img">
+                     <!--<img src="images/review-3.jpg" alt="" class="img-responsive" />-->
+                     <img src="./assets/images/resource/featured-image-1.png" alt="" class="img-responsive">
+                  </div>
+                  <div class="review-text mt_90 text-center">
+                     <span>Your Plan</span>
+                     <h3>{{planTitle}}</h3>
+                     <!--<span>Master Coach $$$</span>-->
+                     <div class="detail-coach clearfix">
+                        <div class="block-1 text-left">
+                           <span>Package</span>
+                           <p>{{planTitle}}</p>
+                        </div>
+                        <div class="block-1 text-left">
+                           <span>Quantity</span>
+                           <select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                        </div>
+                        <div class="block-1 text-left">
+                           <span>Price</span>
+                           <p>{{planPrice}}</p>
+                        </div>
+                        <div *ngIf="planTitle !='À la carte Services'">* This payment will be reoccurring monthly until canceled.</div>
+                     </div>
+                     <div class="total">Total: <span id="total_amt">{{planPrice}}</span></div>
+                     <!--<a href="#" class="book-now">Book Now</a>-->
+
+                     <button [disabled]="!agree" type="submit" (click)="requestCardNonce($event)" id="card-nonce-submit" class="book-now">Book Now</button>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 education-left">
+               <div class="event-form checkout">
+                  <h3 class="text-left">Enter Your Credit Card Information</h3>
+                  <span class="error_message"></span>
+                  <div class="form-text">
+                     <div id="errors"> </div>
+                     <div class="form-group">
+                        <input type="text" placeholder="Full Name" id="given_name" class="uk-form-large form-control">
+                     </div>
+
+                     <div class="form-group small">
+                        <input type="text" placeholder="Phone Number" class="uk-form-large form-control">
+                     </div>
+                     <div class="form-group small">
+                        <input type="email" placeholder="Email" class="uk-form-large form-control">
+                     </div>
+
+                     <div class="form-group">
+                        <input type="text" placeholder="City" class="uk-form-large form-control">
+                     </div>
+                     <div class="form-group">
+                        <input type="text" placeholder="State" class="uk-form-large form-control">
+                     </div>
+                     <div class="form-group small">
+                        <select class="uk-form-large form-control">
+                           <option value="C2">CHINA</option>
+                           <option value="IN">INDIA</option>
+                           <option value="GB">UNITED KINGDOM</option>
+                           <option value="US">UNITED STATES</option>
+                        </select>
+                     </div>
+                     <div class="form-group small createDynamic">
+                        <input type="text" placeholder="Card Number" id="sq-card-number" class="uk-form-large form-control">
+                     </div>
+                     <div class="form-group small createDynamic">
+                        <input type="text" placeholder="MM/YY" id="sq-expiration-date" class="uk-form-large form-control">
+                     </div>
+                     <div class="form-group small createDynamic">
+                        <input type="text" placeholder="CVV" id="sq-cvv" class="uk-form-large uk-form-width-mini form-control">
+                     </div>
+                     <div class="form-group small createDynamic">
+                        <input type="text" placeholder="Zip Code" id="sq-postal-code" class="uk-form-large form-control">
+                     </div>
+
+                     <!-- <input type="hidden" id="card-nonce" name="nonce"> -->
+                     <input type="hidden" id="sq-id" name="sq-id">
+                     <div class="checkout_block text-left">
+                        <div class="tearm clearfix"><input  class="checkbox" [(ngModel)]="agree"  name="agree" value="agree" id="agree" type="checkbox">
+                           <span>I agree to the <a [routerLink]="['/privacy-policy-terms']">Privacy Policy</a></span>
+                        </div>
+                        <p class="checkout_msg">What comes next? Good question! After you submit your order, you'll get an email and instructions for scheduling.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </form>
+</section>

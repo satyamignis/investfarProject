@@ -64,7 +64,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6" *ngIf="registrationForm">
+                <div class="col-sm-6">
                     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                         <div class="form-outer form-block">
                             <div class="default-title"><h2>Sign up for an account</h2></div>
@@ -117,10 +117,10 @@
                        <div class="form-group">
                         <div class="field-label">Primary Business Address</div>
                         <div class="form-group choose-location">
-                           <input class="form-control side_input location" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+                           <input class="form-control side_input location" ngx-google-places-autocomplete  #placesRef="ngx-places"
                            (onAddressChange)="handleAddressChange($event)" type="text" style="display: none; border:none;" placeholder="">
 
-                           <input class="form side_input location" formControlName="addr" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+                           <input class="form side_input location" formControlName="addr" ngx-google-places-autocomplete  #placesRef="ngx-places"
                            (onAddressChange)="handleAddressChange($event)" type="text" autocomplete="skdmnfjksdnfkjsdfndks" placeholder="">                 
                        </div> 
                    </div>

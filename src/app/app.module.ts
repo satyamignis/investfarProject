@@ -78,6 +78,8 @@ import { MlsPropertyComponent } from './mls-property/mls-property.component';
 import { MapComponent } from './map/map.component';
 import { UserPropertyComponent } from './user-property/user-property.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 export const CustomCurrencyMaskConfig: any = {
   align: "left",
@@ -156,7 +158,9 @@ export function provideConfig() {
     MlsPropertyComponent,
     MapComponent,
     UserPropertyComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    PaymentComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,

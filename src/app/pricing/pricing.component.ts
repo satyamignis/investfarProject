@@ -136,7 +136,7 @@ export class PricingComponent implements OnInit {
          this.preloadimg=false;
      }, 1000);
 
-    this.user = this.myCookieService.getCookie('user')
+    this.user = this.myCookieService.getCookie('user');
 
     // if need call api so use this
     //this.getPlans();
@@ -209,8 +209,14 @@ export class PricingComponent implements OnInit {
   getAccess(plan){
     this.selectedPlan = plan;
     if(this.user){
-      this.payWithShield();
-      // this.checkPurchasePlan();
+
+      /*squre Pay*/
+      localStorage.setItem('planTitle',plan.title);
+      localStorage.setItem('planPrice',plan.price);
+      localStorage.setItem('product_id',plan.product_id);
+      this.router.navigate(['/payment']);
+      /*********************/
+      //this.payWithShield();
     } else {
       this.router.navigate(['/login']);
     }
