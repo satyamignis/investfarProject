@@ -72,7 +72,7 @@
                     <div class="col-sm-12 col-md-6 no-margin">
                        <div class="form-group">
                         <div class="field-label">Phone Number</div>
-                        <input class="form-control side_input" formControlName="number" type="text">
+                        <input class="form-control side_input" formControlName="number" type="text" mask='000-000-0000' [min]="0" >
                     </div>
                 </div>
             </div>

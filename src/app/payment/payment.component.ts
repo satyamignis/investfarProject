@@ -21,6 +21,7 @@ export class PaymentComponent implements OnInit {
   planPrice:any;
   product_id:any;
   nonce:any;
+  BaseplanPrice:any;
   user:any;
   agree:any = false;
   constructor(
@@ -35,12 +36,12 @@ export class PaymentComponent implements OnInit {
     this.user = this.myCookieService.getCookie('user');
 
     if(localStorage.getItem('planTitle') && localStorage.getItem('planPrice')){
-      this.planTitle=localStorage.getItem('planTitle');
-      this.planPrice=localStorage.getItem('planPrice');
+      this.planTitle = localStorage.getItem('planTitle');
+      this.BaseplanPrice = localStorage.getItem('planPrice');
       this.product_id=localStorage.getItem('product_id');
     }else{
       this.planTitle='Apprentice';
-      this.planPrice='$54.99';	
+      this.BaseplanPrice='$54.99';	
       this.product_id='com.investfar.15report_tool';
     }
 
@@ -51,6 +52,17 @@ export class PaymentComponent implements OnInit {
     }, 1000);
 
     this.paymentSqure();
+
+    /*Base plan*/
+    this.planPrice = this.BaseplanPrice;
+  }
+
+  checkValue(){
+    var extraFeatures = parseFloat(this.BaseplanPrice.replace('$',''));
+    $.each($("input[name='extra']:checked"), function(){            
+      extraFeatures += parseFloat($(this).val());
+    });
+    this.planPrice= '$'+extraFeatures.toFixed(2);
   }
 
 
@@ -248,53 +260,132 @@ ngAfterViewInit(){
 
 postPayment(nonce){
 
+  var userDetails = {'name':$('#name').val(),'email':$('#email').val(), 'city':$('#city').val(),'phone_number':$('#phone_number').val(),'country':$('#country').val()};
+  
   let MypostPayment;
   MypostPayment = this;
   this.apiLoading=true;
 
+  /**** Add on user history ****/
+  /*Create Customer*/
   $.ajax({
     type: 'POST',
-    url: 'https://bklawyer.busnweb.com/squre_payment/process-card.php',
-    data: {'nonce':nonce,'amount':localStorage.getItem('planPrice'), 'planTitle':localStorage.getItem('planTitle')},
-    success: function (result) {
+    url: 'https://bklawyer.busnweb.com/squre_payment/createUser.php',
+    data: userDetails,
+    success: function (resultResp) {
+      if(resultResp !='Exception')  {
 
-      if(result != 'Payment failed'){
-        /**** Add on user history ****/
-        MypostPayment.addPurchasePlan();
-        /*****************************/
-        MypostPayment.router.navigate(['/makePayment/'+result]);
+        var saveCard = {'nonce':nonce,'customer_id':resultResp};
+        /* saveCard */
+        $.ajax({
+          type: 'POST',
+          url: 'https://bklawyer.busnweb.com/squre_payment/saveCard.php',
+          data: saveCard,
+          success: function (isresultResp) {
+            if(isresultResp !='Exception') {
+              $.ajax({
+                type: 'POST',
+                url: 'https://bklawyer.busnweb.com/squre_payment/chargeCard.php',
+                data: {'customerId':resultResp, 'customerCardId':isresultResp,'amount':MypostPayment.planPrice, 'planTitle':localStorage.getItem('planTitle')},
+                success: function (result) {
+
+                  if(result != 'Payment failed'){
+
+                    MypostPayment.addPurchasePlan();
+                    /*****************************/
+                    MypostPayment.router.navigate(['/makePayment/'+result]);
+                  }else{
+                    MypostPayment.router.navigate(['/makePayment/PaymentFailed']);
+                  }
+
+                  MypostPayment.apiLoading=false;
+                }
+              })
+
+            }else{
+              MypostPayment.router.navigate(['/makePayment/PaymentFailed']);
+            }
+          }
+        })/*save card*/
+
       }else{
         MypostPayment.router.navigate(['/makePayment/PaymentFailed']);
       }
 
-      MypostPayment.apiLoading=false;
     }
-  })
+  })/* End Create Customer*/
+
+  // $.ajax({
+    //   type: 'POST',
+    //   url: 'https://bklawyer.busnweb.com/squre_payment/process-card.php',
+    //   data: {'nonce':nonce,'amount':MypostPayment.planPrice, 'planTitle':localStorage.getItem('planTitle')},
+    //   success: function (result) {
+
+      //     if(result != 'Payment failed'){
+        //       /**** Add on user history ****/
+        //       /*Create Customer*/
+        //       // $.ajax({
+          //       //   type: 'POST',
+          //       //   url: 'https://bklawyer.busnweb.com/squre_payment/createUser.php',
+          //       //   data: userDetails,
+          //       //   success: function (resultResp) {
+            //       //     if(resultResp !='Exception')  {
+
+              //       //               var saveCard = {'nonce':nonce,'customer_id':resultResp};
+              //       //               /* saveCard */
+              //       //               $.ajax({
+                //       //                 type: 'POST',
+                //       //                 url: 'https://bklawyer.busnweb.com/squre_payment/saveCard.php',
+                //       //                 data: saveCard,
+                //       //                 success: function (isresultResp) {
+                  //       //                   if(isresultResp !='Exception')  {
+
+                    //       //                       alert(isresultResp);
+                    //       //                   }
+                    //       //                 }
+                    //       //               })/*save card*/
+
+                    //       //     }
+
+
+                    //       //   }
+                    //       // })/* End Create Customer*/
+
+                    //       MypostPayment.addPurchasePlan();
+                    //       /*****************************/
+                    //       MypostPayment.router.navigate(['/makePayment/'+result]);
+                    //     }else{
+                      //       MypostPayment.router.navigate(['/makePayment/PaymentFailed']);
+                      //     }
+
+                      //     MypostPayment.apiLoading=false;
+                      //   }
+                      // })
 }
 
-/*addPurchasePlan function call after payment Success*/
-addPurchasePlan(){
-  let purchaseData = {
-    userId : this.user.userId,
-    product_id : this.product_id
-  }
-  this.apiService.apiPostData('set_subscription_plans', purchaseData)
-  .subscribe(
-    (response : any) => {
-      if(response.errorCode == '0'){
-        this.myToasterService.success(response.errorMsg, 'Success');
-        this.user.product_id = this.product_id;
-        this.myCookieService.setCookie('user', this.user);
-        //this.router.navigate(['/my-purchase-history']);
-      } else {
-        this.myToasterService.error(response.errorMsg, 'Try Again');
-        //this.router.navigate(['/pricing']);
-      }
-    },
-    (error: any) => {
-      console.log(error);
-    }
-    )
-}
+                    /*addPurchasePlan function call after payment Success*/
+                    addPurchasePlan(){
+                      let purchaseData = {
+                        userId : this.user.userId,
+                        product_id : this.product_id
+                      }
+                      this.apiService.apiPostData('set_subscription_plans', purchaseData)
+                      .subscribe(
+                        (response : any) => {
+                          if(response.errorCode == '0'){
+                            this.myToasterService.success(response.errorMsg, 'Success');
+                            this.user.product_id = this.product_id;
+                            this.myCookieService.setCookie('user', this.user);
+                            //this.router.navigate(['/my-purchase-history']);
+                          } else {
+                            this.myToasterService.error(response.errorMsg, 'Try Again');
+                            //this.router.navigate(['/pricing']);
+                          }
+                        },
+                        (error: any) => {
+                          console.log(error);
+                        }
+                        )
+                    }
 
-}
+                  }

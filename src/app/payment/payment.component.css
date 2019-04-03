@@ -1818,7 +1818,8 @@ footer .first p {
 }
 
 .detail-coach {
-	padding: 15px 0;
+	/*padding: 15px 0;*/
+	padding-bottom: 15px;
 	background: #fff;
 	margin-top: 20px;
 	border: 1px solid #ccc
@@ -2775,6 +2776,13 @@ footer .first p {
 	.team-family .eductaion-msg-text {
 		margin: 0
 	}
+}
+
+.table td {
+	text-align: left;
+}
+.table{
+	color: #947f7f;
 }
 
 /*.form-group {

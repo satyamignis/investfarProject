@@ -31,22 +31,160 @@
                      <span>Your Plan</span>
                      <h3>{{planTitle}}</h3>
                      <!--<span>Master Coach $$$</span>-->
-                     <div class="detail-coach clearfix">
-                        <div class="block-1 text-left">
-                           <span>Package</span>
-                           <p>{{planTitle}}</p>
-                        </div>
-                        <div class="block-1 text-left">
-                           <span>Quantity</span>
-                           <select name="coach-product-80" id="quantity" data-index="0">
+                  
+
+                     <div class="detail-coach clearfix" *ngIf="planTitle =='À la carte Services'">
+                      <table class="table"  border="0">
+                        <tr>
+                           <th>Package</th>
+                           <th>Quantity</th>
+                           <th>Price</th>
+                        </tr>
+                       <!--  <tr>
+                           <td>{{planTitle}}</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
                               <option value="1">1</option>
                            </select>
-                        </div>
-                        <div class="block-1 text-left">
-                           <span>Price</span>
-                           <p>{{planPrice}}</p>
-                        </div>
-                        <div *ngIf="planTitle !='À la carte Services'">* This payment will be reoccurring monthly until canceled.</div>
+                           </td>
+                           <td>{{BaseplanPrice}}</td>
+                        </tr> -->
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="8.99"> Per Valuation Report</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$8.99</td>
+                        </tr>  
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="45.99"> Mobile Notarization</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$45.99</td>
+                        </tr>
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="24.99"> 20 additional photos</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$24.99</td>
+                        </tr> 
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="24.99"> 1-Minute Property Video</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$24.99</td>
+                        </tr>  
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="84.99"> Residential Property Inspection (Exterior Only)</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$84.99</td>
+                        </tr>
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="99.99"> Residential Property Inspection (Exterior & Interior)</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$99.99</td>
+                        </tr> 
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="184.99"> Document pick-up & Delivery <br>(Notary & title closing)</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$184.99</td>
+                        </tr>
+                     </table>
+                        <div>* This is a single transaction no recurring charge.</div>
+                     </div>
+
+
+
+                     <div class="detail-coach clearfix" *ngIf="planTitle !='À la carte Services'">
+
+
+                     <table class="table"  border="0">
+                        <tr>
+                           <th>Package</th>
+                           <th>Quantity</th>
+                           <th>Price</th>
+                        </tr>
+                        <tr>
+                           <td>{{planTitle}}</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>{{BaseplanPrice}}</td>
+                        </tr>
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="7.99"> Per Valuation Report</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$7.99</td>
+                        </tr>  
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="41.99"> Mobile Notarization</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$41.99</td>
+                        </tr>
+                        <tr>
+                           <td><input type="checkbox" name="extra" (change)="checkValue()" value="19.99"> 20 additional photos</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$19.99</td>
+                        </tr> 
+                        <tr>
+                           <td><input type="checkbox"  name="extra" (change)="checkValue()" value="19.99"> 1-Minute Property Video</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$19.99</td>
+                        </tr>  
+                        <tr>
+                           <td><input type="checkbox"  name="extra" (change)="checkValue()" value="74.99"> Residential Property Inspection (Exterior Only)</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$74.99</td>
+                        </tr>
+                        <tr>
+                           <td><input type="checkbox"  name="extra" (change)="checkValue()" value="94.99"> Residential Property Inspection (Exterior & Interior)</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$94.99</td>
+                        </tr> 
+                        <tr>
+                           <td><input type="checkbox"  name="extra" (change)="checkValue()" value="84.99"> Documents pick-up & Delivery <br> (Notary docs, notices etc)</td>
+                           <td><select name="coach-product-80" id="quantity" data-index="0">
+                              <option value="1">1</option>
+                           </select>
+                           </td>
+                           <td>$84.99</td>
+                        </tr>
+                     </table>
+                        <div>* This payment will be reoccurring monthly until canceled.</div>
                      </div>
                      <div class="total">Total: <span id="total_amt">{{planPrice}}</span></div>
                      <!--<a href="#" class="book-now">Book Now</a>-->
@@ -62,24 +200,24 @@
                   <div class="form-text">
                      <div id="errors"> </div>
                      <div class="form-group">
-                        <input type="text" placeholder="Full Name" id="given_name" class="uk-form-large form-control">
+                        <input type="text" placeholder="Full Name"  id="name" class="uk-form-large form-control">
                      </div>
 
                      <div class="form-group small">
-                        <input type="text" placeholder="Phone Number" class="uk-form-large form-control">
+                        <input type="text" placeholder="Phone Number" id="phone_number" mask='000-000-0000' [min]="0"  class="uk-form-large form-control">
                      </div>
                      <div class="form-group small">
-                        <input type="email" placeholder="Email" class="uk-form-large form-control">
+                        <input type="email" placeholder="Email" id="email"  class="uk-form-large form-control">
                      </div>
 
                      <div class="form-group">
-                        <input type="text" placeholder="City" class="uk-form-large form-control">
+                        <input type="text" placeholder="City" id="city" class="uk-form-large form-control">
                      </div>
                      <div class="form-group">
                         <input type="text" placeholder="State" class="uk-form-large form-control">
                      </div>
                      <div class="form-group small">
-                        <select class="uk-form-large form-control">
+                        <select class="uk-form-large form-control" id="country">
                            <option value="C2">CHINA</option>
                            <option value="IN">INDIA</option>
                            <option value="GB">UNITED KINGDOM</option>

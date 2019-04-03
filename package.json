@@ -41,6 +41,7 @@
     "ngx-currency": "^1.5.1",
     "ngx-google-places-autocomplete": "^2.0.3",
     "ngx-lightbox": "^1.2.0",
+    "ngx-mask": "^7.8.9",
     "ngx-owl-carousel-o": "^1.0.11",
     "ngx-toastr": "^9.1.2",
     "papaparse": "^4.6.3",

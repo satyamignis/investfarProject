@@ -16,6 +16,8 @@ import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ngx-currency/src/curre
 import { StarRatingModule } from 'angular-star-rating';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { NgxMaskModule } from 'ngx-mask';
+
 
 /* %%%%%%%%%%%%%% Service %%%%%%%%%%%%%%%%%%*/
 import { ApiService } from './services/api.service';
@@ -168,6 +170,7 @@ export function provideConfig() {
     RouterModule,
     RouterModule.forRoot(AppRoutes),
     HttpClientModule,
+    NgxMaskModule.forRoot(),
     SlideshowModule,
     GooglePlaceModule,
     NgbModule.forRoot(),
