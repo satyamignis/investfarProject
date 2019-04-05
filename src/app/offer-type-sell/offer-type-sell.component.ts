@@ -187,7 +187,7 @@ export class OfferTypeSellComponent implements OnInit {
     this.apiService.apiPostData('get_filtered_property', filtered_property_data)
       .subscribe(
         (response : any) => {
-          console.log(response)
+          //console.log(response)
           if(response.errorCode == '0'){
             // if(response.data.length == 0) this.loadMoreSpan = false;
             this.properties = [...this.properties, ...response.data];
