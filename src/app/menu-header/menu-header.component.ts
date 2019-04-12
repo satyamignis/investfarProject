@@ -15,6 +15,7 @@ declare const $: any;
 export class MenuHeaderComponent implements OnInit {
   user:any;
   apiLoading:any;
+  recurringActivePlan:any;
   
   constructor(private myCookieService: MyCookieService,
     private router : Router,private toastr: ToastrService, private apiService : ApiService
@@ -28,6 +29,7 @@ export class MenuHeaderComponent implements OnInit {
 
     /*cronJob for recurring Payment Check in db and make payment*/
     this.checkUserforRecurring();
+    this.getrecurringUserPlan();
 
   }
 
@@ -78,19 +80,41 @@ export class MenuHeaderComponent implements OnInit {
       })
   }
 
+  getrecurringUserPlan(){
+    this.apiService.addCardRecurring('get_from_email',{'email':this.user.email})
+    .subscribe(
+      (responseResult : any) => {
+        if((responseResult.data).length >0){
+          this.recurringActivePlan=(responseResult.data[0].plan_title);
+        } 
+        else{
+          this.recurringActivePlan='No Plan';
+        }
+      })
+  }
+
   checkAccessibility(path){
     if(this.user && this.user.product_id == ''){
       this.showAlert('You have not purchase any plan. <br/> Would you like purchase one ?', '/pricing');
     } else if(this.user && this.user.product_id != '' ){
-      if((path.includes('real-estate-legal-forms'))
-        || (path.includes('property-search'))
+    
+    if((path.includes('property-search'))
         || (path.includes('map-search'))
         || (path.includes('open-home-search'))
         || (path.includes('featured-properties'))
         || (path.includes('organization-login'))
         ){
         this.router.navigate([path]);
-    } else {
+    } 
+
+    else if((path.includes('real-estate-legal-forms')) || (path.includes('home-improvement-network')) || (path.includes('seminars-events-nvestors-club'))){
+      if(this.recurringActivePlan=='Investors Club'){
+        this.router.navigate([path]);
+      }else{
+        this.showAlert('Your plan do not have access of this feature. <br/> Would you like purchase upgraded plan ?', '/pricing');
+      }
+    }
+    else {
       this.showAlert('Your plan do not have access of this feature. <br/> Would you like purchase upgraded plan ?', '/pricing');
     }
   } else {

@@ -98,8 +98,8 @@
                                         <li><a [routerLink]="['/local-investor-consultant']">LOCAL INVESTOR CONSULTANT</a></li>   
                                          <li class="dropdown"><a>INVESTORS CLUB</a>
                                          <ul>
-                                            <li><a [routerLink]="['/home-improvement-network']">Home Improvement Network</a></li>
-                                            <li><a [routerLink]="['/seminars-events-nvestors-club']">Seminars & Events</a></li>
+                                            <li><a (click)="checkAccessibility('/home-improvement-network');" >Home Improvement Network</a></li>
+                                            <li><a (click)="checkAccessibility('/seminars-events-nvestors-club');">Seminars & Events</a></li>
                                         </ul>
                                         </li>
                                     </ul>

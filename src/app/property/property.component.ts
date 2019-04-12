@@ -20,6 +20,7 @@ declare let google: any;
 })
 export class PropertyComponent implements OnInit {
   preloadimg:any;
+  sliderShow:any =true;
   @ViewChild('slideshow') slideshow : any;
   closeResult: string;
   radius = 500;
@@ -40,42 +41,42 @@ export class PropertyComponent implements OnInit {
   apiLoading:any;
 
   isOfferTypes:any  = [
-    { text : 'Buy' },
-    { text : 'Rent' },
-    { text : 'Sell' },
-    { text : 'Sold' },
+  { text : 'Buy' },
+  { text : 'Rent' },
+  { text : 'Sell' },
+  { text : 'Sold' },
   ];
 
 
   property:any = [
-    { text : 'Condo' },
-    { text : 'Plot' },
-    { text : 'Single Family' },
-    { text : 'Multi Family' },
-    { text : 'Apartment' },
-    { text : 'Duplex' },
-    { text : 'Office' },
-    { text : 'Townhouse' },
+  { text : 'Condo' },
+  { text : 'Plot' },
+  { text : 'Single Family' },
+  { text : 'Multi Family' },
+  { text : 'Apartment' },
+  { text : 'Duplex' },
+  { text : 'Office' },
+  { text : 'Townhouse' },
   ]
 
   propertyListArr:any = [
-    { 'value' : 1, 'text' : 'Condo' },
-    { 'value' : 2, 'text' : 'Plot' },
-    { 'value' : 3, 'text' : 'Single Family' },
-    { 'value' : 4, 'text' : 'Multi Family' },
-    { 'value' : 5, 'text' : 'Apartment' },
-    { 'value' : 6, 'text' : 'Duplex' },
-    { 'value' : 7, 'text' : 'Office' },
-    { 'value' : 8, 'text' : 'Townhouse' },
-]
+  { 'value' : 1, 'text' : 'Condo' },
+  { 'value' : 2, 'text' : 'Plot' },
+  { 'value' : 3, 'text' : 'Single Family' },
+  { 'value' : 4, 'text' : 'Multi Family' },
+  { 'value' : 5, 'text' : 'Apartment' },
+  { 'value' : 6, 'text' : 'Duplex' },
+  { 'value' : 7, 'text' : 'Office' },
+  { 'value' : 8, 'text' : 'Townhouse' },
+  ]
 
 
-offerListArr:any = [
-    { 'value' : 1, 'text' : 'Buy' },
-    { 'value' : 2, 'text' : 'Rent' },
-    { 'value' : 3, 'text' : 'Sell' },
-    { 'value' : 4, 'text' : 'Sold' },
-]
+  offerListArr:any = [
+  { 'value' : 1, 'text' : 'Buy' },
+  { 'value' : 2, 'text' : 'Rent' },
+  { 'value' : 3, 'text' : 'Sell' },
+  { 'value' : 4, 'text' : 'Sold' },
+  ]
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -114,7 +115,7 @@ offerListArr:any = [
     } else {
       this.reInit()
     }
-    // this.streetView();
+    //this.streetView();
   }
   
   open(content, type) {
@@ -126,9 +127,9 @@ offerListArr:any = [
   }
 
   changerImage(param){
+    this.sliderShow = true;
     this.slideshow.goToSlide(param);
   }
-
 
   reInit(){
     this.user = this.myCookieService.getCookie('user');
@@ -162,13 +163,16 @@ offerListArr:any = [
   }
 
   streetView(){
-    this.panorama = new google.maps.StreetViewPanorama(
-            document.getElementById('street-view'),
-            {
-              position: {lat: 37.869260, lng: -122.254811},
-              pov: {heading: 165, pitch: 0},
-              zoom: 1
-            });
+    this.sliderShow = false;
+    setTimeout(() => {  
+      this.panorama = new google.maps.StreetViewPanorama(
+        document.getElementById('street-view'),
+        {
+          position: {lat: this.pyrmont.lat, lng: this.pyrmont.lng},
+          pov: {heading: 165, pitch: 0},
+          zoom: 1
+        });
+    }, 200); 
   }
 
   getPropertyDetails() {
@@ -179,46 +183,46 @@ offerListArr:any = [
       getPropertyDetailsData['user_id'] = this.user.userId
     }
     this.apiService.apiPostData('get_property_details', getPropertyDetailsData)
-      .subscribe(
-        (response: any) => {
-          if (response.errorCode == '0') {
-            this.propertyData = response.data;
-            for (let i = 0; i < this.propertyListArr.length; i++) {
-                if(this.propertyListArr[i].value == this.propertyData.property_type){
-                  this.propertyData['property_name']=this.propertyListArr[i].text;
-                }
-              }
-              for (let i = 0; i < this.offerListArr.length; i++) {
-                if(this.offerListArr[i].value == this.propertyData.offer_type){
-                  this.propertyData['offer_name']=this.offerListArr[i].text;
-                }
-              }
-            if (response.data.slide_image.length > 0) {
-              this.imageUrlArray = response.data.slide_image
-              for (let i = 0; i < this.imageUrlArray.length; i++) {
-                this.imageUrlArray[i] = this.imageUrlArray[i];
-              }
+    .subscribe(
+      (response: any) => {
+        if (response.errorCode == '0') {
+          this.propertyData = response.data;
+          for (let i = 0; i < this.propertyListArr.length; i++) {
+            if(this.propertyListArr[i].value == this.propertyData.property_type){
+              this.propertyData['property_name']=this.propertyListArr[i].text;
             }
-            if (response.data.plan_images.length > 0) {
-              this.planImages = response.data.plan_images
-              for (let i = 0; i < this.planImages.length; i++) {
-                this.planImages[i] = this.planImages[i];
-              }
-            }
-
-            this.features = this.features.filter((f) => {
-              return this.propertyData.features.includes(f.value.toString());
-            })
-            console.log(this.features);
-            this.pyrmont.lat = +this.propertyData.latitude;
-            this.pyrmont.lng = +this.propertyData.longitude;
-          } else {
-            this.router.navigate(['/']);
           }
-        },
-        (error: any) => {
-          console.log(error);
+          for (let i = 0; i < this.offerListArr.length; i++) {
+            if(this.offerListArr[i].value == this.propertyData.offer_type){
+              this.propertyData['offer_name']=this.offerListArr[i].text;
+            }
+          }
+          if (response.data.slide_image.length > 0) {
+            this.imageUrlArray = response.data.slide_image
+            for (let i = 0; i < this.imageUrlArray.length; i++) {
+              this.imageUrlArray[i] = this.imageUrlArray[i];
+            }
+          }
+          if (response.data.plan_images.length > 0) {
+            this.planImages = response.data.plan_images
+            for (let i = 0; i < this.planImages.length; i++) {
+              this.planImages[i] = this.planImages[i];
+            }
+          }
+
+          this.features = this.features.filter((f) => {
+            return this.propertyData.features.includes(f.value.toString());
+          })
+          console.log(this.features);
+          this.pyrmont.lat = +this.propertyData.latitude;
+          this.pyrmont.lng = +this.propertyData.longitude;
+        } else {
+          this.router.navigate(['/']);
         }
+      },
+      (error: any) => {
+        console.log(error);
+      }
       )
   }
 
@@ -240,21 +244,21 @@ offerListArr:any = [
       vendorType: 1
     }
     this.apiService.apiPostData('favourite', favouriteData)
-      .subscribe(
-        (response: any) => {
-          console.log(response)
-          if (response.errorCode == '0') {
-            this.myToasterService.success(response.errorMsg, 'Success');
-            this.getPropertyDetails();
-          } else {
-            this.myToasterService.error(response.errorMsg, 'Try Again');
-          }
-          this.apiLoading=false;
-        },
-        (error: any) => {
-          console.log(error);
-          this.apiLoading=false;
+    .subscribe(
+      (response: any) => {
+        console.log(response)
+        if (response.errorCode == '0') {
+          this.myToasterService.success(response.errorMsg, 'Success');
+          this.getPropertyDetails();
+        } else {
+          this.myToasterService.error(response.errorMsg, 'Try Again');
         }
+        this.apiLoading=false;
+      },
+      (error: any) => {
+        console.log(error);
+        this.apiLoading=false;
+      }
       )
   }
 
@@ -276,20 +280,20 @@ offerListArr:any = [
         contactFormData.user_id = this.user.userId;
         contactFormData.property_id = this.propertyData.property_id
         this.apiService.apiPostData('contact_to_property_owner', contactFormData)
-          .subscribe(
-            (response: any) => {
-              if (response.errorCode == '0') {
-                this.myToasterService.success(response.errorMsg, 'Success')
-                this.contactForm.reset();
-              } else {
-                this.myToasterService.error(response.errMsg, 'Try Again')
-              }
-              this.apiLoading=false;
-            },
-            (error: any) => {
-              console.log(error);
-              this.apiLoading=false;
+        .subscribe(
+          (response: any) => {
+            if (response.errorCode == '0') {
+              this.myToasterService.success(response.errorMsg, 'Success')
+              this.contactForm.reset();
+            } else {
+              this.myToasterService.error(response.errMsg, 'Try Again')
             }
+            this.apiLoading=false;
+          },
+          (error: any) => {
+            console.log(error);
+            this.apiLoading=false;
+          }
           )
       } else {
         this.router.navigate(['/login']);
@@ -334,23 +338,23 @@ offerListArr:any = [
     }
     this.apiLoading=true;
     this.apiService.apiPostData('get_subscription_plans', getSubscriptionPlanData)
-      .subscribe(
-        (response: any) => {
-          console.log(response)
-          if (response.errorCode == '0') {
-            if (response.data.valuation_report_counts == '0' || response.data.valuation_report_counts == null) {
-              this.confirmBeforeRedirecting();
-            } else {
-              this.callHouseCanaryApi();
-            }
+    .subscribe(
+      (response: any) => {
+        console.log(response)
+        if (response.errorCode == '0') {
+          if (response.data.valuation_report_counts == '0' || response.data.valuation_report_counts == null) {
+            this.confirmBeforeRedirecting();
           } else {
-            this.myToasterService.error(response.errorMsg, 'Try Again')
+            this.callHouseCanaryApi();
           }
-          this.apiLoading=false;
-        },
-        (error: any) => {
-          console.log(error);
+        } else {
+          this.myToasterService.error(response.errorMsg, 'Try Again')
         }
+        this.apiLoading=false;
+      },
+      (error: any) => {
+        console.log(error);
+      }
       )
   }
 
@@ -363,44 +367,44 @@ offerListArr:any = [
       () => {
         //cancel
       }
-    )
+      )
   }
 
   callHouseCanaryApi() {
     this.apiService.getValuationDetails({ zipcode : this.propertyData.zipcode, address : this.propertyData.address})
-      .subscribe(
-        (response: any) => {
-          if(response['property/value_report_static_link'].api_code == 200){
-            if (response['property/value_report_static_link'].result.link) {
-              this.link = response['property/value_report_static_link'].result.link
-              this.substractCount();
-            } else {
-              this.myToasterService.error('Invalid Address or Zipcode', 'Try Again');
-            }
+    .subscribe(
+      (response: any) => {
+        if(response['property/value_report_static_link'].api_code == 200){
+          if (response['property/value_report_static_link'].result.link) {
+            this.link = response['property/value_report_static_link'].result.link
+            this.substractCount();
           } else {
             this.myToasterService.error('Invalid Address or Zipcode', 'Try Again');
           }
+        } else {
+          this.myToasterService.error('Invalid Address or Zipcode', 'Try Again');
         }
-      ),
-      (error: any) => {
-        console.log(error);
       }
+      ),
+    (error: any) => {
+      console.log(error);
+    }
   }
 
   substractCount() {
     this.apiService.apiPostData('subtract_report_counts', { userId: this.user.userId })
-      .subscribe(
-        (response: any) => {
-          console.log(response)
-          if (response.errorCode == '0') {
-            window.open(this.link, "_blank");
-          } else {
-            this.myToasterService.error(response.errorMsg, 'Try Again')
-          }
-        },
-        (error: any) => {
-          console.log(error);
+    .subscribe(
+      (response: any) => {
+        console.log(response)
+        if (response.errorCode == '0') {
+          window.open(this.link, "_blank");
+        } else {
+          this.myToasterService.error(response.errorMsg, 'Try Again')
         }
+      },
+      (error: any) => {
+        console.log(error);
+      }
       )
   }
 

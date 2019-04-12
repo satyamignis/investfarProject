@@ -1,67 +1,87 @@
+<!-- *********** Loading ************** -->
 <div *ngIf="preloadimg" class="preloadingimg">
-    <img src="./assets/images/icons/preloader.gif">
+   <img src="./assets/images/icons/preloader.gif">
 </div>
-<app-menu-header></app-menu-header>
- <section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <!--Title -->
-                <div class="title-column col-md-6 col-sm-12 col-xs-12">
-                    <h1 class="text-uppercase">My Purchase History</h1>
-                </div>
-            </div>
-        </div>
-</section>
-  
-<section  class="no_padding purchase-section" id="">
-   <div  class="my-purchase-history">
-      <div class="container">
-          <h3>Current Plan</h3>
-          <div class="current-plan-detail" *ngIf="!purchaseDetails">
-            <p class="text-center errorMsg">{{errorMsg}}</p>
-          </div>
-          <div class="current-plan-detail" *ngIf="purchaseDetails">
-              <div class="col-sm-12">
-                <div class="row">
-                  <label class="heading">Current Plan</label><span class="dot">:</span><span class="planname">{{purchaseDetails.currnet_plan_name}}</span>
-                </div>
-              </div>
-              <div class="col-sm-12">
-                  <div class="row">
-                    <label class="heading">Features</label><span class="dot">:</span><span class="planname">
-                      <ul class="listing">
-                        <li *ngFor="let f of purchaseDetails.features">{{f}}</li> 
-                      </ul>
-                    </span>
-                  </div>
-              </div>
-              <div class="col-sm-12">
-                  <div class="row">
-                    <label class="heading">Valutions Count</label>
-                    <span class="dot">:</span><span class="planname">{{purchaseDetails.valuation_report_remain}} Valuation</span>
-                  </div>
-              </div>
-          </div>
-
-          <div class="purchase-history-list" *ngIf="purchaseDetails">
-            <h3>Purchase History</h3>
-            <table>
-                <tr>
-                  <th>Plan Name</th>
-                  <th>Price</th>
-                  <th>Date</th>
-                </tr>
-                <tr *ngFor="let h of purchaseDetails.history_of_payment">
-                  <td>{{h.plan_name}}</td>
-                  <td>{{h.price}}</td>
-                  <td>{{h.purchased_on | date:'medium'}}</td>
-                </tr>
-                <tr *ngIf="purchaseDetails.history_of_payment.length == 0">
-                  <td class="text-center" colspan="3"> No Purchased History</td>
-                </tr>
-              </table>
-          </div>
+<div *ngIf="apiLoading" class="loadingApi">
+   <img src="./assets/images/icons/loading.gif">
+</div>
+<!-- *********** Loading ************** --><app-menu-header></app-menu-header>
+<section class="page-title" style="background-image:url(./assets/images/background/page-title-1.jpg);">
+  <div class="auto-container">
+    <div class="row clearfix">
+      <!--Title -->
+      <div class="title-column col-md-6 col-sm-12 col-xs-12">
+        <h1 class="text-uppercase">My Purchase History</h1>
+      </div>
     </div>
-   </div>
+  </div>
+</section>
+
+<section  class="no_padding purchase-section" id="">
+ <div  class="my-purchase-history">
+  <div class="container">
+    <h3>Current Plan</h3>
+    <div class="current-plan-detail" *ngIf="!purchaseDetails">
+      <p class="text-center errorMsg">{{errorMsg}}</p>
+    </div>
+    <div class="current-plan-detail" *ngIf="purchaseDetails">
+      <div class="col-sm-12">
+        <div class="row">
+          <label class="heading">Current Plan</label><span class="dot">:</span><span class="planname">{{purchaseDetails.currnet_plan_name}}</span>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="row">
+          <label class="heading">Features</label><span class="dot">:</span><span class="planname">
+          <ul class="listing">
+            <li *ngFor="let f of purchaseDetails.features">{{f}}</li> 
+          </ul>
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+        <label class="heading">Valutions Count</label>
+        <span class="dot">:</span><span class="planname">{{purchaseDetails.valuation_report_remain}} Valuation</span>
+      </div>
+    </div>
+
+    <div *ngIf="purchaseDetails.currnet_plan_name !='Single Valuation Report'">
+      <div class="col-sm-12" *ngIf="recurringActive" style="z-index:99">
+        <div class="row">
+          <label class="heading">Recurring Payment</label>
+          <span class="dot">:</span><span class="planname">Active 
+          <a (click)="showAlert('Are you sure want to Cancel Recurring Payment ?')">(Cancel Recurring ?)</a></span>
+        </div>
+      </div>
+      <div class="col-sm-12" *ngIf="!recurringActive" style="z-index:99">
+        <div class="row">
+          <label class="heading">Recurring Payment</label>
+          <span class="dot">:</span><span class="planname">Cancelled</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="purchase-history-list" *ngIf="purchaseDetails">
+    <h3>Purchase History</h3>
+    <table>
+      <tr>
+        <th>Plan Name</th>
+        <th>Price</th>
+        <th>Date</th>
+      </tr>
+      <tr *ngFor="let h of purchaseDetails.history_of_payment">
+        <td>{{h.plan_name}}</td>
+        <td>{{h.price}}</td>
+        <td>{{h.purchased_on | date:'medium'}}</td>
+      </tr>
+      <tr *ngIf="purchaseDetails.history_of_payment.length == 0">
+        <td class="text-center" colspan="3"> No Purchased History</td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
 </section>
 

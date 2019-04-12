@@ -7,7 +7,7 @@
 </div>
 <!-- *********** Loading ************** -->
 <app-menu-header></app-menu-header>
-<section class="inner-banner financed-top" data-toggle="modal" data-target="#myModal">
+ <!-- <section class="inner-banner financed-top" data-toggle="modal" data-target="#myModal">
     <div class="page-title financed-title" [ngStyle]="{ 'background-image': 'url(' + imageUrlArray[0] + ')'}">
        <div class="arrow-block clearfix">
         <img src="./assets/images/thumb-slider/arrow-left.png" alt="" class="pull-left" />
@@ -21,10 +21,53 @@
         </div>
     </div>
 </div>
-</section>
+</section> 
+ -->
+<section class="inner-banner financed-top">
+    <div class="street_map" style="400px" *ngIf="!sliderShow">
+        <div id="street-view" height="400px"></div>
+    </div>
+
+    <div *ngIf="sliderShow" class="all_slide">
+        <slideshow class="page-title financed-title"  #slideshow
+        [minHeight]="'450px'"
+        [autoPlay]="false"
+        [showArrows]="true"
+        [imageUrls]="imageUrlArray"
+        [lazyLoad]="imageUrlArray?.length > 1"
+        [autoPlayWaitForLazyLoad]="true">
+    </slideshow> 
+    <div class="titlePagewatermark">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="title-column col-sm-12 col-xs-12">
+                <h1>{{propertyData.title}}</h1>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<ul class="nav nav-pills nav-justified detail_controller slides">
+    <li *ngFor="let img of imageUrlArray; let i=index;">
+        <a (click)="changerImage(i)">
+            <img src="{{img | image: 'property-detail'}}" alt="" class="img-responsive" width="150px" height="150px">
+        </a>
+    </li>
+
+    <li class="street-view-thumbnail">
+        <a (click)="streetView()">
+            <img alt="" class="img-responsive street-view-thumbnail-img" src="{{imageUrlArray[0]}}">
+            <div class="street-view-thumbnail-overlay">
+                <img src="assets/images/icons/street-view.svg"></div>
+            </a>
+        </li>
+    </ul>
+
+</section> 
 
 <!--Pop Up Slider -->
-<div class="modal" id="myModal">
+<!-- <div class="modal" id="myModal">
     <div class="modal-dialog financed-dialog">
         <div class="modal-content" style="top:0px;">
             <button type="button" class="close slider-close " data-dismiss="modal">×</button>
@@ -48,11 +91,11 @@
                         </li>
                     </ul>
                 </div>
-            </div><!-- End Carousel -->
+            </div><
         </div>
     </div>
 </div>
-</div>
+</div> -->
 <!--Pop Up Slider -->
 
 <h3 *ngIf="planImages.length > 0">Floor Plan</h3>
@@ -89,6 +132,8 @@
                         </span>
                     </div>
                 </h5>
+
+
 
 
 
@@ -273,31 +318,31 @@
 
                                 <!-- Tabbed Links -->
                                 <div class="sidebar-widget">
-                                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-                                    <div class="sidebar-title"><h3>Make an offer</h3></div>
-                                    <div class="offer-form">
-                                        <p class="text-right">
+                                    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                                        <div class="sidebar-title"><h3>Make an offer</h3></div>
+                                        <div class="offer-form">
+                                            <p class="text-right">
 
-                                            <a  data-toggle="modal" data-target="#myBtn">Our Legal Notice</a></p>
-                                            <div class="form-group">
-                                                <input type="text" name="field-name" value="" placeholder="Your Name">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="field-name" value="" placeholder="Mail"  formControlName="email" >
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="field-name" value="" placeholder="Phone" formControlName="phone">
-                                            </div> 
-                                            <div class="form-group">
-                                                <input  currencyMask type="text" name="field-name" placeholder="Offer Amount">
-                                            </div>
-                                            <div class="form-group">
-                                               <textarea rows="4" formControlName="message" placeholder="Message"></textarea>
+                                                <a  data-toggle="modal" data-target="#myBtn">Our Legal Notice</a></p>
+                                                <div class="form-group">
+                                                    <input type="text" name="field-name" value="" placeholder="Your Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="field-name" value="" placeholder="Mail"  formControlName="email" >
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="field-name" value="" placeholder="Phone" formControlName="phone">
+                                                </div> 
+                                                <div class="form-group">
+                                                    <input  currencyMask type="text" name="field-name" placeholder="Offer Amount">
+                                                </div>
+                                                <div class="form-group">
+                                                   <textarea rows="4" formControlName="message" placeholder="Message"></textarea>
+                                               </div>
                                            </div>
-                                       </div>
-                                       <ul class="files">
-                                        <li> <button [disabled]="!contactForm.valid" type="submit" class="btn-style-two width_full text-uppercase margin-top-30">SEND</button></li>
-                                    </ul>
+                                           <ul class="files">
+                                            <li> <button [disabled]="!contactForm.valid" type="submit" class="btn-style-two width_full text-uppercase margin-top-30">SEND</button></li>
+                                        </ul>
                                     </form>
                                 </div>
 
@@ -395,7 +440,7 @@
                     <div class="services-provider-shortdetail">
                         <div class="detail">
                             <div class="left mr-auto">
-                             
+
                               <h3>{{g.name}}</h3>
                               <span class="location-area">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>

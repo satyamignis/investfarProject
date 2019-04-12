@@ -1,84 +1,135 @@
 .nav-justified.slides li img {
-    height: auto;
-    width: 98%;
+  height: 180px;
+  width: 98%;
 }
 .offer-form input, .offer-form textarea {
-    color: #626262;
+  color: #626262;
 }
 .star-rating {
-    padding-right: 65px;
+  padding-right: 65px;
 }
 
 
 /* modal */
 
 .service-listing {
-    width: 100%;
-    display: table;
-    padding-bottom: 10px;
-  }
-  
-  .services-provider-icon {
-    width:60px;
-    height:60px;
-    border-radius: 5px;
-    overflow: hidden;
-    display: inline-block;
-    border:1px solid #d6d6d6;
-    padding: 2px;
-    box-sizing: border-box;
-    cursor: pointer;
-  }
-  
-  .services-provider-shortdetail {
-    width: calc(100% - 80px);
-    float: right;
-  }
-  
-  .services-provider-icon img{width: 100%; object-fit: cover; height: 100%;}
+  width: 100%;
+  display: table;
+  padding-bottom: 10px;
+}
 
-  .services-provider-shortdetail h3{margin-bottom: 5px; margin-top:0px; font-size:1em}
-  .services-provider-shortdetail h3 a {
-    margin-top: 0px;
-    cursor: pointer;
-    padding: 0px;
-    font-size:0.6em;
-  }
-  
-  .services-provider-shortdetail p {
-    margin-bottom: 5px;
-    color: #000000;
-    font-size: 16px;
-  }
-  
-  span.location-area {
-    width: 100%;
-    display: block;
-    font-size: 14px;
-    color: #666666;
-  }
-  
-  span.location-area i {
-    color: #2e89cf;
-  }
+.services-provider-icon {
+  width:60px;
+  height:60px;
+  border-radius: 5px;
+  overflow: hidden;
+  display: inline-block;
+  border:1px solid #d6d6d6;
+  padding: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
 
-  ::ng-deep.modal-content{
-      border-radius: 0px;
-  }
+.services-provider-shortdetail {
+  width: calc(100% - 80px);
+  float: right;
+}
+
+.services-provider-icon img{width: 100%; object-fit: cover; height: 100%;}
+
+.services-provider-shortdetail h3{margin-bottom: 5px; margin-top:0px; font-size:1em}
+.services-provider-shortdetail h3 a {
+  margin-top: 0px;
+  cursor: pointer;
+  padding: 0px;
+  font-size:0.6em;
+}
+
+.services-provider-shortdetail p {
+  margin-bottom: 5px;
+  color: #000000;
+  font-size: 16px;
+}
+
+span.location-area {
+  width: 100%;
+  display: block;
+  font-size: 14px;
+  color: #666666;
+}
+
+span.location-area i {
+  color: #2e89cf;
+}
+
+::ng-deep.modal-content{
+  border-radius: 0px;
+}
 
 
-  ::ng-deep.modal-title{
-      font-size: 1.2em
-  }
+::ng-deep.modal-title{
+  font-size: 1.2em
+}
 
-  .property-owner-label{
-    font-family: 'Open Sans', sans-serif;
-    text-transform: uppercase;
-    color: #fff;
-    padding: 0.8em 1em !important;
-    background: #2e89cf;
-    font-size: 16px;
-    width: 100%;
-    border: none;
-    word-break: break-all;
-  }
+.property-owner-label{
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 0.8em 1em !important;
+  background: #2e89cf;
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  word-break: break-all;
+}
+#street-view {
+  height: 450px                                                                                                                 ;
+}
+
+.street-view-thumbnail-img{
+  -webkit-filter: blur(2px) grayscale(1);
+  filter: blur(2px) grayscale(1);
+  opacity: .8;
+  transition: .5s;
+}
+
+.street-view-thumbnail:hover .street-view-thumbnail-overlay > img {
+  height: 105px !important;
+}
+
+.street-view-thumbnail-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.street-view-thumbnail-overlay > img {
+  height: 100px !important;
+  margin-top: 55px !important;
+  -webkit-filter: invert(.7) sepia(1) saturate(5) hue-rotate(350deg) drop-shadow(7px 6px 5px rgba(0,0,0,.6));
+  filter: invert(.7) sepia(1) saturate(5) hue-rotate(350deg) drop-shadow(7px 6px 5px rgba(0,0,0,.6));
+  transition: .3s;
+}
+.street-view-thumbnail:hover 
+.street-view-thumbnail-img{
+    -webkit-filter: none;
+    filter: none;
+    opacity: 1;
+}
+
+@media(max-width: 1024px){
+.nav-justified.slides li img {
+  height: 90px;
+  width: 98%;
+}
+}
+
+@media(max-width: 991px){
+.nav-justified.slides li img {
+  height: 90px;
+  width: 98%;
+}
+}
+
